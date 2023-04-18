@@ -3,9 +3,10 @@ import Model from "./Model/Model";
 import { StyleSheet, Text, View } from 'react-native';
 import Main from './Main';
 export default function App() {
-
+  console.log("In app");
   return (
-    <Main model={new Model()}/>
+    <View><Main model={new Model()}/>
+    </View>
   );
 }
 
