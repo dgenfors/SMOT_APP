@@ -31,9 +31,8 @@ class Model
         if(dataToAdd === undefined){
             console.error("undefined data");
         }
-        this.notifyObservers({dataArray: dataToAdd});
-    
         this.dataArray = dataToAdd;
+        this.notifyObservers({dataArray: dataToAdd});
     }
 }
 export default Model;
