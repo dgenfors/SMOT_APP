@@ -1,13 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
+import Model from 'Model/Model';
 import { StyleSheet, Text, View } from 'react-native';
-
+import Main from './Main';
 export default function App() {
+
+
   return (
-    <View style={styles.container}>
-      <Text>Hello world!</Text>
-      <Text>Funkar för mig nu i think :!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Main model={new Model()}/>
   );
 }
 

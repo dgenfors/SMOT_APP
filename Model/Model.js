@@ -1,4 +1,5 @@
 class Model{
+    
     constructor(dataArray=[]){
         this.observers = [];
 

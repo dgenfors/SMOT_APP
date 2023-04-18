@@ -1,4 +1,5 @@
 import React from "react";
+import FrontpageView from "Views/frontpageView";
 
 export default
     function FrontPage(props) {

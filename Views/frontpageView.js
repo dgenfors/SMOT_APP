@@ -1,7 +1,6 @@
 
 import { Button, StyleSheet, Text, View } from 'react-native';
 
-
 function FrontpageView(props) {
     return (
       <View style={styles.container}>
