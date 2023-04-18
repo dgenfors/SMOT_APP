@@ -3,8 +3,9 @@ import Model from "./Model/Model";
 import { StyleSheet, Text, View } from 'react-native';
 import Main from './Main';
 export default function App() {
+  console.log("In app");
   return (
-    <View style ={styles.container}><Main model={new Model()}/>
+    <View style={styles.container}><Main model={new Model(5)}/>
     </View>
   );
 }
@@ -12,8 +13,10 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#f0f',
     alignItems: 'center',
     justifyContent: 'center',
   },
 });
+
+
