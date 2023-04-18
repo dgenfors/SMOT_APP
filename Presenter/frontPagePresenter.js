@@ -8,6 +8,7 @@ export default
     React.useEffect(wasCreatedACB, []);
 
     function observerACB() {
+        console.log(props.model.dataArray);
         setTest(props.model.dataArray);
     }
 
@@ -20,13 +21,13 @@ export default
     }
 
     function changeTest(number) {
-        props.model.addData(number);
+        props.model.addData(number); 
         //console.log("Presnter test")
     }
 
     return (
             <FrontpageView
-            test={test}
+            test={props.model.dataArray}
             onChangedTest={changeTest}
             >
             </FrontpageView>
