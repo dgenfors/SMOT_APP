@@ -1,4 +1,4 @@
-import FrontPage from "Presenter/frontPagePresenter";
+import FrontPage from "./Presenter/frontPagePresenter";
 
 export default function Main() {
     return (
