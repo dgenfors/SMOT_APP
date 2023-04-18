@@ -27,7 +27,6 @@ class Model
     }
 
     addData(dataToAdd){
-        console.log("dataToAdd:",dataToAdd)
         if(dataToAdd === undefined){
             console.error("undefined data");
         }
