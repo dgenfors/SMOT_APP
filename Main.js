@@ -3,8 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 
 export default function Main(props) {
     return (
-      <View>
+      <Text>
         <FrontPage model={props.model}></FrontPage>
-      </View>
+      </Text>
     );
   }

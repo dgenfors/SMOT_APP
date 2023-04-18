@@ -5,7 +5,7 @@ import Main from './Main';
 export default function App() {
   console.log("In app");
   return (
-    <View><Main model={new Model()}/>
+    <View><Main model={new Model(5)}/>
     </View>
   );
 }

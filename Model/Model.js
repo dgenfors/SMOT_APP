@@ -1,7 +1,8 @@
 
 class Model
 {
-    constructor(dataArray=[]){
+    constructor(dataArray){
+        this.dataArray = dataArray;
         this.observers = [];
 
     }
@@ -17,16 +18,21 @@ class Model
         this.observers = this.observers.filter(sameObsCB)
     }
     notifyObservers(payload){
-        function invokeObserverACB(obs){obs(payload); }    
-        try{this.observers.forEach(invokeObserverACB)}catch(err){console.log(err)}
+        function invokeObserverACB(obs){
+            obs(payload); 
+        }    
+        try{
+            this.observers.forEach(invokeObserverACB)
+        }catch(err){console.log(err)}
     }
 
     addData(dataToAdd){
         if(dataToAdd === undefined){
             console.error("undefined data");
         }
+        this.notifyObservers({dataArray: dataToAdd});
     
-        this.dataArray =[...this.dataArray,dataToAdd];
+        this.dataArray = dataToAdd;
     }
 }
-export default Model
+export default Model;
