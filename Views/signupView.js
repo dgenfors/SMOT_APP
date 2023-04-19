@@ -3,7 +3,7 @@ import { Button, StyleSheet, Text, View, SafeAreaView, TextInput } from 'react-n
 import { Link } from '@react-navigation/native';
 import React from "react";
 
-function LoginView(props) {
+function SignUpView(props) {
     const [email, setEmail] = React.useState();
     const [password, setPassword] = React.useState();
 
@@ -17,16 +17,14 @@ function LoginView(props) {
         setPassword(event.nativeEvent.text);
         console.log(password);
     }
-    function onLogIn(){
-        props.signIn(email,password);
-    }
-    /*function onSignUp(){
+   
+    function onSignUp(){
         props.signUp(email,password);
-    }*/
+    }
     return (
         <View style={styles.container}>
             <View style={styles.container2}>
-                <Text style={{fontWeight: 'bold', fontSize: 25,}}>Log in or Register!</Text>
+                <Text style={{fontWeight: 'bold', fontSize: 10,}}>Register!</Text>
                 <SafeAreaView>
                     <TextInput
                         style={styles.input}
@@ -46,8 +44,7 @@ function LoginView(props) {
                     flexDirection: 'row', 
                     justifyContent: 'space-between', 
                     alignItems: 'center', }}>
-                    <Button title='Log in' color='green' onPress={onLogIn}></Button>
-                    <Link to="/SignUp" color='green' style={{paddingLeft: 50,}}>Sign up here!</Link>
+                    <Button title='Sign Up' color='White' onPress={onSignUp}></Button>
                 </View>
             </View>
         </View>
@@ -85,4 +82,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default LoginView;
+export default SignUpView;

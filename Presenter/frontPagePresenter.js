@@ -1,6 +1,6 @@
 import React from "react";
 import FrontpageView from "../Views/frontpageView";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from '../firebaseconfig';
 import LoginView from "../Views/loginView";
 import { useContext } from 'react';
@@ -31,6 +31,12 @@ export default
     }
 
     function logout() {
+        try{
+            signOut(auth)
+            console.log("signed out");
+        }catch(error){
+            console.log(error.message)
+        } 
         navigation.popToTop();
     }
     async function signUpUser(email,password){

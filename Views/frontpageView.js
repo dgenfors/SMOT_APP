@@ -25,15 +25,10 @@ function FrontpageView(props) {
                 <SafeAreaView>
                     <Text>Test number: {props.test}</Text>
                     <TextInput
-                        style={styles.input}
-                        onSubmitEditing={handleInputSubmit}
-                        placeholder="Email"
-                    />
-                    <TextInput
                         secureTextEntry={true}
                         style={styles.input}
                         onSubmitEditing={handleInputSubmit}
-                        placeholder="Password"
+                        placeholder="Input a value"
                     />
                 </SafeAreaView>
                 <Button

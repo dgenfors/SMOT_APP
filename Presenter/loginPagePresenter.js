@@ -1,28 +1,47 @@
 import React from "react";
 import LoginView from "../Views/loginView";
-import { StyleSheet, Text, View, Button } from 'react-native';
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../firebaseconfig';
+import { StyleSheet, Text, View, Button } from "react-native";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../firebaseconfig";
 
-export default
-    function LoginPage({navigation}) {
+export default function LoginPage({ navigation }) {
+  const [errorText, setErrorText] = React.useState("");
 
-    function handleLoginButtonPress() {
-        navigation.navigate("Front");
+  function handleLoginButtonPress() {
+    navigation.navigate("Front");
+  }
+
+  function signIn(email, password) {
+    function successACB(userCredential) {
+      navigation.navigate("Front");
     }
-    async function signUpUser(email,password){
-        console.log(email,password)
-       try{
-            const user = await createUserWithEmailAndPassword(auth, email, password)
-        }catch(error){
-            console.log(error.message)
-        }
+
+    function failACB(error) {
+      setErrorText(error.message);
     }
 
-    return (
+    console.log("Sign in", email, password);
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        successACB(userCredential);
+      })
+      .catch((error) => {
+        failACB(error);
+      });
+  }
 
-            <LoginView signUp ={signUpUser}></LoginView>
-            
-        
-    )
+  async function signUpUser(email, password) {
+    navigation.navigate("SignUp");
+  }
+
+  return (
+    <LoginView
+      signUp={signUpUser}
+      signIn={signIn}
+      errorMessage={errorText}
+    ></LoginView>
+  );
 }
