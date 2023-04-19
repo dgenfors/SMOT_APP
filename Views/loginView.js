@@ -1,17 +1,24 @@
 
 import { Button, StyleSheet, Text, View, SafeAreaView, TextInput } from 'react-native';
+import React from "react";
 
 function LoginView(props) {
-    //function onChangeTextACB(number) {
-    //    props.onChangedTest(number);
-    //}
+    const [email, setEmail] = React.useState();
+    const [password, setPassword] = React.useState();
 
-    function  handleInputSubmit(event){
-        props.onChangedTest(event.nativeEvent.text);
-        //console.log('Input submitted:', event.nativeEvent.text);
-        // do something with the input value here
+    function  handleEmailSubmit(event){
+        //props.onChangedTest(event.nativeEvent.text);
+        setEmail(event.nativeEvent.text);
+        console.log(email);
     }
-    //onChangeText={onChangeTextACB}
+    function  handlePassSubmit(event){
+        //props.onChangedTest(event.nativeEvent.text);
+        setPassword(event.nativeEvent.text);
+        console.log(password);
+    }
+    function onSubmit(){
+        props.signIn(email,password);
+    }
     return (
         <View style={styles.container}>
             <View style={styles.container2}>
@@ -20,13 +27,13 @@ function LoginView(props) {
                 <SafeAreaView>
                     <TextInput
                         style={styles.input}
-                        onSubmitEditing={handleInputSubmit}
+                        onSubmitEditing={handleEmailSubmit}
                         placeholder="Email"
                     />
                     <TextInput
                         secureTextEntry={true}
                         style={styles.input}
-                        onSubmitEditing={handleInputSubmit}
+                        onSubmitEditing={handlePassSubmit}
                         placeholder="Password"
                     />
                 </SafeAreaView>
@@ -35,7 +42,7 @@ function LoginView(props) {
                     flexDirection: 'row', 
                     justifyContent: 'space-between', 
                     alignItems: 'center', }}>
-                    <Button title='Log in' color='green'></Button>
+                    <Button title='Sign Up' color='green' onPress={onSubmit}></Button>
                     <Text color='green' style={{paddingLeft: 50}}>Register</Text>
                 </View>
             </View>

@@ -1,5 +1,8 @@
 import React from "react";
 import FrontpageView from "../Views/frontpageView";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../firebaseconfig';
+import LoginView from "../Views/loginView";
 
 export default
     function FrontPage(props) {
@@ -24,12 +27,23 @@ export default
         props.model.addData(number); 
         //console.log("Presnter test")
     }
+    async function signUpUser(email,password){
+        console.log(email,password)
+        try{
+            const user = await createUserWithEmailAndPassword(auth, email, password)
+        }catch(error){
+            console.log(error.message)
+        }
+        
+          
+    }
 
     return (
-            <FrontpageView
+            <LoginView
             test={props.model.dataArray}
             onChangedTest={changeTest}
+            signIn={signUpUser}
             >
-            </FrontpageView>
+            </LoginView>
     )
 }
