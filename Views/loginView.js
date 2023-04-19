@@ -17,7 +17,7 @@ function LoginView(props) {
         console.log(password);
     }
     function onSubmit(){
-        props.signIn(email,password);
+        props.signUp(email,password);
     }
     return (
         <View style={styles.container}>
@@ -27,13 +27,13 @@ function LoginView(props) {
                 <SafeAreaView>
                     <TextInput
                         style={styles.input}
-                        onSubmitEditing={handleEmailSubmit}
+                        onChange={handleEmailSubmit}
                         placeholder="Email"
                     />
                     <TextInput
                         secureTextEntry={true}
                         style={styles.input}
-                        onSubmitEditing={handlePassSubmit}
+                        onChange={handlePassSubmit}
                         placeholder="Password"
                     />
                 </SafeAreaView>
