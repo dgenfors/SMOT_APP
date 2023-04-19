@@ -10,6 +10,10 @@ npm-debug.*
 *.orig.*
 web-build/
 firebaseconfig.js
+<<<<<<< HEAD
+
+=======
+>>>>>>> 241609b197f87afdeae78fa6c9fe36b532e6664a
 # macOS
 .DS_Store
 

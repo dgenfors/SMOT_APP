@@ -1,6 +1,5 @@
 import React from "react";
 import FrontpageView from "../Views/frontpageView";
-import LoginView from "../Views/loginView";
 
 export default
     function FrontPage(props) {
@@ -27,10 +26,10 @@ export default
     }
 
     return (
-            <LoginView
+            <FrontpageView
             test={props.model.dataArray}
             onChangedTest={changeTest}
             >
-            </LoginView>
+            </FrontpageView>
     )
 }
