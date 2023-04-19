@@ -1,35 +1,44 @@
 import React from "react";
 import FrontpageView from "../Views/frontpageView";
+import { useContext } from 'react';
+import { ModelContext } from "../ModelContext";
+import { StyleSheet, Text, View } from 'react-native';
 
 export default
-    function FrontPage(props) {
-
-    const [test, setTest] = React.useState(props.model.dataArray);
+    function FrontPage({navigation}) {
+    const model = useContext(ModelContext);
+    const [test, setTest] = React.useState(model.dataArray);
     React.useEffect(wasCreatedACB, []);
 
     function observerACB() {
-        console.log(props.model.dataArray);
-        setTest(props.model.dataArray);
+        setTest(model.dataArray);
     }
 
     function wasCreatedACB() {
-        props.model.addObserver(observerACB);
+        model.addObserver(observerACB);
         function isTakenDownACB() {
-            props.model.removeObserver(observerACB);
+            model.removeObserver(observerACB);
         }
         return isTakenDownACB;
     }
 
     function changeTest(number) {
-        props.model.addData(number); 
+        model.addData(number);
         //console.log("Presnter test")
     }
 
+    function logout() {
+        navigation.popToTop();
+    }
+
     return (
+        <View>
             <FrontpageView
-            test={props.model.dataArray}
-            onChangedTest={changeTest}
+                test={test}
+                onChangedTest={changeTest}
+                onPressLogout={logout}
             >
             </FrontpageView>
+        </View>
     )
 }

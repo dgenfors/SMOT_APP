@@ -6,30 +6,40 @@ function FrontpageView(props) {
     //    props.onChangedTest(number);
     //}
 
-    function  handleInputSubmit(event){
+    function handleInputSubmit(event) {
         props.onChangedTest(event.nativeEvent.text);
         //console.log('Input submitted:', event.nativeEvent.text);
         // do something with the input value here
     }
     //onChangeText={onChangeTextACB}
+
+    function handleLogoutButtonPress(event) {
+        props.onPressLogout();
+    }
+
+    //something wrong with style={styles.container} that was in outer view removing for now.
     return (
-        <View style={styles.container}>
+        <View >
             <View style={styles.container2}>
-            <Text>Login or Register!</Text>
-            <Text>Test number: {props.test}</Text>
-            <SafeAreaView>
-                <TextInput
-                    style={styles.input}
-                    onSubmitEditing={handleInputSubmit}
-                    placeholder="Email"
+                <Text>Login or Register!</Text>
+                <SafeAreaView>
+                    <Text>Test number: {props.test}</Text>
+                    <TextInput
+                        style={styles.input}
+                        onSubmitEditing={handleInputSubmit}
+                        placeholder="Email"
+                    />
+                    <TextInput
+                        secureTextEntry={true}
+                        style={styles.input}
+                        onSubmitEditing={handleInputSubmit}
+                        placeholder="Password"
+                    />
+                </SafeAreaView>
+                <Button
+                    onPress={handleLogoutButtonPress}
+                    title="Logout"
                 />
-                <TextInput
-                    secureTextEntry={true}
-                    style={styles.input}
-                    onSubmitEditing={handleInputSubmit}
-                    placeholder="Password"
-                />
-            </SafeAreaView>
             </View>
         </View>
     );
