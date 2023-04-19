@@ -1,5 +1,8 @@
 import React from "react";
 import FrontpageView from "../Views/frontpageView";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../firebaseconfig';
+import LoginView from "../Views/loginView";
 import { useContext } from 'react';
 import { ModelContext } from "../ModelContext";
 import { StyleSheet, Text, View } from 'react-native';
@@ -30,6 +33,16 @@ export default
     function logout() {
         navigation.popToTop();
     }
+    async function signUpUser(email,password){
+        console.log(email,password)
+        try{
+            const user = await createUserWithEmailAndPassword(auth, email, password)
+        }catch(error){
+            console.log(error.message)
+        }
+        
+          
+    }
 
     return (
         <View>
@@ -41,4 +54,14 @@ export default
             </FrontpageView>
         </View>
     )
+/*
+    return (
+        <LoginView
+        test={props.model.dataArray}
+        onChangedTest={changeTest}
+        signIn={signUpUser}
+        >
+        </LoginView>
+)
+*/
 }
