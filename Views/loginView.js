@@ -30,6 +30,14 @@ function LoginView(props) {
                         placeholder="Password"
                     />
                 </SafeAreaView>
+                <View style={{
+                    paddingHorizontal: 24, 
+                    flexDirection: 'row', 
+                    justifyContent: 'space-between', 
+                    alignItems: 'center', }}>
+                    <Button title='Log in' color='green'></Button>
+                    <Text color='green' style={{paddingLeft: 50}}>Register</Text>
+                </View>
             </View>
         </View>
     );
@@ -45,6 +53,7 @@ const styles = StyleSheet.create({
     container2: {
         
         flex: 0,
+        flexDirection: 'column',
         backgroundColor: '#9ed984',
         paddingVertical: 24,
         padding: 24,
@@ -57,7 +66,7 @@ const styles = StyleSheet.create({
     },
     input: {
         height: 40,
-        width: 200,
+        width: 250,
         margin: 12,
         borderWidth: 1,
         borderRadius: 5,
