@@ -5,6 +5,8 @@ import * as React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { ModelContext } from "./ModelContext";
+import { signOut } from "firebase/auth";
+import { auth } from "./firebaseconfig";
 
 export default function Main(props) {
   const Stack = props.stack;
@@ -22,9 +24,9 @@ export default function Main(props) {
             <Stack.Screen name="Front" component={FrontPage} options={({ navigation, route }) => ({
               headerBackVisible: false,
               headerRight: () => (<Button onPress={() => {
-                navigation.popToTop()
                 try {
                   signOut(auth)
+                  navigation.popToTop()
                   console.log("signed out");
                 } catch (error) {
                   console.log(error.message)
