@@ -1,11 +1,16 @@
 
 import { Button, StyleSheet, Text, View, SafeAreaView, TextInput } from 'react-native';
+
 import { Link } from '@react-navigation/native';
+import { Image } from 'react-native';
+//import treelogo from '../assets/treelogo.png';
 import React from "react";
+import { inline } from 'react-native-web/dist/cjs/exports/StyleSheet/compiler';
 
 function LoginView(props) {
     const [email, setEmail] = React.useState();
     const [password, setPassword] = React.useState();
+    //const Image tree = 
 
     function  handleEmailSubmit(event){
         //props.onChangedTest(event.nativeEvent.text);
@@ -25,6 +30,7 @@ function LoginView(props) {
     }*/
     return (
         <View style={styles.container}>
+            {/*<Image source={treelogo}/>*/}
             <View style={styles.container2}>
                 <Text style={{fontWeight: 'bold', fontSize: 25,}}>Log in or Register!</Text>
                 <SafeAreaView>
@@ -57,13 +63,14 @@ function LoginView(props) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        flexDirection: 'column',
         backgroundColor: '#9dc183',
         alignItems: 'center',
         justifyContent: 'center',
     },
     container2: {
         
-        flex: 0,
+        flex: 0.5,
         flexDirection: 'column',
         backgroundColor: '#9ed984',
         paddingVertical: 24,

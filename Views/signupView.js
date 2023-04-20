@@ -24,7 +24,7 @@ function SignUpView(props) {
     return (
         <View style={styles.container}>
             <View style={styles.container2}>
-                <Text style={{fontWeight: 'bold', fontSize: 10,}}>Register!</Text>
+                <Text style={{fontWeight: 'bold', fontSize: 25,}}>Register!</Text>
                 <SafeAreaView>
                     <TextInput
                         style={styles.input}
@@ -37,6 +37,12 @@ function SignUpView(props) {
                         onChange={handlePassSubmit}
                         placeholder="Password"
                     />
+                    <TextInput
+                        secureTextEntry={true}
+                        style={styles.input}
+                        onChange={handlePassSubmit}
+                        placeholder="Confirm password"
+                    />
                 </SafeAreaView>
                 <Text color='red'>{props.errorMessage}</Text>
                 <View style={{
@@ -44,7 +50,7 @@ function SignUpView(props) {
                     flexDirection: 'row', 
                     justifyContent: 'space-between', 
                     alignItems: 'center', }}>
-                    <Button title='Sign Up' color='White' onPress={onSignUp}></Button>
+                    <Button title='Sign Up' color='green' onPress={onSignUp}></Button>
                 </View>
             </View>
         </View>
@@ -60,7 +66,7 @@ const styles = StyleSheet.create({
     },
     container2: {
         
-        flex: 0,
+        flex: 0.5,
         flexDirection: 'column',
         backgroundColor: '#9ed984',
         paddingVertical: 24,
