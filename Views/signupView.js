@@ -6,6 +6,7 @@ import React from "react";
 function SignUpView(props) {
     const [email, setEmail] = React.useState();
     const [password, setPassword] = React.useState();
+    const [confPassword, setConfPassword] = React.useState();
 
     function  handleEmailSubmit(event){
         //props.onChangedTest(event.nativeEvent.text);
@@ -17,9 +18,14 @@ function SignUpView(props) {
         setPassword(event.nativeEvent.text);
         console.log(password);
     }
+    function  handleConfPassSubmit(event){
+        //props.onChangedTest(event.nativeEvent.text);
+        setConfPassword(event.nativeEvent.text);
+        console.log(password);
+    }
    
     function onSignUp(){
-        props.signUp(email,password);
+        props.signUp(email,password, confPassword);
     }
     return (
         <View style={styles.container}>
@@ -40,7 +46,7 @@ function SignUpView(props) {
                     <TextInput
                         secureTextEntry={true}
                         style={styles.input}
-                        onChange={handlePassSubmit}
+                        onChange={handleConfPassSubmit}
                         placeholder="Confirm password"
                     />
                 </SafeAreaView>
