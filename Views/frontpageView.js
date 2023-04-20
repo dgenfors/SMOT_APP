@@ -25,7 +25,6 @@ function FrontpageView(props) {
                 <SafeAreaView>
                     <Text>Test number: {props.test}</Text>
                     <TextInput
-                        secureTextEntry={true}
                         style={styles.input}
                         onSubmitEditing={handleInputSubmit}
                         placeholder="Input a value"
