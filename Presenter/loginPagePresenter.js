@@ -6,9 +6,13 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../firebaseconfig";
+import { useContext } from 'react';
+import { ModelContext } from "../ModelContext";
+import { updateModelFromFirebase } from "../Model/FirebaseModel";
 
 export default function LoginPage({ navigation }) {
   const [errorText, setErrorText] = React.useState("");
+  const model = useContext(ModelContext);
 
   function handleLoginButtonPress() {
     navigation.navigate("Front");
@@ -16,6 +20,7 @@ export default function LoginPage({ navigation }) {
 
   function signIn(email, password) {
     function successACB(userCredential) {
+      updateModelFromFirebase(model);
       navigation.navigate("Front");
     }
 

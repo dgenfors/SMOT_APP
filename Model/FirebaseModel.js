@@ -11,12 +11,22 @@ function updateFirebaseFromModel(model){
 
         if(payload.dataArray){
             console.log("UpdateFirebase:",payload.dataArray);
-            firebase.database().ref(auth.currentUser.uid+"/dataNumbers/").set(payload.dataArray);
+            firebase.database().ref(auth.currentUser.uid+"/dataNumber/").set(payload.dataArray);
         }
         
     }
     model.addObserver(firebaseObserverACB);
     return;
 }
+function updateModelFromFirebase(model){
+    if(!auth.currentUser){
+        return;
+    }
+    firebase.database().ref(auth.currentUser.uid+"/dataNumber").on("value", 
+    function numberAddedInFirebaseACB(firebaseData){
+        model.addData(firebaseData.val());
+    }
+    );
+}
 
-export {updateFirebaseFromModel};
+export {updateFirebaseFromModel, updateModelFromFirebase};

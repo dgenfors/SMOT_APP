@@ -2,6 +2,7 @@
 class Model
 {
     constructor(dataArray){
+        this.isLoggedIn = false;
         this.dataArray = dataArray;
         this.observers = [];
 
@@ -32,6 +33,13 @@ class Model
         }
         this.dataArray = dataToAdd;
         this.notifyObservers({dataArray: dataToAdd});
+    }
+    setLoginStatus(loginStatus){
+        if(loginStatus === true){
+            this.isLoggedIn = true;
+        }else if(loginStatus === false){
+            this.isLoggedIn = false;
+        }
     }
 }
 export default Model;

@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { ModelContext } from "./ModelContext";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebaseconfig";
+import { onAuthStateChanged} from "firebase/auth";
 
 export default function Main(props) {
   const Stack = props.stack;
@@ -15,7 +16,14 @@ export default function Main(props) {
     popToTop();
   }
 
-
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      props.model.setLoginStatus(true);
+      //Ny return Om man är inloggad
+    } else {
+      props.model.setLoginStatus(false);
+    }
+  });
   return (
     <NavigationContainer>
       <ModelContext.Provider value={props.model}>
