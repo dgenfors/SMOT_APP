@@ -9,10 +9,21 @@ import { auth } from "../firebaseconfig";
 import { useContext } from 'react';
 import { ModelContext } from "../ModelContext";
 import { updateModelFromFirebase } from "../Model/FirebaseModel";
+import { onAuthStateChanged} from "firebase/auth";
 
 export default function LoginPage({ navigation }) {
   const [errorText, setErrorText] = React.useState("");
   const model = useContext(ModelContext);
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      model.setLoginStatus(true);
+      updateModelFromFirebase(model);
+      navigation.navigate("Front");
+    } else {
+      model.setLoginStatus(false);
+    }
+  });
 
   function handleLoginButtonPress() {
     navigation.navigate("Front");
