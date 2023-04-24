@@ -1,11 +1,10 @@
 
 class Model
 {
-    constructor(dataArray){
+    constructor(dataobject){
         this.isLoggedIn = false;
-        this.dataArray = dataArray;
         this.observers = [];
-        this.moistureLevel;
+        this.devices = [{id: 1, name: "tomat", currentMoisture: 35, moistureLevel: 30}, {id: 2, name:"Ros", currentMoisture: 20, moistureLevel:20 }]
 
     }
     addObserver(obs){
@@ -38,15 +37,27 @@ class Model
         this.dataArray = dataToAdd;
         this.notifyObservers({dataArray: dataToAdd});
     }
-
-    setMoisture(moistureLevel){
-        if(moistureLevel === undefined){
+    setName(name){
+        if(name === undefined){
             console.error("undefined data");
         }
-        if(moistureLevel === this.moistureLevel){
+        if(name=== this.devices[0].name){
             return;
         }
-        this.moistureLevel= moistureLevel;
+        this.devices[0].name = name;
+        this.notifyObservers({nameChanged: name});
+    }
+
+    setMoisture(moistureLevel){
+        const test = 5;
+        if(moistureLevel === undefined){
+            console.error("undefined data");
+            return;
+        }
+        if(moistureLevel === this.devices[0].moistureLevel){
+            return;
+        }
+        this.devices[0].moistureLevel = moistureLevel;
         this.notifyObservers({setMoisture: moistureLevel});
     }
 
