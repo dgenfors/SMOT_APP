@@ -4,7 +4,7 @@ class Model
     constructor(dataobject){
         this.isLoggedIn = false;
         this.observers = [];
-        this.devices = [{id: 1, name: "tomat", currentMoisture: 35, moistureLevel: 30}, {id: 2, name:"Ros", currentMoisture: 20, moistureLevel:20 }]
+        this.devices = [{id: 1, name: "tomat", currentMoisture: 35, moistureLevel: 30, waterLevel: 20}, {id: 2, name:"Ros", currentMoisture: 20, moistureLevel:20, waterLevel: 40 }]
 
     }
     addObserver(obs){
