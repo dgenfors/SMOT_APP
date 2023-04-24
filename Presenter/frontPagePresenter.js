@@ -32,7 +32,7 @@ export default
         //console.log("Presnter test")
     }
     function changeMoisture(number) {
-        model.setMoisture(number);
+        model.setMoistureLevel(number);
         //console.log("Presnter test")
     }
 
