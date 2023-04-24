@@ -49,19 +49,27 @@ class Model
     }
 
     setMoistureLevel(moistureLevel , id){
-        if(id === undefined)id=1;
-    
         if(moistureLevel === undefined){
             console.error("undefined data");
             return;
         }
-        if(moistureLevel === this.devices[0].moistureLevel){
+       
+
+        function hasSameId(test){
+            return test.id == id;
+        }
+        function findIndex(test){
+            return test == hold;
+        }
+        const hold = this.devices.filter(hasSameId)[0]
+        const index = this.devices.findIndex(findIndex);
+
+        if(moistureLevel === this.devices[index].moistureLevel){
             console.log("matches same level")
             return;
         }
-        this.devices[0].moistureLevel = moistureLevel;
-        let test = this.devices[0];
-        this.notifyObservers({setMoistureLevel: moistureLevel , deviceID: id, test: this.devices[0] });
+        this.devices[index].moistureLevel = moistureLevel;
+        this.notifyObservers({setMoistureLevel: moistureLevel , deviceID: id, test: this.devices[index] });
     }
 
     setLoginStatus(loginStatus){
