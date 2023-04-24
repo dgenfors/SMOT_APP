@@ -5,6 +5,7 @@ class Model
         this.isLoggedIn = false;
         this.dataArray = dataArray;
         this.observers = [];
+        this.moistureLevel;
 
     }
     addObserver(obs){
@@ -31,9 +32,24 @@ class Model
         if(dataToAdd === undefined){
             console.error("undefined data");
         }
+        if(dataToAdd === this.dataArray){
+            return;
+        }
         this.dataArray = dataToAdd;
         this.notifyObservers({dataArray: dataToAdd});
     }
+
+    setMoisture(moistureLevel){
+        if(moistureLevel === undefined){
+            console.error("undefined data");
+        }
+        if(moistureLevel === this.moistureLevel){
+            return;
+        }
+        this.moistureLevel= moistureLevel;
+        this.notifyObservers({setMoisture: moistureLevel});
+    }
+
     setLoginStatus(loginStatus){
         if(loginStatus === true){
             this.isLoggedIn = true;

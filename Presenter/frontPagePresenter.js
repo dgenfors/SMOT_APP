@@ -11,10 +11,12 @@ export default
     function FrontPage({navigation}) {
     const model = useContext(ModelContext);
     const [test, setTest] = React.useState(model.dataArray);
+    const [moisture, setMoisture] = React.useState(model.moistureLevel);
     React.useEffect(wasCreatedACB, []);
 
     function observerACB() {
         setTest(model.dataArray);
+        setMoisture(model.moistureLevel);
     }
 
     function wasCreatedACB() {
@@ -27,6 +29,10 @@ export default
 
     function changeTest(number) {
         model.addData(number);
+        //console.log("Presnter test")
+    }
+    function changeMoisture(number) {
+        model.setMoisture(number);
         //console.log("Presnter test")
     }
 
@@ -54,8 +60,10 @@ export default
         <View>
             <FrontpageView
                 test={test}
+                moisture={moisture}
                 onChangedTest={changeTest}
                 onPressLogout={logout}
+                onChangedMoisture={changeMoisture}
             >
             </FrontpageView>
         </View>

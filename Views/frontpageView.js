@@ -11,6 +11,11 @@ function FrontpageView(props) {
         //console.log('Input submitted:', event.nativeEvent.text);
         // do something with the input value here
     }
+    function handleInputSubmitMoist(event) {
+        props.onChangedMoisture(event.nativeEvent.text);
+        //console.log('Input submitted:', event.nativeEvent.text);
+        // do something with the input value here
+    }
     //onChangeText={onChangeTextACB}
 
     function handleLogoutButtonPress(event) {
@@ -24,10 +29,16 @@ function FrontpageView(props) {
                 <Text>Login or Register!</Text>
                 <SafeAreaView>
                     <Text>Test number: {props.test}</Text>
+                    <Text>Moisture: {props.moisture}</Text>
                     <TextInput
                         style={styles.input}
                         onSubmitEditing={handleInputSubmit}
                         placeholder="Input a value"
+                    />
+                    <TextInput
+                        style={styles.input}
+                        onSubmitEditing={handleInputSubmitMoist}
+                        placeholder="Moisturelevel"
                     />
                 </SafeAreaView>
                 <Button
