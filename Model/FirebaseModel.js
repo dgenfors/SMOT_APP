@@ -15,7 +15,7 @@ function updateFirebaseFromModel(model){
         }
         if(payload.setMoisture){
             console.log("UpdateFirebase:",payload.setMoisture);
-            firebase.database().ref(auth.currentUser.uid+"/moistureLevel/").set(payload.setMoisture);
+            firebase.database().ref(auth.currentUser.uid+payload.deviceID+"/moistureLevel/").set(payload.setMoisture);
         }
         
     }

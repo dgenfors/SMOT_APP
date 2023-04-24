@@ -48,7 +48,7 @@ class Model
         this.notifyObservers({nameChanged: name});
     }
 
-    setMoisture(moistureLevel){
+    setMoisture(moistureLevel , id){
         const test = 5;
         if(moistureLevel === undefined){
             console.error("undefined data");
@@ -58,7 +58,7 @@ class Model
             return;
         }
         this.devices[0].moistureLevel = moistureLevel;
-        this.notifyObservers({setMoisture: moistureLevel});
+        this.notifyObservers({setMoisture: moistureLevel , deviceID: id});
     }
 
     setLoginStatus(loginStatus){
