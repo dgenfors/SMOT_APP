@@ -4,7 +4,9 @@ class Model
     constructor(dataobject){
         this.isLoggedIn = false;
         this.observers = [];
-        this.devices = [{id: 1, name: "tomat", currentMoisture: 35, moistureLevel: 30, waterLevel: 20}, {id: 2, name:"Ros", currentMoisture: 20, moistureLevel:20, waterLevel: 40 }]
+        this.devices = [{id: 1, name: "tomat", currentMoisture: 35, moistureLevel: 30, waterLevel: 20, pump:0}, {id: 2, name:"Ros", currentMoisture: 20, moistureLevel:20, waterLevel: 40, pump:0 },
+        {id: 3, name: "tomat", currentMoisture: 35, moistureLevel: 30, waterLevel: 20, pump:0}, {id: 4, name:"Ros", currentMoisture: 20, moistureLevel:20, waterLevel: 40, pump:0 },
+        {id: 5, name: "tomat", currentMoisture: 35, moistureLevel: 30, waterLevel: 20, pump:0}, {id: 6, name:"Ros", currentMoisture: 20, moistureLevel:20, waterLevel: 40, pump:0 }]
 
     }
     addObserver(obs){
@@ -37,15 +39,20 @@ class Model
         this.dataArray = dataToAdd;
         this.notifyObservers({dataArray: dataToAdd});
     }
-    setName(name){
+    setName(name, id){
         if(name === undefined){
             console.error("undefined data");
         }
-        if(name=== this.devices[0].name){
+        function findIndex(test){
+            return test.id == id;
+        }
+
+        const index = this.devices.findIndex(findIndex);
+        if(name=== this.devices[index].name){
             return;
         }
-        this.devices[0].name = name;
-        this.notifyObservers({nameChanged: name});
+        this.devices[index].name = name;
+        this.notifyObservers({nameChanged: name, deviceID: id, test: this.devices[index]});
     }
 
     setMoistureLevel(moistureLevel , id){
@@ -53,23 +60,64 @@ class Model
             console.error("undefined data");
             return;
         }
-       
-
-        function hasSameId(test){
+        function findIndex(test){
             return test.id == id;
         }
-        function findIndex(test){
-            return test == hold;
-        }
-        const hold = this.devices.filter(hasSameId)[0]
         const index = this.devices.findIndex(findIndex);
-
         if(moistureLevel === this.devices[index].moistureLevel){
             console.log("matches same level")
             return;
         }
         this.devices[index].moistureLevel = moistureLevel;
         this.notifyObservers({setMoistureLevel: moistureLevel , deviceID: id, test: this.devices[index] });
+    }
+    setWaterLevel(waterLevel , id){
+        if(waterLevel === undefined){
+            console.error("undefined data");
+            return;
+        }
+        function findIndex(test){
+            return test.id == id;
+        }
+        const index = this.devices.findIndex(findIndex);
+        if(waterLevel === this.devices[index].waterLevel){
+            console.log("matches same level")
+            return;
+        }
+        this.devices[index].waterLevel = waterLevel;
+        this.notifyObservers({setWaterLevel: waterLevel , deviceID: id, test: this.devices[index] });
+    }
+    setCurrentMoisture(moisture , id){
+        if(moisture === undefined){
+            console.error("undefined data");
+            return;
+        }
+        function findIndex(test){
+            return test.id == id;
+        }
+        const index = this.devices.findIndex(findIndex);
+        if(moisture === this.devices[index].currentMoisture){
+            console.log("matches same level")
+            return;
+        }
+        this.devices[index].currentMoisture = moisture;
+        this.notifyObservers({setCurrentMoisture: moisture , deviceID: id, test: this.devices[index] });
+    }
+    setPump(pump , id){
+        if(pump === undefined){
+            console.error("undefined data");
+            return;
+        }
+        function findIndex(test){
+            return test.id == id;
+        }
+        const index = this.devices.findIndex(findIndex);
+        if(pump === this.devices[index].pump){
+            console.log("matches same level")
+            return;
+        }
+        this.devices[index].pump = pump;
+        this.notifyObservers({setPump: pump , deviceID: id, test: this.devices[index] });
     }
 
     setLoginStatus(loginStatus){

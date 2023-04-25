@@ -33,7 +33,8 @@ export default
     }
     function changeMoisture(number) {
         //model.setMoistureLevel(number);
-        model.setMoistureLevel(number, 1);
+        //model.setMoistureLevel(number, 1);
+        model.setPump(number, 4);
         //console.log("Presnter test")
     }
 
