@@ -35,7 +35,7 @@ function updateModelFromFirebase(model){
         return;
     }
     firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_changed", 
-    function moistureLevelFirebaseACB(firebaseData){
+    function nameFirebaseACB(firebaseData){
         function hasSameName(device){
             if(device.id === firebaseData.val().id){
                 if(device.name == firebaseData.val().name)
