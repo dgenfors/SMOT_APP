@@ -1,7 +1,21 @@
 import {firebaseConfig, auth} from "../firebaseconfig";
 import firebase from "firebase/compat/app";
 import "firebase/compat/database";
+import Model from "./Model";
 firebase.initializeApp(firebaseConfig);
+
+
+
+function firebaseModelPromise() {
+    const REF = auth.currentUser.uid + "/devices/";
+    return firebase.database().ref(REF).once("value").then(makeBigPromiseACB)
+  }
+
+function makeBigPromiseACB(firebaseData) {
+    console.log("firebaseDataPromise", Object.values(firebaseData.val()));
+   
+    return new Model(Object.values(firebaseData.val()))
+}
 
 function updateFirebaseFromModel(model){
     function firebaseObserverACB(payload){
@@ -9,20 +23,12 @@ function updateFirebaseFromModel(model){
             return
         }
 
-        if(payload.nameChanged){
-            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
+        if(payload.dataArray){
+            console.log("UpdateFirebase:",payload.dataArray);
+            firebase.database().ref(auth.currentUser.uid+"/dataNumber/").set(payload.dataArray);
         }
         if(payload.setMoistureLevel){
-            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
-        }
-        if(payload.setWaterLevel){
-            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
-        }
-        if(payload.setCurrentMoisture){
-            
-            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
-        }
-        if(payload.setPump){
+            console.log("UpdateFirebase:",payload.setMoistureLevel);
             firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
         }
         
@@ -34,7 +40,6 @@ function updateModelFromFirebase(model){
     if(!auth.currentUser){
         return;
     }
-    debugger
     console.log(model)
     firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_changed", 
     function nameFirebaseACB(firebaseData){
@@ -44,24 +49,12 @@ function updateModelFromFirebase(model){
                  return 1;
                 }
         }
-        //if(model.devices.filter(hasSameName).length == 1)return;
-        debugger
+        if(model.devices.filter(hasSameName).length == 1)return;
+       
         model.setName(firebaseData.val().name, firebaseData.val().id); 
     }
     );
-    firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_added", 
-    function nameFirebaseACB(firebaseData){
-        function hasSameName(device){
-            if(device.id === firebaseData.val().id){
-                if(device.name == firebaseData.val().name)
-                 return 1;
-                }
-        }
-        //if(model.devices.filter(hasSameName).length == 1)return;
-        debugger
-        model.setName(firebaseData.val().name, firebaseData.val().id); 
-    }
-    );
+
 
     firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_changed", 
     function moistureLevelFirebaseACB(firebaseData){
@@ -71,10 +64,11 @@ function updateModelFromFirebase(model){
                  return 1;
                 }
         }
-       //if(model.devices.filter(hasSameMoistureLevel).length == 1)return;
+       if(model.devices.filter(hasSameMoistureLevel).length == 1)return;
         model.setMoistureLevel(firebaseData.val().moistureLevel, firebaseData.val().id); 
     }
     );
+    
     firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_changed", 
     function currentMoistureInFirebaseACB(firebaseData){
         function hasSameMoistureLevel(device){
@@ -83,10 +77,11 @@ function updateModelFromFirebase(model){
                  return 1;
                 }
         }
-        //if(model.devices.filter(hasSameMoistureLevel).length == 1)return;
+        if(model.devices.filter(hasSameMoistureLevel).length == 1)return;
         model.setCurrentMoisture(firebaseData.val().currentMoisture, firebaseData.val().id); 
     }
     );
+    
     firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_changed", 
     function waterLevelFirebaseACB(firebaseData){
         function hasSameWaterLevel(device){
@@ -95,10 +90,11 @@ function updateModelFromFirebase(model){
                  return 1;
                 }
         }
-        //if(model.devices.filter(hasSameWaterLevel).length == 1)return;
+        if(model.devices.filter(hasSameWaterLevel).length == 1)return;
         model.setWaterLevel(firebaseData.val().waterLevel, firebaseData.val().id); 
     }
     );
+    
     firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_changed", 
     function pumpFirebaseACB(firebaseData){
         function hasSamePump(device){
@@ -107,21 +103,32 @@ function updateModelFromFirebase(model){
                  return 1;
                 }
         }
-        //if(model.devices.filter(hasSamePump).length == 1)return;
+        if(model.devices.filter(hasSamePump).length == 1)return;
         model.setPump(firebaseData.val().pump, firebaseData.val().id); 
     }
     );
 
     /*firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_changed", 
     function numberAddedInFirebaseACB(firebaseData){
-        function hasSameMoistureLevel(device){
-           return -1;
-        }
-        if(model.devices.filter(hasSameMoistureLevel).length ==1)return;
-        console.log("firebaseval",firebaseData.val())
-        model.setMoistureLevel(firebaseData.val().moistureLevel, firebaseData.val().id); 
+        if(model.dataArray === firebaseData.val()){
+            console.log("finns i modelen")
+            return;
+        } 
+        model.addData(firebaseData.val());
+        
+    }
+    );
+    firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_changed", 
+    function numberAddedInFirebaseACB(firebaseData){
+        if(model.devices[0].moistureLevel === firebaseData.val()){
+            console.log("finns i modelen")
+            return;
+        } 
+        console.log(firebaseData.val())
+        model.setMoistureLevel(firebaseData.val().moistureLevel, firebaseData.val().id);
+        
     }
     );*/
 }
 
-export {updateFirebaseFromModel, updateModelFromFirebase};
+export {updateFirebaseFromModel, updateModelFromFirebase,firebaseModelPromise }
