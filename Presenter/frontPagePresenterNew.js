@@ -9,11 +9,9 @@ export default
     const model = useContext(ModelContext);
     const [deviceList, copyDeviceList] = React.useState(model.devices);
     React.useEffect(wasCreatedACB, []);
-    React.useEffect(deviceListChangedACB, [deviceList]);
-    let ShortDevices = null;
 
     function observerACB() {
-        copyDeviceList(model.device)
+        copyDeviceList(model.devices)
     }
 
     function wasCreatedACB() {
@@ -23,24 +21,29 @@ export default
         }
         return isTakenDownACB;
     }
-
+/*
     function deviceListChangedACB() {
-        ShortDevices = model.device.map(shortenObjectsCB);
+        shortDevices = model.devices.map(shortenObjectsCB);
 
         function shortenObjectsCB(obj) {
             return {id: obj.id, name: obj.name, moisture: obj.currentMoisture, waterlevel: obj.waterLevel};
         }
     }
-
+*/
     function runPumpACB() {
         console.log("i'm watering! :)")
+    }
+
+    function navigateToDetails(id) {
+        navigation.navigate("Details", {itemId: id});
     }
 
     return (
         <View>
             <FrontpageView
-                devices = {ShortDevices}
+                devices = {model.devices}
                 runPump = {runPumpACB}
+                navToDetails = {navigateToDetails}
             >
             </FrontpageView>
         </View>
