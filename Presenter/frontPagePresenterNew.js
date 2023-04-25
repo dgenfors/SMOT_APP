@@ -11,7 +11,8 @@ export default
     React.useEffect(wasCreatedACB, []);
 
     function observerACB() {
-        copyDeviceList(model.devices)
+        copyDeviceList([...model.devices])
+        console.log(deviceList);
     }
 
     function wasCreatedACB() {
@@ -32,6 +33,7 @@ export default
 */
     function runPumpACB() {
         console.log("i'm watering! :)")
+        model.setName("gurka",1);
     }
 
     function navigateToDetails(id) {
@@ -41,7 +43,7 @@ export default
     return (
         <View>
             <FrontpageView
-                devices = {model.devices}
+                devices = {deviceList}
                 runPump = {runPumpACB}
                 navToDetails = {navigateToDetails}
             >

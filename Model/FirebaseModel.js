@@ -55,7 +55,7 @@ function updateModelFromFirebase(model){
                  return 1;
                 }
         }
-        if(model.devices.filter(hasSameMoistureLevel).length == 1)return;
+       if(model.devices.filter(hasSameMoistureLevel).length == 1)return;
         model.setMoistureLevel(firebaseData.val().moistureLevel, firebaseData.val().id); 
     }
     );

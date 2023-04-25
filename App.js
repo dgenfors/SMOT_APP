@@ -4,7 +4,7 @@ import Model from "./Model/Model";
 import { StyleSheet, Text, View } from 'react-native';
 import Main from './Main';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { updateFirebaseFromModel} from './Model/FirebaseModel';
+import { updateFirebaseFromModel, updateModelFromFirebase} from './Model/FirebaseModel';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -13,6 +13,7 @@ export default function App() {
   
   //Method call to activate firebaseObserver
   updateFirebaseFromModel(model);
+  updateModelFromFirebase(model);
   
   return (
     <View style={styles.container}>
