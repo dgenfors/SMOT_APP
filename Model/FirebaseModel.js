@@ -61,19 +61,6 @@ function updateModelFromFirebase(model){
         model.setName(firebaseData.val().name, firebaseData.val().id); 
     }
     );
-    firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_added", 
-    function nameFirebaseACB(firebaseData){
-        function hasSameName(device){
-            if(device.id === firebaseData.val().id){
-                if(device.name == firebaseData.val().name)
-                 return 1;
-                }
-        }
-        if(model.devices.filter(hasSameName).length == 1)return;
-        debugger
-        model.setName(firebaseData.val().name, firebaseData.val().id); 
-    }
-    );
 
     firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_changed", 
     function moistureLevelFirebaseACB(firebaseData){
