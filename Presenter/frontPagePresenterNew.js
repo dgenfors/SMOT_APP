@@ -41,13 +41,11 @@ export default
     }
 
     return (
-        <View>
             <FrontpageView
                 devices = {deviceList}
                 runPump = {runPumpACB}
                 navToDetails = {navigateToDetails}
             >
             </FrontpageView>
-        </View>
     )
 }

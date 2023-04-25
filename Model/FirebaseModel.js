@@ -34,7 +34,6 @@ function updateModelFromFirebase(model){
     if(!auth.currentUser){
         return;
     }
-    debugger
     console.log(model)
     firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_changed", 
     function nameFirebaseACB(firebaseData){
@@ -45,7 +44,6 @@ function updateModelFromFirebase(model){
                 }
         }
         //if(model.devices.filter(hasSameName).length == 1)return;
-        debugger
         model.setName(firebaseData.val().name, firebaseData.val().id); 
     }
     );
@@ -58,7 +56,6 @@ function updateModelFromFirebase(model){
                 }
         }
         //if(model.devices.filter(hasSameName).length == 1)return;
-        debugger
         model.setName(firebaseData.val().name, firebaseData.val().id); 
     }
     );

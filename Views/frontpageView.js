@@ -5,7 +5,7 @@ import { Link } from '@react-navigation/native';
 import { Image } from 'react-native';
 //import treelogo from '../assets/treelogo.png';
 import React from "react";
-import { FlatList } from 'react-native-web';
+import { FlatList } from 'react-native';
 //import { inline } from 'react-native-web/dist/cjs/exports/StyleSheet/compiler';
 
 function FrontpageView(props) {
@@ -43,36 +43,45 @@ function FrontpageView(props) {
         return (
             <Pressable onPress={onMoreInfoButtonPressed}>
             <View style={styles.addedDevice}>
-                <Image style={styles.tinyLogo} source={{uri: 'https://reactnative.dev/img/tiny_logo.png',}}/>
-                <View style={{}}>
+            <Image style={styles.tinyLogo} source={{uri: 'https://reactnative.dev/img/tiny_logo.png',}}/>
+            
+            <View style={{}}>
                 <Text> Name: {item.name} </Text>
                 <Text> Moisture: {item.currentMoisture} </Text>
                 <Text> Waterlevel: {item.waterLevel} </Text>
-                </View>
-                <Button title='Water' color='blue' onPress={onWaterButtonPressed}> </Button>                
+            </View>
+            <Button title='Water' color='blue' onPress={onWaterButtonPressed}> </Button>                
             </View>
             </Pressable>
         )
     }
 
-    //something wrong with style={styles.container} that was in outer view removing for now.
     console.log(props);
     return (
         <View style={styles.container}>
-            <View style={styles.columnContainerTop}>
-                <Text style={{fontWeight: 'bold', fontSize: 40, position: top, }}>Your devices</Text>
-                <Text style={{fontSize: 16, position: top, }}>Click on a device for more info!</Text>
-            </View>
             <View style={styles.columnContainer}>
                 <FlatList style={{width: '100%', padding: 50,}}
                 data={props.devices}
                 renderItem={makeDisplayItemsCB}
-                />               
+                ItemSeparatorComponent={ () => <View style={{height: 40,}}/>}
+                showsVerticalScrollIndicator={false}
+                ListHeaderComponent={() => 
+                    <View style={{alignItems: 'center', justifyContent: 'center', paddingBottom: 36, }}>
+                        <Text style={{fontWeight: 'bold', fontSize: 40, textAlign: 'center', }}>Your devices</Text>
+                        <Text style={{fontSize: 16, textAlign: 'center', }}>Click on a device for more info!</Text>
+                    </View> }
+                ListFooterComponent={() => 
+                    <View style={{alignItems: 'center', justifyContent: 'center', paddingTop: 50}}>
+                        <Text style={{fontWeight: 'bold', fontSize: 26, textAlign: 'center', }}>No more devices connected</Text>
+                        <Text style={{fontSize: 16, textAlign: 'center', }}>If a device is missing, then that's too bad...</Text>
+                    </View> }
+                />
             </View>
         </View>
+        
     );
 }
-/* */
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -86,39 +95,31 @@ const styles = StyleSheet.create({
     addedDevice: {
         flex: 1,
         flexDirection: 'row',
-        flexWrap: 'wrap',
         backgroundColor: '#B2AC88',
-        width: '800',
-        height: '800',
 
         padding: 24,
-        marginVertical: 30,
 
-        borderWidth: 5,
+        minHeight: 100,
+        minWidth: 150,
+
         borderRadius: 20,
+        borderWidth: 5,
         borderColor: '#B2AC88',
 
         alignItems: 'center',
         justifyContent: 'space-between',
-    },
-    columnContainerTop: {
-        flex: 0,
-        flexDirection: 'column',
-        backgroundColor: '#CFCFC4',
-
-        width: '60%',
-        
-        paddingVertical: 50,
-        alignItems: 'center',
-        justifyContent: 'center',
     },
     columnContainer: {
         flex: 1,
         flexDirection: 'column',
         backgroundColor: '#CFCFC4',
         
-        width: '60%',
-        padding: '24',
+        marginTop: 80,
+        borderTopStartRadius: 20,
+        borderTopEndRadius: 20,
+        minWidth: '60%',
+        maxWidth: '85%',
+        padding: 24,
         alignItems: 'center',
         justifyContent: 'flex-start',
     },
@@ -129,8 +130,8 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     tinyLogo: {
-        width: 50,
         height: 50,
+        width: 50,
     }
 });
 
