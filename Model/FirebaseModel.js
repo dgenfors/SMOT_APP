@@ -110,17 +110,6 @@ function updateModelFromFirebase(model){
         model.setPump(firebaseData.val().pump, firebaseData.val().id); 
     }
     );
-
-    /*firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_changed", 
-    function numberAddedInFirebaseACB(firebaseData){
-        function hasSameMoistureLevel(device){
-           return -1;
-        }
-        if(model.devices.filter(hasSameMoistureLevel).length ==1)return;
-        console.log("firebaseval",firebaseData.val())
-        model.setMoistureLevel(firebaseData.val().moistureLevel, firebaseData.val().id); 
-    }
-    );*/
 }
 
 export {updateFirebaseFromModel, updateModelFromFirebase ,firebaseModelPromise};
