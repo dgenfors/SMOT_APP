@@ -48,17 +48,28 @@ class Model
         this.notifyObservers({nameChanged: name});
     }
 
-    setMoisture(moistureLevel , id){
-        const test = 5;
+    setMoistureLevel(moistureLevel , id){
         if(moistureLevel === undefined){
             console.error("undefined data");
             return;
         }
-        if(moistureLevel === this.devices[0].moistureLevel){
+       
+
+        function hasSameId(test){
+            return test.id == id;
+        }
+        function findIndex(test){
+            return test == hold;
+        }
+        const hold = this.devices.filter(hasSameId)[0]
+        const index = this.devices.findIndex(findIndex);
+
+        if(moistureLevel === this.devices[index].moistureLevel){
+            console.log("matches same level")
             return;
         }
-        this.devices[0].moistureLevel = moistureLevel;
-        this.notifyObservers({setMoisture: moistureLevel , deviceID: id});
+        this.devices[index].moistureLevel = moistureLevel;
+        this.notifyObservers({setMoistureLevel: moistureLevel , deviceID: id, test: this.devices[index] });
     }
 
     setLoginStatus(loginStatus){

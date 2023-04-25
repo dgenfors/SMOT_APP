@@ -13,9 +13,9 @@ function updateFirebaseFromModel(model){
             console.log("UpdateFirebase:",payload.dataArray);
             firebase.database().ref(auth.currentUser.uid+"/dataNumber/").set(payload.dataArray);
         }
-        if(payload.setMoisture){
-            console.log("UpdateFirebase:",payload.setMoisture);
-            firebase.database().ref(auth.currentUser.uid+payload.deviceID+"/moistureLevel/").set(payload.setMoisture);
+        if(payload.setMoistureLevel){
+            console.log("UpdateFirebase:",payload.setMoistureLevel);
+            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
         }
         
     }
@@ -36,13 +36,15 @@ function updateModelFromFirebase(model){
         
     }
     );
-    firebase.database().ref(auth.currentUser.uid+"/moistureLevel").on("value", 
+    firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_changed", 
     function numberAddedInFirebaseACB(firebaseData){
-        if(model.moistureLevel === firebaseData.val()){
+
+        if(model.devices[0].moistureLevel === firebaseData.val()){
             console.log("finns i modelen")
             return;
         } 
-        model.setMoisture(firebaseData.val());
+        console.log(firebaseData.val())
+        model.setMoistureLevel(firebaseData.val().moistureLevel, firebaseData.val().id);
         
     }
     );
