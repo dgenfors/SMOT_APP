@@ -26,8 +26,8 @@ export default function App() {
     reRender(new Object());
     if (firebaseModelPromiseState.data) {
       console.log("promisestate:", firebaseModelPromiseState.data);
-      //updateFirebaseFromModel(firebaseModelPromiseState.data);
-      //updateModelFromFirebase(firebaseModelPromiseState.data);
+      updateFirebaseFromModel(firebaseModelPromiseState.data);
+      updateModelFromFirebase(firebaseModelPromiseState.data);
     }
   }
 
