@@ -11,12 +11,12 @@ export default
     function FrontPage({navigation}) {
     const model = useContext(ModelContext);
     const [test, setTest] = React.useState(model.dataArray);
-    const [moisture, setMoisture] = React.useState(model.moistureLevel);
+    const [moisture, setMoisture] = React.useState(model.devices[0].moistureLevel);
     React.useEffect(wasCreatedACB, []);
 
     function observerACB() {
         setTest(model.dataArray);
-        setMoisture(model.moistureLevel);
+        setMoisture(model.devices[0].moistureLevel);
     }
 
     function wasCreatedACB() {
@@ -32,7 +32,8 @@ export default
         //console.log("Presnter test")
     }
     function changeMoisture(number) {
-        model.setMoisture(number);
+        //model.setMoistureLevel(number);
+        model.setMoistureLevel(number, 1);
         //console.log("Presnter test")
     }
 
