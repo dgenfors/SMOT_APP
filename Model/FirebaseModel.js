@@ -34,6 +34,8 @@ function updateModelFromFirebase(model){
     if(!auth.currentUser){
         return;
     }
+    debugger
+    console.log(model)
     firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_changed", 
     function nameFirebaseACB(firebaseData){
         function hasSameName(device){
@@ -42,7 +44,21 @@ function updateModelFromFirebase(model){
                  return 1;
                 }
         }
-        if(model.devices.filter(hasSameName).length == 1)return;
+        //if(model.devices.filter(hasSameName).length == 1)return;
+        debugger
+        model.setName(firebaseData.val().name, firebaseData.val().id); 
+    }
+    );
+    firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_added", 
+    function nameFirebaseACB(firebaseData){
+        function hasSameName(device){
+            if(device.id === firebaseData.val().id){
+                if(device.name == firebaseData.val().name)
+                 return 1;
+                }
+        }
+        //if(model.devices.filter(hasSameName).length == 1)return;
+        debugger
         model.setName(firebaseData.val().name, firebaseData.val().id); 
     }
     );
@@ -55,7 +71,7 @@ function updateModelFromFirebase(model){
                  return 1;
                 }
         }
-       if(model.devices.filter(hasSameMoistureLevel).length == 1)return;
+       //if(model.devices.filter(hasSameMoistureLevel).length == 1)return;
         model.setMoistureLevel(firebaseData.val().moistureLevel, firebaseData.val().id); 
     }
     );
@@ -67,7 +83,7 @@ function updateModelFromFirebase(model){
                  return 1;
                 }
         }
-        if(model.devices.filter(hasSameMoistureLevel).length == 1)return;
+        //if(model.devices.filter(hasSameMoistureLevel).length == 1)return;
         model.setCurrentMoisture(firebaseData.val().currentMoisture, firebaseData.val().id); 
     }
     );
@@ -79,7 +95,7 @@ function updateModelFromFirebase(model){
                  return 1;
                 }
         }
-        if(model.devices.filter(hasSameWaterLevel).length == 1)return;
+        //if(model.devices.filter(hasSameWaterLevel).length == 1)return;
         model.setWaterLevel(firebaseData.val().waterLevel, firebaseData.val().id); 
     }
     );
@@ -91,7 +107,7 @@ function updateModelFromFirebase(model){
                  return 1;
                 }
         }
-        if(model.devices.filter(hasSamePump).length == 1)return;
+        //if(model.devices.filter(hasSamePump).length == 1)return;
         model.setPump(firebaseData.val().pump, firebaseData.val().id); 
     }
     );
