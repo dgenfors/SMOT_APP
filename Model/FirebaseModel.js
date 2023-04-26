@@ -13,7 +13,9 @@ function firebaseModelPromise() {
 
 function makeBigPromiseACB(firebaseData) {
     //console.log("firebaseDataPromise", Object.values(firebaseData.val()));
-   
+    console.log("FIREBASEDATA:",firebaseData.val());
+    if(!firebaseData.val())return new Model(null);
+
     return new Model(Object.values(firebaseData.val()))
 }
 

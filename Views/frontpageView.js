@@ -12,7 +12,6 @@ function FrontpageView(props) {
     //function onChangeTextACB(number) {
     //    props.onChangedTest(number);
     //}
-
     function handleInputSubmit(event) {
         props.onChangedTest(event.nativeEvent.text);
         //console.log('Input submitted:', event.nativeEvent.text);
@@ -58,6 +57,11 @@ function FrontpageView(props) {
     }
 
     console.log("fpview", props);
+    if(!props.devices){
+        return(<View style = {styles.bigText}>
+            <Text style={{fontWeight: 'bold', fontSize: 80, textAlign: 'center', }}>Where is devices....?</Text>
+        </View>)
+    }
     return (
         <View style={styles.container}>
             <View style={styles.columnContainer}>
@@ -134,6 +138,15 @@ const styles = StyleSheet.create({
     tinyLogo: {
         height: 50,
         width: 50,
+    },
+    bigText: {
+        flex:1,
+        flexDirection: 'column',
+        backgroundColor: '#9dc183',
+        
+
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 });
 
