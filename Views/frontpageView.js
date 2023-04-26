@@ -40,20 +40,21 @@ function FrontpageView(props) {
             //console.log(event)
             props.navToDetails(item.id);
         }
+        if(item == null) 
+            return (null);
         return (
             <Pressable onPress={onMoreInfoButtonPressed}>
             <View style={styles.addedDevice}>
             <Image style={styles.tinyLogo} source={{uri: 'https://reactnative.dev/img/tiny_logo.png',}}/>
-            
-            <View style={{}}>
-                <Text> Name: {item.name} </Text>
-                <Text> Moisture: {item.currentMoisture} </Text>
-                <Text> Waterlevel: {item.waterLevel} </Text>
-            </View>
+                <View style={{}}>
+                    <Text style={{fontSize: 24, fontWeight: 'bold', }}> {item.name} </Text>
+                    <Text style={{fontSize: 18, }}> Moisture: {item.currentMoisture} </Text>
+                    <Text style={{fontSize: 18, }}> Waterlevel: {item.waterLevel} </Text>
+                </View>
             <Button title='Water' color='blue' onPress={onWaterButtonPressed}> </Button>                
             </View>
             </Pressable>
-        )
+        );
     }
 
     console.log("fpview", props);
@@ -71,10 +72,10 @@ function FrontpageView(props) {
                         <Text style={{fontWeight: 'bold', fontSize: 40, textAlign: 'center', }}>Your devices</Text>
                         <Text style={{fontSize: 16, textAlign: 'center', }}>Click on a device for more info!</Text>
                     </View> }
-                ListFooterComponent={() => 
+                ListEmptyComponent={() => 
                     <View style={{alignItems: 'center', justifyContent: 'center', paddingTop: 50}}>
-                        <Text style={{fontWeight: 'bold', fontSize: 26, textAlign: 'center', }}>No more devices connected</Text>
-                        <Text style={{fontSize: 16, textAlign: 'center', }}>If a device is missing, then that's too bad...</Text>
+                        <Text style={{fontWeight: 'bold', fontSize: 32, textAlign: 'center', }}>No devices found!</Text>
+                        <Text style={{fontSize: 16, textAlign: 'center', }}>Make sure your SMOT has an internet connection</Text>
                     </View> }
                 />
             </View>
