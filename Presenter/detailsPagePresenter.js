@@ -12,12 +12,12 @@ export default function DetailsPage({route, navigation}) {
     React.useEffect(wasCreatedACB, []);
     const [device, copyDevice] = React.useState(model.devices[index.current]);
     
-    function observerACB() {
+    function DetsObserverACB() {
         copyDevice({...model.devices[index.current]})
     }
 
     function wasCreatedACB() {
-        model.addObserver(observerACB);
+        model.addObserver(DetsObserverACB);
         index.current = model.devices.findIndex(findIndexACB);
 
         function findIndexACB(test){
@@ -25,7 +25,7 @@ export default function DetailsPage({route, navigation}) {
         }
 
         function isTakenDownACB() {
-            model.removeObserver(observerACB);
+            model.removeObserver(DetsObserverACB);
         }
         return isTakenDownACB;
     }

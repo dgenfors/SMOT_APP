@@ -12,7 +12,7 @@ function firebaseModelPromise() {
   }
 
 function makeBigPromiseACB(firebaseData) {
-    console.log("firebaseDataPromise", Object.values(firebaseData.val()));
+    //console.log("firebaseDataPromise", Object.values(firebaseData.val()));
    
     return new Model(Object.values(firebaseData.val()))
 }
@@ -48,7 +48,7 @@ function updateModelFromFirebase(model){
     if(!auth.currentUser){
         return;
     }
-    console.log("updateMOdel: ",model)
+    //console.log("updateMOdel: ",model)
     firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_changed", 
     function nameFirebaseACB(firebaseData){
         function hasSameName(device){

@@ -4,7 +4,7 @@ import Slider from '@react-native-community/slider';
 
 export default function DetailsView(props) {
 
-    console.log("propsDetail", props)
+    //console.log("propsDetail", props)
 
     function nameChanged(event) {
         props.onNameChanged(event.nativeEvent.text);

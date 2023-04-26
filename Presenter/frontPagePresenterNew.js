@@ -9,18 +9,16 @@ export default
     const model = useContext(ModelContext);
     const [deviceList, copyDeviceList] = React.useState(model.devices);
     React.useEffect(wasCreatedACB, []);
-    debugger
-    function observerACB() {
-        debugger
+
+    function frontObserverACB1() {
         copyDeviceList([...model.devices])
-        console.log("frontDeviceList",deviceList);
+        //console.log("frontDeviceList",deviceList);
     }
 
     function wasCreatedACB() {
-        debugger
-        model.addObserver(observerACB);
+        model.addObserver(frontObserverACB1);
         function isTakenDownACB() {
-            model.removeObserver(observerACB);
+            model.removeObserver(frontObserverACB1);
         }
         return isTakenDownACB;
     }

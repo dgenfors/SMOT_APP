@@ -12,7 +12,6 @@ import resolvePromise from './resolvePromise';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  console.log("In app");
   const [userID, setUserID] = React.useState(null);
   const [firebaseModelPromiseState] = React.useState({});
   const [, reRender] = React.useState();
@@ -25,7 +24,7 @@ export default function App() {
   function notifyACB() {
     reRender(new Object());
     if (firebaseModelPromiseState.data) {
-      console.log("promisestate:", firebaseModelPromiseState.data);
+      //console.log("promisestate:", firebaseModelPromiseState.data);
       updateFirebaseFromModel(firebaseModelPromiseState.data);
       updateModelFromFirebase(firebaseModelPromiseState.data);
     }

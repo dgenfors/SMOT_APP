@@ -37,7 +37,7 @@ function FrontpageView(props) {
 
     function makeDisplayItemsCB({item}) {
         function onMoreInfoButtonPressed(event) {
-            console.log(event)
+            //console.log(event)
             props.navToDetails(item.id);
         }
         return (
@@ -56,7 +56,7 @@ function FrontpageView(props) {
         )
     }
 
-    console.log(props);
+    console.log("fpview", props);
     return (
         <View style={styles.container}>
             <View style={styles.columnContainer}>

@@ -21,6 +21,7 @@ class Model
         this.observers = this.observers.filter(sameObsCB)
     }
     notifyObservers(payload){
+        console.log(this.observers)
         function invokeObserverACB(obs){
             obs(payload); 
         }    
