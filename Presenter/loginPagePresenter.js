@@ -18,7 +18,7 @@ export default function LoginPage({ navigation }) {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       model.setLoginStatus(true);
-      updateModelFromFirebase(model);
+      //updateModelFromFirebase(model);
       navigation.navigate("Front");
     } else {
       model.setLoginStatus(false);
