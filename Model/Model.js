@@ -1,12 +1,12 @@
-
 class Model
 {
     constructor(dataobject){
         this.isLoggedIn = false;
         this.observers = [];
-        this.devices = [{id: 1, name: "tomat", currentMoisture: 35, moistureLevel: 30, waterLevel: 20, pump:0}, {id: 2, name:"Ros", currentMoisture: 20, moistureLevel:20, waterLevel: 40, pump:0 },
+        /*this.devices = [{id: 1, name: "tomat", currentMoisture: 35, moistureLevel: 30, waterLevel: 20, pump:0}, {id: 2, name:"Ros", currentMoisture: 20, moistureLevel:20, waterLevel: 40, pump:0 },
         {id: 3, name: "tomat", currentMoisture: 35, moistureLevel: 30, waterLevel: 20, pump:0}, {id: 4, name:"Ros", currentMoisture: 20, moistureLevel:20, waterLevel: 40, pump:0 },
-        {id: 5, name: "tomat", currentMoisture: 35, moistureLevel: 30, waterLevel: 20, pump:0}, {id: 6, name:"Ros", currentMoisture: 20, moistureLevel:20, waterLevel: 40, pump:0 }]
+        {id: 5, name: "tomat", currentMoisture: 35, moistureLevel: 30, waterLevel: 20, pump:0}, {id: 6, name:"Ros", currentMoisture: 20, moistureLevel:20, waterLevel: 40, pump:0 }]*/
+        this.devices = dataobject;
 
     }
     addObserver(obs){

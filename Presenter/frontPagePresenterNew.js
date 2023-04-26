@@ -33,7 +33,7 @@ export default
 */
     function runPumpACB() {
         console.log("i'm watering! :)")
-        model.setName("gurka",1);
+        model.setName("gurkaawdaw",1);
     }
 
     function navigateToDetails(id) {

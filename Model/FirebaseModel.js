@@ -1,7 +1,21 @@
 import {firebaseConfig, auth} from "../firebaseconfig";
 import firebase from "firebase/compat/app";
 import "firebase/compat/database";
+import Model from "./Model";
 firebase.initializeApp(firebaseConfig);
+
+
+
+function firebaseModelPromise() {
+    const REF = auth.currentUser.uid + "/devices/";
+    return firebase.database().ref(REF).once("value").then(makeBigPromiseACB)
+  }
+
+function makeBigPromiseACB(firebaseData) {
+    console.log("firebaseDataPromise", Object.values(firebaseData.val()));
+   
+    return new Model(Object.values(firebaseData.val()))
+}
 
 function updateFirebaseFromModel(model){
     function firebaseObserverACB(payload){
@@ -34,7 +48,7 @@ function updateModelFromFirebase(model){
     if(!auth.currentUser){
         return;
     }
-    console.log(model)
+    console.log("updateMOdel: ",model)
     firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_changed", 
     function nameFirebaseACB(firebaseData){
         function hasSameName(device){
@@ -43,19 +57,7 @@ function updateModelFromFirebase(model){
                  return 1;
                 }
         }
-        //if(model.devices.filter(hasSameName).length == 1)return;
-        model.setName(firebaseData.val().name, firebaseData.val().id); 
-    }
-    );
-    firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_added", 
-    function nameFirebaseACB(firebaseData){
-        function hasSameName(device){
-            if(device.id === firebaseData.val().id){
-                if(device.name == firebaseData.val().name)
-                 return 1;
-                }
-        }
-        //if(model.devices.filter(hasSameName).length == 1)return;
+        if(model.devices.filter(hasSameName).length == 1)return;
         model.setName(firebaseData.val().name, firebaseData.val().id); 
     }
     );
@@ -68,7 +70,7 @@ function updateModelFromFirebase(model){
                  return 1;
                 }
         }
-       //if(model.devices.filter(hasSameMoistureLevel).length == 1)return;
+       if(model.devices.filter(hasSameMoistureLevel).length == 1)return;
         model.setMoistureLevel(firebaseData.val().moistureLevel, firebaseData.val().id); 
     }
     );
@@ -80,7 +82,7 @@ function updateModelFromFirebase(model){
                  return 1;
                 }
         }
-        //if(model.devices.filter(hasSameMoistureLevel).length == 1)return;
+        if(model.devices.filter(hasSameMoistureLevel).length == 1)return;
         model.setCurrentMoisture(firebaseData.val().currentMoisture, firebaseData.val().id); 
     }
     );
@@ -92,7 +94,7 @@ function updateModelFromFirebase(model){
                  return 1;
                 }
         }
-        //if(model.devices.filter(hasSameWaterLevel).length == 1)return;
+        if(model.devices.filter(hasSameWaterLevel).length == 1)return;
         model.setWaterLevel(firebaseData.val().waterLevel, firebaseData.val().id); 
     }
     );
@@ -104,21 +106,10 @@ function updateModelFromFirebase(model){
                  return 1;
                 }
         }
-        //if(model.devices.filter(hasSamePump).length == 1)return;
+        if(model.devices.filter(hasSamePump).length == 1)return;
         model.setPump(firebaseData.val().pump, firebaseData.val().id); 
     }
     );
-
-    /*firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_changed", 
-    function numberAddedInFirebaseACB(firebaseData){
-        function hasSameMoistureLevel(device){
-           return -1;
-        }
-        if(model.devices.filter(hasSameMoistureLevel).length ==1)return;
-        console.log("firebaseval",firebaseData.val())
-        model.setMoistureLevel(firebaseData.val().moistureLevel, firebaseData.val().id); 
-    }
-    );*/
 }
 
-export {updateFirebaseFromModel, updateModelFromFirebase};
+export {updateFirebaseFromModel, updateModelFromFirebase ,firebaseModelPromise};
