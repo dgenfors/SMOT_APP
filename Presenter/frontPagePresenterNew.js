@@ -9,13 +9,15 @@ export default
     const model = useContext(ModelContext);
     const [deviceList, copyDeviceList] = React.useState(model.devices);
     React.useEffect(wasCreatedACB, []);
-
+    debugger
     function observerACB() {
+        debugger
         copyDeviceList([...model.devices])
-        console.log(deviceList);
+        console.log("frontDeviceList",deviceList);
     }
 
     function wasCreatedACB() {
+        debugger
         model.addObserver(observerACB);
         function isTakenDownACB() {
             model.removeObserver(observerACB);
@@ -41,11 +43,10 @@ export default
     }
 
     return (
-            <FrontpageView
+        <FrontpageView
                 devices = {deviceList}
                 runPump = {runPumpACB}
                 navToDetails = {navigateToDetails}
             >
             </FrontpageView>
-    )
-}
+    )}
