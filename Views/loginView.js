@@ -32,7 +32,7 @@ function LoginView(props) {
             {/*<Image source={treelogo} style={{width: '240px', height: '240px'}}/>*/}
             <View style={styles.container2}>
                 <Text style={{fontWeight: 'bold', fontSize: 25,}}>Log in or Register!</Text>
-                <SafeAreaView>
+                <View>
                     <TextInput
                         style={styles.input}
                         onChange={handleEmailSubmit}
@@ -44,7 +44,7 @@ function LoginView(props) {
                         onChange={handlePassSubmit}
                         placeholder="Password"
                     />
-                </SafeAreaView>
+                </View>
                 <Text color='red'>{props.errorMessage}</Text>
                 <View style={{
                     paddingHorizontal: 24, 
@@ -72,7 +72,6 @@ const styles = StyleSheet.create({
         flex: 0.5,
         flexDirection: 'column',
         backgroundColor: '#9ed984',
-        paddingVertical: 24,
         padding: 24,
         borderWidth: 5,
         borderRadius: 20,
