@@ -65,6 +65,7 @@ function FrontpageView(props) {
                 renderItem={makeDisplayItemsCB}
                 ItemSeparatorComponent={ () => <View style={{height: 40,}}/>}
                 showsVerticalScrollIndicator={false}
+                numColumns={1}
                 ListHeaderComponent={() => 
                     <View style={{alignItems: 'center', justifyContent: 'center', paddingBottom: 36, }}>
                         <Text style={{fontWeight: 'bold', fontSize: 40, textAlign: 'center', }}>Your devices</Text>
