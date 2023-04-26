@@ -57,18 +57,6 @@ function FrontpageView(props) {
     }
 
     console.log("fpview", props);
-    if(!props.devices){
-        return(<View style = {styles.bigText}>
-            <FlatList 
-            ListEmptyComponent={() => 
-                <View style={{alignItems: 'center', justifyContent: 'center', paddingTop: 50}}>
-                    <Text style={{fontWeight: 'bold', fontSize: 32, textAlign: 'center', }}>No devices found!</Text>
-                    <Text style={{fontSize: 16, textAlign: 'center', }}>Make sure your SMOT has an internet connection</Text>
-                </View> }>
-
-            </FlatList>
-        </View>)
-    }
     return (
         <View style={styles.container}>
             <View style={styles.columnContainer}>
