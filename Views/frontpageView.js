@@ -28,9 +28,7 @@ function FrontpageView(props) {
         props.onPressLogout();
     }
 
-    function onWaterButtonPressed(evnt) {
-        props.runPump();
-    }
+    
 
    
 
@@ -38,6 +36,9 @@ function FrontpageView(props) {
         function onMoreInfoButtonPressed(event) {
             //console.log(event)
             props.navToDetails(item.id);
+        }
+        function onWaterButtonPressed() {
+            props.runPump(item.id);
         }
         if(item == null) 
             return (null);

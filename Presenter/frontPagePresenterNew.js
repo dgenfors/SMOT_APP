@@ -31,9 +31,15 @@ export default
         }
     }
 */
-    function runPumpACB() {
-        console.log("i'm watering! :)")
-        model.setName("gurkaawdaw",1);
+    function runPumpACB(id) {
+        function findIndex(test){
+            return test.id == id;
+        }
+        const index = model.devices.findIndex(findIndex);
+        if(model.devices[index].pump === 1){
+            model.setPump(2,id);
+        }else model.setPump(1,id);
+        
     }
 
     function navigateToDetails(id) {
