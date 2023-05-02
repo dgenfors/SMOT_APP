@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: '#9dc183',
+        backgroundColor: '#2e8f2e',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: '#9ed984',
         padding: 24,
-        borderWidth: 5,
+        borderWidth: 3,
         borderRadius: 20,
         borderColor: 'darkgreen',
 
