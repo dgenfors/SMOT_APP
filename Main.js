@@ -13,9 +13,9 @@ import { onAuthStateChanged } from "firebase/auth";
 
 export default function Main(props) {
   const Stack = props.stack;
-  //React.useEffect(checkForWaterAlert, [props.model.devices]);
+  React.useEffect(checkForWaterAlertAtStartup, []);
 
-  function checkForWaterAlert() {
+  function checkForWaterAlertAtStartup() {
     if(typeof props.model.devices === "object") {
       console.log("yes")
       const lowWaterNameArray = props.model.devices.reduce(callbackFn, [])
