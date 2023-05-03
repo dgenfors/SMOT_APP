@@ -11,8 +11,29 @@ import { signOut } from "firebase/auth";
 import { auth } from "./firebaseconfig";
 import { onAuthStateChanged } from "firebase/auth";
 
+import {
+  setCustomView,
+  setCustomTextInput,
+  setCustomText,
+  setCustomImage,
+  setCustomTouchableOpacity
+} from 'react-native-global-props';
+
+const customTextProps = {
+  style:{
+    
+    fontFamily: 'monospace', 
+  }
+};
+
+setCustomText(customTextProps);
+
 export default function Main(props) {
   const Stack = props.stack;
+
+  
+
+
   React.useEffect(checkForWaterAlertAtStartup, []);
 
   function checkForWaterAlertAtStartup() {
