@@ -37,7 +37,7 @@ export default
         }
         const index = model.devices.findIndex(findIndex);
         if(model.devices[index].pump === true){
-            model.setPump(false,id);
+            //model.setPump(false,id); //gör inget om pumpen redan är tillsagd att starta
         }else model.setPump(true,id);
         
     }
@@ -46,7 +46,7 @@ export default
             return test.id == id;
         }
         const index = model.devices.findIndex(findIndex);
-        if(model.devices[index].pump ===true)return true;
+        if(model.devices[index].pumpState === 1) return true;
         else return false;
     }
 
