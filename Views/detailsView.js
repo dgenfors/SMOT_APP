@@ -7,7 +7,11 @@ export default function DetailsView(props) {
     //console.log("propsDetail", props)
 
     function nameChanged(event) {
-        props.onNameChanged(event.nativeEvent.text);
+        console.log(event.nativeEvent.text);
+        if(event.nativeEvent.text != "")
+            props.onNameChanged(event.nativeEvent.text);
+        else
+            props.onNameChanged("Unnamed");
     }
 
     function onMoistureTargetChanged(value) {
@@ -21,13 +25,14 @@ export default function DetailsView(props) {
                     style={styles.input}
                     onSubmitEditing={nameChanged}
                     placeholder={props.device.name}
+                    maxLength={20}
                 ></TextInput>
             </View>
+            <View style={styles.infoCol}>
             <View style={styles.infoLine}>
-                <Text style={styles.infoText}>Target moisture: </Text>
+                <Text style={styles.infoText}>Prefered moisturelevel: </Text>
                 <Text style={styles.valueText}> {props.device.moistureLevel}</Text>
             </View>
-            <View style={styles.infoLine}>
                 <Slider
                     value = {props.device.moistureLevel}
                     style={{ width: '100%', alignSelf: 'center'}}
@@ -37,21 +42,18 @@ export default function DetailsView(props) {
                     minimumTrackTintColor="#04ADE2"
                     maximumTrackTintColor="#635147"
                     onSlidingComplete = {onMoistureTargetChanged}
-                    thumbTintColor="#103B1D"
+                    thumbTintColor="#20EFF4"
                 />
             </View>
             <View style={styles.infoLine}>
-                <Text style={styles.infoText}>current moisture: </Text>
+                <Text style={styles.infoText}>Current moisture: </Text>
                 <Text style={styles.valueText}>{props.device.currentMoisture} %</Text>
             </View>
             <View style={styles.infoLine}>
                 <Text style={styles.infoText}>Waterlevel: </Text>
                 <Text style={styles.valueText}>{props.device.waterLevel}</Text>
             </View>
-            <View style={styles.infoLine}>
-                <Text style={styles.infoText}>Your prefered moisturelevel: </Text>
-                <Text style={styles.valueText}>{props.device.moistureLevel}</Text>
-            </View>
+            
         </View>
     )
 
@@ -66,25 +68,42 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     infoLine: {
-        padding: 24,
         flex: 1,
         flexDirection: 'row',
+        
         maxWidth: 500,
         width: '100%',
+        
+        paddingHorizontal: 24,
+        paddingVertical: 4,
+        marginHorizontal: 4,
+        marginVertical: 10,
+
         alignItems: 'center',
         alignContent: 'space-between',
-        borderRadius: 20,
         justifyContent: 'space-between',
+        
+        borderRadius: 20,
+        backgroundColor: 'lightblue',
     },
     infoCol: {
         flex: 1,
         flexDirection: 'column',
-        width: 400,
+        
+        maxWidth: 500,
+        width: '100%',
+        
+        paddingHorizontal: 24,
+        paddingVertical: 4,
+        marginHorizontal: 4,
+        marginVertical: 10,
+
         alignItems: 'center',
         alignContent: 'space-between',
+        justifyContent: 'space-between',
         
         borderRadius: 20,
-        justifyContent: 'space-between',
+        backgroundColor: 'lightblue',
     },
     infoText: {
         fontSize: 20,
@@ -97,6 +116,7 @@ const styles = StyleSheet.create({
     },
     input: {
         width: 'auto',
+        maxWidth: 200,
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'right',
