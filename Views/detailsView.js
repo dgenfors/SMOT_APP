@@ -14,6 +14,10 @@ export default function DetailsView(props) {
             props.onNameChanged("Unnamed");
     }
 
+    function wateringTimeChanged(value) {
+        props.onWateringTimeChanged(value);
+    }
+
     function onMoistureTargetChanged(value) {
         props.onMoistChanged(value);
     }
@@ -52,6 +56,21 @@ export default function DetailsView(props) {
             <View style={styles.infoLine}>
                 <Text style={styles.infoText}>Waterlevel: </Text>
                 <Text style={styles.valueText}>{props.device.waterLevel}</Text>
+            </View>
+            <View style={styles.infoLine}>
+                <Text style={styles.infoText}>Manual watering amount(seconds): </Text>
+                <Text style={styles.valueText}> {props.device.pumpTime}</Text>
+                <Slider
+                    value = {props.device.pumpTime}
+                    style={{ width: '100%', alignSelf: 'center'}}
+                    step = {1}
+                    minimumValue={0}
+                    maximumValue={20}
+                    minimumTrackTintColor="#04ADE2"
+                    maximumTrackTintColor="#635147"
+                    onSlidingComplete = {wateringTimeChanged}
+                    thumbTintColor="#20EFF4"
+                />
             </View>
             
         </View>

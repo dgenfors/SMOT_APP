@@ -3,7 +3,7 @@ class Model
     constructor(dataobject){
         this.isLoggedIn = false;
         this.observers = [];
-        /*this.devices = [{id: 1, name: "tomat", currentMoisture: 35, moistureLevel: 30, waterLevel: 20, pump:0}, {id: 2, name:"Ros", currentMoisture: 20, moistureLevel:20, waterLevel: 40, pump:0 },
+        /*this.devices = [{id: 1, name: "tomat", currentMoisture: 35, moistureLevel: 30, waterLevel: 20, pump:0}, {id: 2, name:"Ros", currentMoisture: 20, moistureLevel:20, waterLevel: 40, pump:0, pumpTime: 0, pumpState: 0},
         {id: 3, name: "tomat", currentMoisture: 35, moistureLevel: 30, waterLevel: 20, pump:0}, {id: 4, name:"Ros", currentMoisture: 20, moistureLevel:20, waterLevel: 40, pump:0 },
         {id: 5, name: "tomat", currentMoisture: 35, moistureLevel: 30, waterLevel: 20, pump:0}, {id: 6, name:"Ros", currentMoisture: 20, moistureLevel:20, waterLevel: 40, pump:0 }]*/
         this.devices = dataobject;
@@ -119,6 +119,40 @@ class Model
         }
         this.devices[index].pump = pump;
         this.notifyObservers({setPump: pump , deviceID: id, test: this.devices[index] });
+    }
+
+    setPumpTime(time , id){
+        if(time === undefined){
+            console.error("undefined data");
+            return;
+        }
+        function findIndex(test){
+            return test.id == id;
+        }
+        const index = this.devices.findIndex(findIndex);
+        if(time === this.devices[index].pumpTime){
+            console.log("matches same level")
+            return;
+        }
+        this.devices[index].pumpTime = time;
+        this.notifyObservers({setPumpTime: time , deviceID: id, test: this.devices[index] });
+    }
+
+    setPumpState(state , id){
+        if(state === undefined){
+            console.error("undefined data");
+            return;
+        }
+        function findIndex(test){
+            return test.id == id;
+        }
+        const index = this.devices.findIndex(findIndex);
+        if(state === this.devices[index].pumpState){
+            console.log("matches same level")
+            return;
+        }
+        this.devices[index].pumpState = state;
+        this.notifyObservers({setPumpState: state , deviceID: id, test: this.devices[index] });
     }
 
     setLoginStatus(loginStatus){

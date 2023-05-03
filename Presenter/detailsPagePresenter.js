@@ -37,12 +37,17 @@ export default function DetailsPage({route, navigation}) {
     function changeName(name) {
         model.setName(name, itemId)
     }
+
+    function changeWateringTime(time) {
+        model.setPumpTime(time , itemId)
+    }
     
     return(
         <DetailsView
             device = {model.devices[index.current]}
             onMoistChanged = {changeTargetMoisture}
             onNameChanged = {changeName}
+            onWateringTimeChanged = {changeWateringTime}
 
         ></DetailsView>)
 }
