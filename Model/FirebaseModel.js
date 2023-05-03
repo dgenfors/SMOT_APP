@@ -24,21 +24,20 @@ function updateFirebaseFromModel(model){
         if(!auth.currentUser){
             return
         }
-
         if(payload.nameChanged){
-            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
+            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test.name);
         }
         if(payload.setMoistureLevel){
-            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
+            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test.setMoistureLevel);
         }
         if(payload.setWaterLevel){
-            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
+            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test.setWaterLevel);
         }
         if(payload.setCurrentMoisture){
             
-            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
+            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test.setCurrentMoisture);
         }
-        if(payload.setPump){
+        if(payload.setPump ===false || payload.setPump){
             firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
         }
         
