@@ -50,6 +50,7 @@ function FrontpageView(props) {
                     <Text style={{fontSize: 24, fontWeight: 'bold', }}> {item.name} </Text>
                     <Text style={{fontSize: 18, }}> Moisture: {item.currentMoisture} </Text>
                     <Text style={{fontSize: 18, }}> Waterlevel: {item.waterLevel} </Text>
+                    <Text style={{fontSize: 18, }}> PumpState: {item.pumpState} </Text>
                 </View>
             <Button title='Water' color='blue' onPress={onWaterButtonPressed}> </Button>                
             </View>

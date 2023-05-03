@@ -43,6 +43,9 @@ function updateFirebaseFromModel(model){
         if(payload.setPumpTime){
             firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
         }
+        if(payload.setPumpState){
+            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
+        }
         
     }
     model.addObserver(firebaseObserverACB);
@@ -142,6 +145,22 @@ function updateModelFromFirebase(model){
         }
         if(model.devices.filter(hasSamePumpTime).length == 1)return;
         model.setPumpTime(firebaseData.val().pumpTime, firebaseData.val().id); 
+    }
+    );
+
+    firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_changed", 
+    function pumpTimeFirebaseACB(firebaseData){
+        function hasSamePumpState(device){
+            if(device.id === firebaseData.val().id){
+                if(device.pumpState == firebaseData.val().pumpState)
+                 return 1;
+                }
+        }
+        if(!model.devices){
+            return;
+        }
+        if(model.devices.filter(hasSamePumpState).length == 1)return;
+        model.setPumpState(firebaseData.val().pumpState, firebaseData.val().id); 
     }
     );
 }
