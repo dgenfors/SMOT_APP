@@ -6,6 +6,7 @@ import { Image } from 'react-native';
 //import treelogo from '../assets/treelogo.png';
 import React from "react";
 import { FlatList } from 'react-native';
+
 //import { inline } from 'react-native-web/dist/cjs/exports/StyleSheet/compiler';
 
 function FrontpageView(props) {
@@ -33,6 +34,7 @@ function FrontpageView(props) {
    
 
     function makeDisplayItemsCB({item}) {
+        const test = props.isPumpPumping(item.id);  
         function onMoreInfoButtonPressed(event) {
             //console.log(event)
             props.navToDetails(item.id);
@@ -51,8 +53,9 @@ function FrontpageView(props) {
                     <Text style={{fontSize: 18, }}> Moisture: {item.currentMoisture} </Text>
                     <Text style={{fontSize: 18, }}> Waterlevel: {item.waterLevel} </Text>
                 </View>
-            <Button title='Water' color='blue' onPress={onWaterButtonPressed}> </Button>                
-            </View>
+                {!test? (<Button title='Water' color='blue' onPress={onWaterButtonPressed}> </Button>):
+                (<Button title='Watering' color='blue' onPress={onWaterButtonPressed}> </Button>)}
+                </View>          
             </Pressable>
         );
     }

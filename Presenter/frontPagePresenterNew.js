@@ -36,10 +36,18 @@ export default
             return test.id == id;
         }
         const index = model.devices.findIndex(findIndex);
-        if(model.devices[index].pump === 1){
-            model.setPump(2,id);
-        }else model.setPump(1,id);
+        if(model.devices[index].pump === true){
+            model.setPump(false,id);
+        }else model.setPump(true,id);
         
+    }
+    function isPumpPumping(id){
+        function findIndex(test){
+            return test.id == id;
+        }
+        const index = model.devices.findIndex(findIndex);
+        if(model.devices[index].pump ===true)return true;
+        else return false;
     }
 
     function navigateToDetails(id) {
@@ -51,6 +59,7 @@ export default
                 devices = {deviceList}
                 runPump = {runPumpACB}
                 navToDetails = {navigateToDetails}
+                isPumpPumping = {isPumpPumping}
             >
             </FrontpageView>
     )}
