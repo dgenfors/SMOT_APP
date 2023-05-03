@@ -51,10 +51,10 @@ function FrontpageView(props) {
             <View style={styles.addedDevice}>
                 <Image style={styles.tinyLogo} source={{uri: 'https://reactnative.dev/img/tiny_logo.png',}}/>
                 <View style={{}}>
-                    <Text style={{fontSize: 24, fontWeight: 'bold', }}>{item.name}</Text>
-                    <Text style={{fontSize: 18, }}>Moisture: {item.currentMoisture}</Text>
-                    <Text style={{fontSize: 18, }}>Waterlevel: {item.waterLevel}</Text>
-                    <Text style={{fontSize: 18, }}>PumpState: {item.pumpState}</Text>
+                    <Text >{item.name}</Text>
+                    <Text >Moisture: {item.currentMoisture}</Text>
+                    <Text >Waterlevel: {item.waterLevel}</Text>
+                    <Text >PumpState: {item.pumpState}</Text>
                 </View>
                 {!test? (<Pressable onPress={onWaterButtonPressed} style={{borderRadius: 20, borderColor: 'blue', borderWidth: 3, padding: 4, margin: 4}}>
                     <Image source={watercanImage} style={{width: 64, height: 42, tintColor: 'blue'}}/>
