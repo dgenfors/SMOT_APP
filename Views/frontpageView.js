@@ -49,13 +49,21 @@ function FrontpageView(props) {
             <View style={styles.addedDevice}>
             <Image style={styles.tinyLogo} source={{uri: 'https://reactnative.dev/img/tiny_logo.png',}}/>
                 <View style={{}}>
-                    <Text style={{fontSize: 24, fontWeight: 'bold', }}> {item.name} </Text>
-                    <Text style={{fontSize: 18, }}> Moisture: {item.currentMoisture} </Text>
-                    <Text style={{fontSize: 18, }}> Waterlevel: {item.waterLevel} </Text>
-                    <Text style={{fontSize: 18, }}> PumpState: {item.pumpState} </Text>
+                    <Text style={{fontSize: 24, fontWeight: 'bold', }}>{item.name}</Text>
+                    <Text style={{fontSize: 18, }}>Moisture: {item.currentMoisture}</Text>
+                    <Text style={{fontSize: 18, }}>Waterlevel: {item.waterLevel}</Text>
+                    <Text style={{fontSize: 18, }}>PumpState: {item.pumpState}</Text>
                 </View>
-                {!test? (<Button title='Water' color='blue' onPress={onWaterButtonPressed}> </Button>):
-                (<Button title='Watering' color='blue' onPress={onWaterButtonPressed}> </Button>)}
+                {!test? (<Pressable onPress={onWaterButtonPressed} style={{borderRadius: 20, borderColor: 'blue', borderWidth: 3, padding: 4, margin: 4}}>
+            <Image source={{uri: 'https://cdn.discordapp.com/attachments/1097773131575336992/1103243264536096850/Drawing_2.png',}}
+                style={{width: 64, height: 42, tintColor: 'blue'}}/>
+                <Text style={{color: 'blue', textAlign: 'center', fontWeight: 'bold', fontSize: 18, }}>Water</Text>
+        </Pressable>):
+                (<Pressable onPress={onWaterButtonPressed} style={{borderRadius: 20, borderColor: 'blue', borderWidth: 3, padding: 4, margin: 4}}>
+                <Image source={{uri: 'https://cdn.discordapp.com/attachments/1097773131575336992/1103243264536096850/Drawing_2.png',}}
+                    style={{width: 64, height: 42, tintColor: 'blue'}}/>
+                    <Text style={{color: 'blue', textAlign: 'center', fontWeight: 'bold', fontSize: 18, }}>Watering</Text>
+            </Pressable>)}
                 </View>          
             </Pressable>
         );
@@ -138,6 +146,7 @@ const styles = StyleSheet.create({
     tinyLogo: {
         height: 50,
         width: 50,
+        margin: 4,
     },
     bigText: {
         flex:1,
