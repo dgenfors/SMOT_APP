@@ -3,7 +3,9 @@ import { Button, StyleSheet, Text, View, SafeAreaView, TextInput, Pressable} fro
 
 import { Link } from '@react-navigation/native';
 import { Image } from 'react-native';
-//import treelogo from '../assets/treelogo.png';
+import watercanImage from '../assets/watercan.png';
+import smotLogo from '../assets/smotlogo.png';
+
 import React from "react";
 import { FlatList } from 'react-native';
 
@@ -47,7 +49,7 @@ function FrontpageView(props) {
         return (
             <Pressable onPress={onMoreInfoButtonPressed}>
             <View style={styles.addedDevice}>
-            <Image style={styles.tinyLogo} source={{uri: 'https://reactnative.dev/img/tiny_logo.png',}}/>
+                <Image style={styles.tinyLogo} source={{uri: 'https://reactnative.dev/img/tiny_logo.png',}}/>
                 <View style={{}}>
                     <Text style={{fontSize: 24, fontWeight: 'bold', }}>{item.name}</Text>
                     <Text style={{fontSize: 18, }}>Moisture: {item.currentMoisture}</Text>
@@ -55,15 +57,14 @@ function FrontpageView(props) {
                     <Text style={{fontSize: 18, }}>PumpState: {item.pumpState}</Text>
                 </View>
                 {!test? (<Pressable onPress={onWaterButtonPressed} style={{borderRadius: 20, borderColor: 'blue', borderWidth: 3, padding: 4, margin: 4}}>
-            <Image source={{uri: 'https://cdn.discordapp.com/attachments/1097773131575336992/1103243264536096850/Drawing_2.png',}}
-                style={{width: 64, height: 42, tintColor: 'blue'}}/>
-                <Text style={{color: 'blue', textAlign: 'center', fontWeight: 'bold', fontSize: 18, }}>Water</Text>
-        </Pressable>):
-                (<Pressable onPress={onWaterButtonPressed} style={{borderRadius: 20, borderColor: 'blue', borderWidth: 3, padding: 4, margin: 4}}>
-                <Image source={{uri: 'https://cdn.discordapp.com/attachments/1097773131575336992/1103243264536096850/Drawing_2.png',}}
+                    <Image source={watercanImage} style={{width: 64, height: 42, tintColor: 'blue'}}/>
+                    <Text style={{color: 'blue', textAlign: 'center', fontWeight: 'bold', fontSize: 18, }}>Water</Text>
+                    </Pressable>):
+                    (<Pressable onPress={onWaterButtonPressed} style={{borderRadius: 20, borderColor: 'blue', borderWidth: 3, padding: 4, margin: 4}}>
+                    <Image source={watercanImage}
                     style={{width: 64, height: 42, tintColor: 'blue'}}/>
                     <Text style={{color: 'blue', textAlign: 'center', fontWeight: 'bold', fontSize: 18, }}>Watering</Text>
-            </Pressable>)}
+                    </Pressable>)}
                 </View>          
             </Pressable>
         );
@@ -72,6 +73,17 @@ function FrontpageView(props) {
     console.log("fpview", props);
     return (
         <View style={styles.container}>
+            
+            <Image source={smotLogo} 
+            style={{ margin: -60, 
+                padding: 2, 
+                minWidth: '60%', 
+                maxWidth: '85%',
+                width: 720, 
+                height: 320, 
+                resizeMode: 'contain',
+                transform: [{scale: 0.5}] 
+                }}/>
             <View style={styles.columnContainer}>
                 <FlatList style={{width: '100%', padding: 50,}}
                 data={props.devices}
@@ -102,7 +114,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: '#2e8f2e',
         
-
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -124,11 +135,10 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     columnContainer: {
-        flex: 1,
+        flex: 100,
         flexDirection: 'column',
         backgroundColor: '#CFCFC4',
         
-        marginTop: 80,
         borderTopStartRadius: 20,
         borderTopEndRadius: 20,
         minWidth: '60%',

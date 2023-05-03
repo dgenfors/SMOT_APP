@@ -70,6 +70,10 @@ const styles = StyleSheet.create({
     container2: {
         
         flex: 0.5,
+        height: null,
+        width: null,
+        resizeMode: 'contain',
+
         flexDirection: 'column',
         backgroundColor: '#9ed984',
         padding: 24,
@@ -79,6 +83,7 @@ const styles = StyleSheet.create({
 
         alignItems: 'center',
         justifyContent: 'center',
+
     },
     input: {
         height: 40,
