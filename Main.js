@@ -4,19 +4,62 @@ import LoginPage from "./Presenter/loginPagePresenter";
 import SignUpPage from "./Presenter/signupPagePresenter";
 import DetailsPage from "./Presenter/detailsPagePresenter";
 import * as React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { ModelContext } from "./ModelContext";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebaseconfig";
-import { onAuthStateChanged} from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 
 export default function Main(props) {
   const Stack = props.stack;
+  React.useEffect(checkForWaterAlertAtStartup, []);
+
+  function checkForWaterAlertAtStartup() {
+    if(typeof props.model.devices === "object") {
+      console.log("yes")
+      const lowWaterNameArray = props.model.devices.reduce(callbackFn, [])
+      if(lowWaterNameArray.length > 0) {
+        let message = "The water levels in the reservoirs of: ";
+        message += lowWaterNameArray;
+        message += " are critically low, please refill"
+        waterAlert(message)
+      }
+    }
+    else {
+      console.log("no")
+    }
+    //console.log(props.model.devices.reduce(callbackFn, []))
+
+    function callbackFn(accumulator, element) {
+      if (element.waterLevel < 10) {
+        accumulator.push(element.name);
+      }
+      return accumulator;
+    }
+  }
 
   function logOut(navigation) {
     popToTop();
   }
+
+  const waterAlert = (message) =>
+    Alert.alert(
+      'Water level critical',
+      message,
+      [
+        {
+          text: 'Ok',
+          //onPress: () => Alert.alert('Cancel Pressed'),
+          style: 'cancel',
+        },
+      ],
+      {
+        cancelable: true,
+        //onDismiss: () =>
+
+      },
+    );
 
   onAuthStateChanged(auth, (user) => {
     if (user) {

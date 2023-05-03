@@ -8,12 +8,16 @@ import DetailsView from '../Views/detailsView';
 export default function DetailsPage({route, navigation}) {
     const model = useContext(ModelContext);
     const {itemId} = route.params;
-    const index = useRef(0);
+    const index = useRef(model.devices.findIndex(findIndexACB));
     React.useEffect(wasCreatedACB, []);
     const [device, copyDevice] = React.useState(model.devices[index.current]);
     
     function DetsObserverACB() {
         copyDevice({...model.devices[index.current]})
+    }
+
+    function findIndexACB(test){
+        return test.id == itemId;
     }
 
     function wasCreatedACB() {
