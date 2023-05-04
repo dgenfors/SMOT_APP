@@ -52,7 +52,7 @@ function FrontpageView(props) {
                     <Text style={{fontSize: 24, fontWeight: 'bold', }}>{item.name}</Text>
                     <Text style={{fontSize: 18, }}>Moisture: {item.currentMoisture}</Text>
                     <Text style={{fontSize: 18, }}>Waterlevel: {item.waterLevel}</Text>
-                    <Text style={{fontSize: 18, }}>PumpState: {item.pumpState}</Text>
+                    <Text style={{fontSize: 18, }}>PumpState: {test}</Text>
                 </View>
                 {!test? (<Pressable onPress={onWaterButtonPressed} style={{borderRadius: 20, borderColor: 'blue', borderWidth: 3, padding: 4, margin: 4}}>
             <Image source={{uri: 'https://cdn.discordapp.com/attachments/1097773131575336992/1103243264536096850/Drawing_2.png',}}

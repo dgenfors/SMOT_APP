@@ -36,7 +36,8 @@ export default
             return test.id == id;
         }
         const index = model.devices.findIndex(findIndex);
-        if(model.devices[index].pump === true){
+        if(model.devices[index].pump === true || model.devices[index].pumpState === true){
+            console.log("pump is already on")
             //model.setPump(false,id); //gör inget om pumpen redan är tillsagd att starta
         }else model.setPump(true,id);
         
@@ -46,8 +47,8 @@ export default
             return test.id == id;
         }
         const index = model.devices.findIndex(findIndex);
-        if(model.devices[index].pumpState === 1) return true;
-        else return false;
+        if(model.devices[index].pumpState === true) return 1;
+        else return 0;
     }
 
     function navigateToDetails(id) {
