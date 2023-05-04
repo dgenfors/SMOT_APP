@@ -49,9 +49,13 @@ function FrontpageView(props) {
         return (
             <Pressable onPress={onMoreInfoButtonPressed}>
             <View style={styles.addedDevice}>
-                <Image style={styles.tinyLogo} source={{uri: 'https://reactnative.dev/img/tiny_logo.png',}}/>
+                <Image style={styles.tinyLogo} source={{uri: 'https://cdn.discordapp.com/attachments/1088048407442108467/1103680536360259614/Drawing.png',}}/>
                 <View style={{}}>
-                    <Text >{item.name}</Text>
+                    <Text style={{
+                        fontSize: 24,
+                        fontWeight: 'bold',
+                        textAlign: 'center',}}>
+            {item.name}</Text>
                     <Text >Moisture: {item.currentMoisture}</Text>
                     <Text >Waterlevel: {item.waterLevel}</Text>
                     <Text >PumpState: {item.pumpState}</Text>
@@ -154,8 +158,8 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     tinyLogo: {
-        height: 50,
-        width: 50,
+        height: 85,
+        width: 85,
         margin: 4,
     },
     bigText: {

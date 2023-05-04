@@ -35,11 +35,11 @@ export default function DetailsView(props) {
             <View style={styles.infoCol}>
             <View style={styles.infoLine}>
                 <Text style={styles.infoText}>Prefered moisturelevel: </Text>
-                <Text style={styles.valueText}> {props.device.moistureLevel}</Text>
+                <Text style={styles.valueText}>{props.device.moistureLevel}</Text>
             </View>
                 <Slider
                     value = {props.device.moistureLevel}
-                    style={{ width: '100%', alignSelf: 'center'}}
+                    style={{ width: '100%', alignSelf: 'center', padding: 24}}
                     step = {10}
                     minimumValue={0}
                     maximumValue={100}
@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: '#2e8f2e',
         alignItems: 'center',
+        justifyContent: 'space-evenly'
     },
     infoLine: {
         flex: 1,
@@ -94,7 +95,7 @@ const styles = StyleSheet.create({
         width: '100%',
         
         paddingHorizontal: 24,
-        paddingVertical: 4,
+        paddingVertical: 12,
         marginHorizontal: 4,
         marginVertical: 10,
 
@@ -112,10 +113,6 @@ const styles = StyleSheet.create({
         maxWidth: 500,
         width: '100%',
         
-        paddingHorizontal: 24,
-        paddingVertical: 4,
-        marginHorizontal: 4,
-        marginVertical: 10,
 
         alignItems: 'center',
         alignContent: 'space-between',
