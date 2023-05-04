@@ -39,7 +39,7 @@ export default
         if(model.devices[index].pump === true || model.devices[index].pumpState === true){
             console.log("pump is already on")
             //model.setPump(false,id); //gör inget om pumpen redan är tillsagd att starta
-        }else model.setPump(true,id);
+        }else model.setPump(1,id);
         
     }
     function isPumpPumping(id){
