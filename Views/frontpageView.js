@@ -1,5 +1,5 @@
 
-import { Button, StyleSheet, Text, View, SafeAreaView, TextInput, Pressable} from 'react-native';
+import { Button, StyleSheet, Text, View, SafeAreaView, TextInput, Pressable, TouchableOpacity} from 'react-native';
 
 import { Link } from '@react-navigation/native';
 import { Image } from 'react-native';
@@ -29,6 +29,10 @@ function FrontpageView(props) {
 
     function handleLogoutButtonPress(event) {
         props.onPressLogout();
+    }
+    function onPress(){
+        console.log("link pressed")
+        props.navToSearch();
     }
 
     
@@ -105,8 +109,13 @@ function FrontpageView(props) {
                         <Text style={{fontWeight: 'bold', fontSize: 32, textAlign: 'center', }}>No devices found!</Text>
                         <Text style={{fontSize: 16, textAlign: 'center', }}>Make sure your SMOT has an internet connection</Text>
                     </View> }
+                    
                 />
+                <TouchableOpacity style={styles.button} onPress={onPress}>
+                <Text>Search here</Text>
+            </TouchableOpacity>
             </View>
+            
         </View>
         
     );
@@ -170,7 +179,12 @@ const styles = StyleSheet.create({
 
         alignItems: 'center',
         justifyContent: 'center',
-    }
+    },
+    button: {
+        alignItems: 'center',
+        backgroundColor: '#DDDDDD',
+        padding: 10,
+      },
 });
 
 export default FrontpageView;

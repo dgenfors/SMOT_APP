@@ -54,6 +54,9 @@ export default
     function navigateToDetails(id) {
         navigation.navigate("Details", {itemId: id});
     }
+    function navigateToSearch() {
+        navigation.navigate("searchbar");
+    }
 
     return (
         <FrontpageView
@@ -61,6 +64,7 @@ export default
                 runPump = {runPumpACB}
                 navToDetails = {navigateToDetails}
                 isPumpPumping = {isPumpPumping}
+                navToSearch={navigateToSearch}
             >
             </FrontpageView>
     )}

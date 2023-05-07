@@ -3,6 +3,7 @@ import FrontPage from "./Presenter/frontPagePresenterNew";
 import LoginPage from "./Presenter/loginPagePresenter";
 import SignUpPage from "./Presenter/signupPagePresenter";
 import DetailsPage from "./Presenter/detailsPagePresenter";
+import searchbarPresenter from "./Presenter/searchbarPresenter";
 import * as React from 'react';
 import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -110,6 +111,7 @@ export default function Main(props) {
             <Stack.Screen name="Login" component={LoginPage} />
             <Stack.Screen name="SignUp" component={SignUpPage} />
             <Stack.Screen name="Details" component={DetailsPage} />
+            <Stack.Screen name="searchbar" component={searchbarPresenter}/>
 
 
           </Stack.Navigator>
