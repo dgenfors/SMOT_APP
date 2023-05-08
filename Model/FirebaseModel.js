@@ -208,7 +208,7 @@ function updateModelFromFirebase(model){
     function PlantFirebaseACB(firebaseData){
         function hasSamePlant(device){
             if(device.id === firebaseData.val().id){
-                if(device.calibration == firebaseData.val().plant)
+                if(device.plant == firebaseData.val().plant)
                  return 1;
                 }
         }
