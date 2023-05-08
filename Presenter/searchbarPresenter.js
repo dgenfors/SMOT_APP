@@ -9,7 +9,9 @@ import { Button, StyleSheet, Text, View, SafeAreaView, TextInput, Pressable, Tou
 export default function SearchbarPresenter(navigation){
     const [promiseState]= React.useState({});
     const [, reRender]= React.useState(); 
-
+    if(Object.keys(promiseState).length == 0){
+        resolvePromise(doPlantSearch(""), promiseState, notifySearch)
+    }
 
     function notifySearch(){ reRender(new Object()); }
     function searchPlant(query){
