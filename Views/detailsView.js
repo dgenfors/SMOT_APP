@@ -76,8 +76,8 @@ export default function DetailsView(props) {
                 
                 <View style={styles.infoCol}>
                     <View style={styles.line}>
-                        <Text style={styles.infoText}>Manual watering amount(seconds): </Text>
-                        <Text style={styles.valueText}>{props.device.pumpTime}</Text>
+                        <Text style={styles.infoText}>Manual watering amount: </Text>
+                        <Text style={styles.valueText}>{props.device.pumpTime/10} sec</Text>
                     </View>
                     
                     <Slider
@@ -86,7 +86,7 @@ export default function DetailsView(props) {
                             style={{ width: '100%', alignSelf: 'flex-end', paddingVertical: 8 }}
                             step={1}
                             minimumValue={0}
-                            maximumValue={20}
+                            maximumValue={100}
                             minimumTrackTintColor="#04ADE2"
                             maximumTrackTintColor="#635147"
                             onSlidingComplete={wateringTimeChanged}
