@@ -31,7 +31,7 @@ function LoginView(props) {
         <View style={styles.container}>
             {/*<Image source={treelogo} style={{width: '240px', height: '240px'}}/>*/}
             <View style={styles.container2}>
-                <Text style={{fontWeight: 'bold', fontSize: 25,}}>Log in or Register!</Text>
+                <Text style={{fontSize: 25,  fontFamily: 'comic-sans bold'}}>Log in or Register!</Text>
                 <View>
                     <TextInput
                         style={styles.input}
@@ -51,8 +51,8 @@ function LoginView(props) {
                     flexDirection: 'row', 
                     justifyContent: 'space-between', 
                     alignItems: 'center', }}>
-                    <Button title='Log in' color='green' onPress={onLogIn}></Button>
-                    <Link to="/SignUp" color='green' style={{paddingLeft: 50,}}>Sign up here!</Link>
+                    <Button title='Log in' color='green' onPress={onLogIn} style={{ fontFamily: 'comic-sans'}}></Button>
+                    <Link to="/SignUp" color='green' style={{paddingLeft: 50,  fontFamily: 'comic-sans'}}>Sign up here!</Link>
                 </View>
             </View>
         </View>
@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 5,
         padding: 10,
+        fontFamily: 'comic-sans',
     },
 });
 

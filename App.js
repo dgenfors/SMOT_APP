@@ -9,6 +9,11 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebaseconfig";
 import promiseNoData from './promiseNoData';
 import resolvePromise from './resolvePromise';
+
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+
+SplashScreen.preventAutoHideAsync();
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -19,6 +24,17 @@ export default function App() {
   React.useEffect(wasCreatedACB, []);
 
   const model = new Model();
+
+  //Font stuff
+  const [isLoaded] = useFonts({
+    "comic-sans": require("./assets/fonts/comic.ttf"), 
+    "comic-sans bold": require("./assets/fonts/comicz.ttf"),
+  });
+  const handleOnLayout = React.useCallback(async () => { if (isLoaded) {await SplashScreen.hideAsync();} }, [isLoaded]);
+  if (!isLoaded) {
+    return null;
+  }
+
 
 
   function notifyACB() {
@@ -50,7 +66,7 @@ export default function App() {
   }
   if (!userID) {
     return (
-      <View style={styles.container}>
+      <View style={styles.container} onLayout={handleOnLayout}>
         <Main model={model} stack={Stack} />
       </View>
     );

@@ -1,5 +1,6 @@
 
 import { Button, StyleSheet, Text, View, SafeAreaView, TextInput, Pressable, ScrollView, Switch } from 'react-native';
+
 import Slider from '@react-native-community/slider';
 
 export default function DetailsView(props) {
@@ -43,7 +44,8 @@ export default function DetailsView(props) {
                     ></TextInput>
                 </View>
                 <View style={styles.infoCol}>
-                    <Text>AutoWatering</Text>
+                <View style={styles.line}>
+                    <Text style={styles.infoText} >AutoWatering</Text>
                     <Switch
                         trackColor={{ false: '#767577', true: '#81b0ff' }}
                         thumbColor={props.device.autoWateringState ? '#f5dd4b' : '#f4f3f4'}
@@ -51,14 +53,14 @@ export default function DetailsView(props) {
                         onValueChange={ontoggleSwitch}
                         value={props.device.autoWateringState}
                     />
-
+                </View>
                     <View style={styles.line}>
                         <Text style={styles.infoText}>Prefered moisturelevel: </Text>
                         <Text style={styles.valueText}>{props.device.moistureLevel}</Text>
                     </View>
                     <Slider
                         value={props.device.moistureLevel}
-                        style={{ width: '100%', alignSelf: 'flex-end', paddingVertical: 8 }}
+                        style={{ width: '100%', alignSelf: 'flex-end', paddingVertical: 8, marginBottom: 20}}
                         step={10}
                         minimumValue={0}
                         maximumValue={100}
@@ -76,7 +78,7 @@ export default function DetailsView(props) {
                 
                 <View style={styles.infoCol}>
                     <View style={styles.line}>
-                        <Text style={styles.infoText}>Manual watering amount(seconds): </Text>
+                        <Text style={styles.infoText}>Manual watering (seconds): </Text>
                         <Text style={styles.valueText}>{props.device.pumpTime}</Text>
                     </View>
                     
@@ -94,9 +96,11 @@ export default function DetailsView(props) {
                         />
                 </View>
 
-                <View style={styles.infoLine}>
-                    <Text style={styles.infoText}>Waterlevel: </Text>
-                    <Text style={styles.valueText}>{props.device.waterLevel}</Text>
+                <View style={styles.infoCol}>
+                    <View style={styles.line}>
+                        <Text style={styles.infoText}>Waterlevel: </Text>
+                        <Text style={styles.valueText}>{props.device.waterLevel}</Text>
+                    </View>
                     <Button title="Calibrate sensor" onPress={onCalibratePressed}></Button>
                 </View>
             </ScrollView>
@@ -137,6 +141,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 0,
         paddingVertical: 0,
 
+        margin: 10,
         
         alignItems: 'center',
         alignContent: 'space-between',
@@ -161,8 +166,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
 
         borderRadius: 20,
-        backgroundColor: 'lightblue',
-
+        backgroundColor: '#B2AC88',
     },
     infoCol: {
         flex: 1,
@@ -170,11 +174,10 @@ const styles = StyleSheet.create({
 
         maxWidth: 500,
         width: '100%',
-        maxHeight: 100,
 
 
         paddingHorizontal: 24,
-        paddingVertical: 12,
+        paddingVertical: 10,
         marginHorizontal: 0,
         marginVertical: 10,
 
@@ -182,22 +185,25 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
 
         borderRadius: 20,
-        backgroundColor: 'lightblue',
-    },
+        backgroundColor: '#B2AC88',
+        },
     infoText: {
-        fontSize: 20,
+    
+            fontFamily: 'comic-sans',
+            fontSize: 20,
+    
         textAlign: 'left',
     },
     valueText: {
         fontSize: 20,
-        fontWeight: 'bold',
+        fontFamily: 'comic-sans bold',
         textAlign: 'right',
     },
     input: {
         width: 'auto',
+        fontFamily: 'comic-sans bold',
         maxWidth: 200,
         fontSize: 20,
-        fontWeight: 'bold',
         textAlign: 'right',
     },
 });

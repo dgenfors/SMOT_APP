@@ -1,6 +1,7 @@
 
 import { Button, StyleSheet, Text, View, SafeAreaView, TextInput, Pressable, TouchableOpacity} from 'react-native';
 
+
 import { Link } from '@react-navigation/native';
 import { Image } from 'react-native';
 import watercanImage from '../assets/watercan.png';
@@ -57,8 +58,8 @@ function FrontpageView(props) {
                 <View style={{}}>
                     <Text style={{
                         fontSize: 24,
-                        fontWeight: 'bold',
-                        textAlign: 'center',}}>
+                        textAlign: 'center',
+                        fontFamily: 'comic-sans bold', }}>
             {item.name}</Text>
                     <Text >Moisture: {item.currentMoisture}</Text>
                     <Text >Waterlevel: {item.waterLevel}</Text>
@@ -66,12 +67,12 @@ function FrontpageView(props) {
                 </View>
                 {!test? (<Pressable onPress={onWaterButtonPressed} style={{borderRadius: 20, borderColor: 'blue', borderWidth: 3, padding: 4, margin: 4}}>
                     <Image source={watercanImage} style={{width: 64, height: 42, tintColor: 'blue'}}/>
-                    <Text style={{color: 'blue', textAlign: 'center', fontWeight: 'bold', fontSize: 18, }}>Water</Text>
+                    <Text style={{color: 'blue', textAlign: 'center', fontSize: 18,  fontFamily: 'comic-sans bold' }}>Water</Text>
                     </Pressable>):
                     (<Pressable onPress={onWaterButtonPressed} style={{borderRadius: 20, borderColor: 'blue', borderWidth: 3, padding: 4, margin: 4}}>
                     <Image source={watercanImage}
                     style={{width: 64, height: 42, tintColor: 'blue'}}/>
-                    <Text style={{color: 'blue', textAlign: 'center', fontWeight: 'bold', fontSize: 18, }}>Watering</Text>
+                    <Text style={{color: 'blue', textAlign: 'center', fontSize: 18,  fontFamily: 'comic-sans bold',}}>Watering</Text>
                     </Pressable>)}
                 </View>          
             </Pressable>
@@ -100,13 +101,13 @@ function FrontpageView(props) {
                 numColumns={1}
                 ListHeaderComponent={() => 
                     <View style={{alignItems: 'center', justifyContent: 'center', paddingBottom: 36, }}>
-                        <Text style={{fontWeight: 'bold', fontSize: 40, textAlign: 'center', }}>Your devices</Text>
-                        <Text style={{fontSize: 16, textAlign: 'center', }}>Click on a device for more info!</Text>
+                        <Text style={{fontSize: 40, textAlign: 'center', fontFamily: 'comic-sans bold'}}>Your devices</Text>
+                        <Text style={{fontSize: 16, textAlign: 'center',  fontFamily: 'comic-sans', }}>Click on a device for more info!</Text>
                     </View> }
                 ListEmptyComponent={() => 
-                    <View style={{alignItems: 'center', justifyContent: 'center', paddingTop: 50}}>
-                        <Text style={{fontWeight: 'bold', fontSize: 32, textAlign: 'center', }}>No devices found!</Text>
-                        <Text style={{fontSize: 16, textAlign: 'center', }}>Make sure your SMOT has an internet connection</Text>
+                    <View style={{alignItems: 'center', justifyContent: 'center', paddingTop: 50, }}>
+                        <Text style={{fontSize: 32, textAlign: 'center',  fontFamily: 'comic-sans bold',}}>No devices found!</Text>
+                        <Text style={{fontSize: 16, textAlign: 'center',  fontFamily: 'comic-sans', }}>Make sure your SMOT has an internet connection</Text>
                     </View> }
                     
                 />
@@ -116,7 +117,6 @@ function FrontpageView(props) {
             </View>
             
         </View>
-        
     );
 }
 
@@ -174,6 +174,7 @@ const styles = StyleSheet.create({
         flex:1,
         flexDirection: 'column',
         backgroundColor: '#9dc183',
+        fontFamily: 'comic-sans bold',
         
 
         alignItems: 'center',

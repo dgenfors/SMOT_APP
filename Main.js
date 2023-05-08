@@ -23,7 +23,7 @@ import {
 const customTextProps = {
   style:{
     
-    fontFamily: 'monospace', 
+    fontFamily: 'comic-sans', 
   }
 };
 
