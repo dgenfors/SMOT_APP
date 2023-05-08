@@ -1,10 +1,10 @@
 
-import { Button, StyleSheet, Text, View, SafeAreaView, TextInput, Pressable, ScrollView } from 'react-native';
+import { Button, StyleSheet, Text, View, SafeAreaView, TextInput, Pressable, ScrollView, Switch } from 'react-native';
 import Slider from '@react-native-community/slider';
 
 export default function DetailsView(props) {
 
-    //console.log("propsDetail", props)
+    console.log("rerenderingdetails")
 
     function nameChanged(event) {
         console.log(event.nativeEvent.text);
@@ -21,6 +21,15 @@ export default function DetailsView(props) {
     function onMoistureTargetChanged(value) {
         props.onMoistChanged(value);
     }
+
+    function onCalibratePressed() {
+        props.onCalibrate(true);
+    }
+
+    function ontoggleSwitch(value) {
+        props.onAutowateringToggled(value);
+    }
+
     return (
         <View style={styles.container}>
             <ScrollView style={styles.scrollView}>
@@ -34,6 +43,15 @@ export default function DetailsView(props) {
                     ></TextInput>
                 </View>
                 <View style={styles.infoCol}>
+                    <Text>AutoWatering</Text>
+                    <Switch
+                        trackColor={{ false: '#767577', true: '#81b0ff' }}
+                        thumbColor={props.device.autoWateringState ? '#f5dd4b' : '#f4f3f4'}
+                        ios_backgroundColor="#3e3e3e"
+                        onValueChange={ontoggleSwitch}
+                        value={props.device.autoWateringState}
+                    />
+
                     <View style={styles.line}>
                         <Text style={styles.infoText}>Prefered moisturelevel: </Text>
                         <Text style={styles.valueText}>{props.device.moistureLevel}</Text>
@@ -63,6 +81,7 @@ export default function DetailsView(props) {
                     </View>
                     
                     <Slider
+
                             value={props.device.pumpTime}
                             style={{ width: '100%', alignSelf: 'flex-end', paddingVertical: 8 }}
                             step={1}
@@ -74,10 +93,11 @@ export default function DetailsView(props) {
                             thumbTintColor="#20EFF4"
                         />
                 </View>
-                
+
                 <View style={styles.infoLine}>
                     <Text style={styles.infoText}>Waterlevel: </Text>
                     <Text style={styles.valueText}>{props.device.waterLevel}</Text>
+                    <Button title="Calibrate sensor" onPress={onCalibratePressed}></Button>
                 </View>
             </ScrollView>
         </View>

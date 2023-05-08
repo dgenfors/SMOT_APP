@@ -44,6 +44,13 @@ function updateFirebaseFromModel(model){
         if(payload.setPumpState){
             firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
         }
+        if(payload.setCalibrationState){
+            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
+        }
+        if(payload.setAutowateringState){
+            console.log(payload)
+            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
+        }
         
     }
     model.addObserver(firebaseObserverACB);
@@ -159,6 +166,38 @@ function updateModelFromFirebase(model){
         }
         if(model.devices.filter(hasSamePumpState).length == 1)return;
         model.setPumpState(firebaseData.val().pumpState, firebaseData.val().id); 
+    }
+    );
+
+    firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_changed", 
+    function calibrationFirebaseACB(firebaseData){
+        function hasSameCalibration(device){
+            if(device.id === firebaseData.val().id){
+                if(device.calibration == firebaseData.val().calibration)
+                 return 1;
+                }
+        }
+        if(!model.devices){
+            return;
+        }
+        if(model.devices.filter(hasSameCalibration).length == 1)return;
+        model.setCalibrationState(firebaseData.val().calibration, firebaseData.val().id); 
+    }
+    );
+
+    firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_changed", 
+    function AutoWateringFirebaseACB(firebaseData){
+        function hasSameAutoWatering(device){
+            if(device.id === firebaseData.val().id){
+                if(device.calibration == firebaseData.val().autoWateringState)
+                 return 1;
+                }
+        }
+        if(!model.devices){
+            return;
+        }
+        if(model.devices.filter(hasSameAutoWatering).length == 1)return;
+        model.setAutowateringState(firebaseData.val().autoWateringState, firebaseData.val().id); 
     }
     );
 }
