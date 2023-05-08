@@ -198,7 +198,6 @@ class Model
     }
     setPlantInfo(plantData, id){
         if(plantData === undefined)return;
-
         function findIndex(test){
             return test.id == id;
         }

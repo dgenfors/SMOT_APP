@@ -52,7 +52,6 @@ function updateFirebaseFromModel(model){
             firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
         }
         if(payload.setPlant){
-            console.log(payload)
             firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
         }
         
