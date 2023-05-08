@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 export default function SearchResultView(props){
     
     function renderItem(data){
-      console.log(data)
       function navToPlantDetails(){
         props.addPlant(data.item);
       }
