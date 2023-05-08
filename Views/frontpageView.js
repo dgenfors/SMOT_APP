@@ -78,7 +78,6 @@ function FrontpageView(props) {
         );
     }
 
-    console.log("fpview", props);
     return (
         <View style={styles.container}>
             

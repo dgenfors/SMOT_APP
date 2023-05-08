@@ -21,7 +21,6 @@ class Model
         this.observers = this.observers.filter(sameObsCB)
     }
     notifyObservers(payload){
-        console.log(this.observers)
         function invokeObserverACB(obs){
             obs(payload); 
         }    
@@ -169,8 +168,25 @@ class Model
             return;
         }
         this.devices[index].calibration = state;
-        console.log("Calibration set to:", state);
         this.notifyObservers({setCalibrationState: state , deviceID: id, test: this.devices[index] });
+    }
+
+    setAutowateringState(state, id) {
+        if(state === undefined){
+            console.error("undefined data");
+            return;
+        }
+        function findIndex(test){
+            return test.id == id;
+        }
+        const index = this.devices.findIndex(findIndex);
+        if(state === this.devices[index].autoWateringState){
+            console.log("matches same level", state)
+            return;
+        }
+        this.devices[index].autoWateringState = state;
+        console.log("Autowatering set to:", state);
+        this.notifyObservers({setAutowateringState: true , actualState: state , deviceID: id, test: this.devices[index] });
     }
 
     setLoginStatus(loginStatus){

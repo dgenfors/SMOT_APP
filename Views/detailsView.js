@@ -1,10 +1,10 @@
 
-import { Button, StyleSheet, Text, View, SafeAreaView, TextInput, Pressable, ScrollView } from 'react-native';
+import { Button, StyleSheet, Text, View, SafeAreaView, TextInput, Pressable, ScrollView, Switch } from 'react-native';
 import Slider from '@react-native-community/slider';
 
 export default function DetailsView(props) {
 
-    //console.log("propsDetail", props)
+    console.log("rerenderingdetails")
 
     function nameChanged(event) {
         console.log(event.nativeEvent.text);
@@ -26,6 +26,10 @@ export default function DetailsView(props) {
         props.onCalibrate(true);
     }
 
+    function ontoggleSwitch(value) {
+        props.onAutowateringToggled(value);
+    }
+
     return (
         <View style={styles.container}>
             <ScrollView style={styles.scrollView}>
@@ -39,6 +43,15 @@ export default function DetailsView(props) {
                     ></TextInput>
                 </View>
                 <View style={styles.infoCol}>
+                    <Text>AutoWatering</Text>
+                    <Switch
+                        trackColor={{ false: '#767577', true: '#81b0ff' }}
+                        thumbColor={props.device.autoWateringState ? '#f5dd4b' : '#f4f3f4'}
+                        ios_backgroundColor="#3e3e3e"
+                        onValueChange={ontoggleSwitch}
+                        value={props.device.autoWateringState}
+                    />
+
                     <View style={styles.infoLine}>
                         <Text style={styles.infoText}>Prefered moisturelevel: </Text>
                         <Text style={styles.valueText}>{props.device.moistureLevel}</Text>
@@ -65,18 +78,18 @@ export default function DetailsView(props) {
                         <Text style={styles.valueText}> {props.device.pumpTime}</Text>
                     </View>
                     <Slider
-                            value={props.device.pumpTime}
-                            style={{ width: '100%', alignSelf: 'center' }}
-                            step={1}
-                            minimumValue={0}
-                            maximumValue={20}
-                            minimumTrackTintColor="#04ADE2"
-                            maximumTrackTintColor="#635147"
-                            onSlidingComplete={wateringTimeChanged}
-                            thumbTintColor="#20EFF4"
-                        />
+                        value={props.device.pumpTime}
+                        style={{ width: '100%', alignSelf: 'center' }}
+                        step={1}
+                        minimumValue={0}
+                        maximumValue={20}
+                        minimumTrackTintColor="#04ADE2"
+                        maximumTrackTintColor="#635147"
+                        onSlidingComplete={wateringTimeChanged}
+                        thumbTintColor="#20EFF4"
+                    />
                 </View>
-                
+
                 <View style={styles.infoLine}>
                     <Text style={styles.infoText}>Waterlevel: </Text>
                     <Text style={styles.valueText}>{props.device.waterLevel}</Text>

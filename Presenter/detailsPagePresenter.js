@@ -49,6 +49,10 @@ export default function DetailsPage({route, navigation}) {
     function sendCalibration(state) {
         model.setCalibrationState(state, itemId);
     }
+
+    function setAutoWatering(state) {
+        model.setAutowateringState(state, itemId);
+    }
     
     return(
         <DetailsView
@@ -57,6 +61,7 @@ export default function DetailsPage({route, navigation}) {
             onNameChanged = {changeName}
             onWateringTimeChanged = {changeWateringTime}
             onCalibrate = {sendCalibration}
+            onAutowateringToggled = {setAutoWatering}
 
         ></DetailsView>)
 }
