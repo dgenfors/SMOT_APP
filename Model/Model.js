@@ -155,6 +155,24 @@ class Model
         this.notifyObservers({setPumpState: state , deviceID: id, test: this.devices[index] });
     }
 
+    setCalibrationState(state , id){
+        if(state === undefined){
+            console.error("undefined data");
+            return;
+        }
+        function findIndex(test){
+            return test.id == id;
+        }
+        const index = this.devices.findIndex(findIndex);
+        if(state === this.devices[index].calibration){
+            console.log("matches same level", state)
+            return;
+        }
+        this.devices[index].calibration = state;
+        console.log("Calibration set to:", state);
+        this.notifyObservers({setCalibrationState: state , deviceID: id, test: this.devices[index] });
+    }
+
     setLoginStatus(loginStatus){
         if(loginStatus === true){
             this.isLoggedIn = true;

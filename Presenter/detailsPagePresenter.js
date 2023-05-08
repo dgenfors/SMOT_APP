@@ -45,6 +45,10 @@ export default function DetailsPage({route, navigation}) {
     function changeWateringTime(time) {
         model.setPumpTime(time , itemId)
     }
+
+    function sendCalibration(state) {
+        model.setCalibrationState(state, itemId);
+    }
     
     return(
         <DetailsView
@@ -52,6 +56,7 @@ export default function DetailsPage({route, navigation}) {
             onMoistChanged = {changeTargetMoisture}
             onNameChanged = {changeName}
             onWateringTimeChanged = {changeWateringTime}
+            onCalibrate = {sendCalibration}
 
         ></DetailsView>)
 }

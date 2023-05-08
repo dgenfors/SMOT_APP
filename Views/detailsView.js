@@ -21,6 +21,11 @@ export default function DetailsView(props) {
     function onMoistureTargetChanged(value) {
         props.onMoistChanged(value);
     }
+
+    function onCalibratePressed() {
+        props.onCalibrate(true);
+    }
+
     return (
         <View style={styles.container}>
             <ScrollView style={styles.scrollView}>
@@ -75,6 +80,7 @@ export default function DetailsView(props) {
                 <View style={styles.infoLine}>
                     <Text style={styles.infoText}>Waterlevel: </Text>
                     <Text style={styles.valueText}>{props.device.waterLevel}</Text>
+                    <Button title="Calibrate sensor" onPress={onCalibratePressed}></Button>
                 </View>
             </ScrollView>
         </View>
