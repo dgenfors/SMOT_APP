@@ -196,5 +196,17 @@ class Model
             this.isLoggedIn = false;
         }
     }
+    setPlantInfo(plantData, id){
+        if(id === undefined)id = 1;
+        if(plantData === undefined)return;
+
+        function findIndex(test){
+            return test.id == id;
+        }
+        const index = this.devices.findIndex(findIndex);
+        this.devices[index].plant = plantData;
+        this.notifyObservers({setPlant: plantData, deviceID: id, test:this.devices[index]})
+
+    }
 }
 export default Model;
