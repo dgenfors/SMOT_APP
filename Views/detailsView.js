@@ -34,13 +34,13 @@ export default function DetailsView(props) {
                     ></TextInput>
                 </View>
                 <View style={styles.infoCol}>
-                    <View style={styles.infoLine}>
+                    <View style={styles.line}>
                         <Text style={styles.infoText}>Prefered moisturelevel: </Text>
                         <Text style={styles.valueText}>{props.device.moistureLevel}</Text>
                     </View>
                     <Slider
                         value={props.device.moistureLevel}
-                        style={{ width: '100%', alignSelf: 'center', padding: 24 }}
+                        style={{ width: '100%', alignSelf: 'flex-end', paddingVertical: 8 }}
                         step={10}
                         minimumValue={0}
                         maximumValue={100}
@@ -54,14 +54,17 @@ export default function DetailsView(props) {
                     <Text style={styles.infoText}>Current moisture: </Text>
                     <Text style={styles.valueText}>{props.device.currentMoisture} %</Text>
                 </View>
+                
+                
                 <View style={styles.infoCol}>
-                    <View style={styles.infoLine}>
+                    <View style={styles.line}>
                         <Text style={styles.infoText}>Manual watering amount(seconds): </Text>
-                        <Text style={styles.valueText}> {props.device.pumpTime}</Text>
+                        <Text style={styles.valueText}>{props.device.pumpTime}</Text>
                     </View>
+                    
                     <Slider
                             value={props.device.pumpTime}
-                            style={{ width: '100%', alignSelf: 'center' }}
+                            style={{ width: '100%', alignSelf: 'flex-end', paddingVertical: 8 }}
                             step={1}
                             minimumValue={0}
                             maximumValue={20}
@@ -86,12 +89,39 @@ export default function DetailsView(props) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        padding: 8,
         flexDirection: 'column',
         backgroundColor: '#2e8f2e',
         alignItems: 'center',
-        justifyContent: 'space-evenly'
+        justifyContent: 'flex-start'
     },
     scrollView: {
+        marginHorizontal: 0,
+
+        flex: 1,
+        maxWidth: 500,
+        width: '100%',
+
+        padding: 12,
+
+        resizeMode: 'contain',
+
+
+    },
+    line: {
+        flexDirection: 'row',
+
+        maxWidth: 500,
+        width: '100%',
+        
+        paddingHorizontal: 0,
+        paddingVertical: 0,
+
+        
+        alignItems: 'center',
+        alignContent: 'space-between',
+        justifyContent: 'space-between',
+
     },
     infoLine: {
         flex: 1,
@@ -99,10 +129,11 @@ const styles = StyleSheet.create({
 
         maxWidth: 500,
         width: '100%',
+        maxHeight: 50,
 
         paddingHorizontal: 24,
         paddingVertical: 12,
-        marginHorizontal: 4,
+        marginHorizontal: 0,
         marginVertical: 10,
 
         alignItems: 'center',
@@ -111,6 +142,7 @@ const styles = StyleSheet.create({
 
         borderRadius: 20,
         backgroundColor: 'lightblue',
+
     },
     infoCol: {
         flex: 1,
@@ -118,10 +150,16 @@ const styles = StyleSheet.create({
 
         maxWidth: 500,
         width: '100%',
+        maxHeight: 100,
+
+
+        paddingHorizontal: 24,
+        paddingVertical: 12,
+        marginHorizontal: 0,
+        marginVertical: 10,
 
         alignItems: 'center',
-        alignContent: 'space-between',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-start',
 
         borderRadius: 20,
         backgroundColor: 'lightblue',

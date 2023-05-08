@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: '#B2AC88',
 
-        padding: 24,
+        padding: 12,
 
         minHeight: 100,
         minWidth: 150,
