@@ -12,7 +12,7 @@
     "@expo/webpack-config": "^18.0.1",
     "@react-native-community/slider": "^4.4.2",
     "@react-native-firebase/app": "^17.4.2",
-    "@react-native-picker/picker": "^2.4.10",
+    "@react-native-picker/picker": "2.4.8",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
     "expo": "~48.0.11",
