@@ -4,9 +4,15 @@ import React, { useState } from 'react';
 export default function SearchResultView(props){
     
     function renderItem(data){
-       return( <View style={styles.container}>
+      function navToPlantDetails(){
+        props.addPlant(data.item);
+      }
+       return( <View style={styles.container}><Pressable onPress={navToPlantDetails}>
         <Image source={{ uri: data.item.default_image.original_url }} style={styles.image} />
       <Text style={styles.name}>{data.item.common_name}</Text>
+      <Text style={styles.name}>Press to add information to your plant</Text>
+      </Pressable>
+      
     </View>
          );
     }

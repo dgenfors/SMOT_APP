@@ -54,7 +54,7 @@ export default function Main(props) {
     //console.log(props.model.devices.reduce(callbackFn, []))
 
     function callbackFn(accumulator, element) {
-      if (element.waterLevel < 10) {
+      if (element.waterLevel < 4) {
         accumulator.push(element.name);
       }
       return accumulator;
