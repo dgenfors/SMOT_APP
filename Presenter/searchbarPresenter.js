@@ -20,14 +20,14 @@ export default function SearchbarPresenter(navigation){
     function searchPlant(query){
        resolvePromise(doPlantSearch(query),promiseState, notifySearch);
     }
-    function addPlanToModel(item){
-        model.setPlantInfo(item);
+    function addPlanToModel(item, id){
+        model.setPlantInfo(item, id);
     }
 
         return (<View><SearchbarView
             searchPlant={searchPlant}>
         </SearchbarView>
-        {promiseNoData(promiseState) || <SearchResultView searchResults={promiseState.data} addPlant={addPlanToModel}></SearchResultView>}</View>)
+        {promiseNoData(promiseState) || <SearchResultView searchResults={promiseState.data} addPlant={addPlanToModel} devices={model.devices}></SearchResultView>}</View>)
     
     
 }

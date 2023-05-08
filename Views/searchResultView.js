@@ -1,17 +1,21 @@
-import { Button, StyleSheet, Text, View, SafeAreaView, TextInput, Pressable, TouchableOpacity, Image , FlatList, Picker} from 'react-native';
+import { Button, StyleSheet, Text, View, SafeAreaView, TextInput, Pressable, TouchableOpacity, Image , FlatList} from 'react-native';
 import React, { useState } from 'react';
+import {Picker} from '@react-native-picker/picker';
 
 export default function SearchResultView(props){
   const [selectedValue, setSelectedValue] = useState("java");
 
     function renderItem(data){
-      
       function navToPlantDetails(){
         props.addPlant(data.item);
       }
       function selectedValueACB(itemValue, index){
         console.log(itemValue,index)
         setSelectedValue(itemValue)
+        props.addPlant(selectedValue,itemValue)
+      }
+      function mapDevices(device){
+        return <Picker.Item label={device.name} value={device.id} key={device.id}/>
       }
        return( <View style={styles.container}><Pressable onPress={navToPlantDetails}>
         <Image source={{ uri: data.item.default_image.original_url }} style={styles.image} />
@@ -20,11 +24,10 @@ export default function SearchResultView(props){
       </Pressable>
       <Picker
         selectedValue={selectedValue}
-        style={{ height: 50, width: 150 }}
+        style={{ height: 50, width: 150}}
         onValueChange={selectedValueACB}
       >
-        <Picker.Item label="Device1" value="one" />
-        <Picker.Item label="Device2" value="two" />
+        {props.devices.map(mapDevices)}
       </Picker>
 
       
