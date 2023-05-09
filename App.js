@@ -67,14 +67,14 @@ export default function App() {
   if (!userID) {
     return (
       <View style={styles.container} onLayout={handleOnLayout}>
-        <Main model={model} stack={Stack} />
+        <Main model={model} stack={Stack} isLogged={false} />
       </View>
     );
   }
   else {
     return (promiseNoData(firebaseModelPromiseState) ||
       <View style={styles.container}>
-        <Main model={firebaseModelPromiseState.data} stack={Stack} />
+        <Main model={firebaseModelPromiseState.data} stack={Stack} isLogged={true} />
       </View>)
   }
 
