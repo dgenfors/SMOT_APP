@@ -25,6 +25,7 @@ export default function SearchbarView(props){
 }
 const styles = StyleSheet.create({
     container: {
+      maxWidth: '60%',
       backgroundColor: '#c4d4af',
       borderRadius: 10,
       paddingVertical: 10,
@@ -33,6 +34,7 @@ const styles = StyleSheet.create({
       marginVertical: 10,
       flexDirection: 'row',
       alignItems: 'center',
+      alignSelf: 'center',
     },
     input: {
       flex: 1,
@@ -50,5 +52,6 @@ const styles = StyleSheet.create({
     buttonText: {
       color: '#fff',
       fontSize: 16,
+      fontFamily: 'comic-sans bold',
     },
   });

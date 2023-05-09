@@ -42,12 +42,15 @@ export default function SearchResultView(props){
           data={props.searchResults.data}
           renderItem={renderItem}
           keyExtractor={item => item.id.toString()}
+          scrollEnabled={true}
         /></View>
         </View>
       );
 }
 const styles = StyleSheet.create({
     container: {
+      backgroundColor: '#c4d4af',
+      borderRadius: 16,
       flexDirection: 'row',
       alignItems: 'center',
       marginVertical: 10,
@@ -78,7 +81,7 @@ const styles = StyleSheet.create({
     },
     borders:{
       borderWidth: 1,
-      borderColor: '#ccc',
+      borderColor: '#2e8f2e',
       borderRadius: 5,
     },
     list:{

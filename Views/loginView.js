@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
         borderColor: 'darkgreen',
 
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
 
     },
     input: {

@@ -22,10 +22,19 @@ export default function SearchbarPresenter(navigation){
         model.setPlantInfo(item, id);
     }
 
-        return (<View><SearchbarView
-            searchPlant={searchPlant}>
-        </SearchbarView>
-        {promiseNoData(promiseState) || <SearchResultView searchResults={promiseState.data} addPlant={addPlanToModel} devices={model.devices}></SearchResultView>}</View>)
+    return (
+    <View style={{flex: 1, backgroundColor: '#2e8f2e'}}>
+        <SearchbarView searchPlant={searchPlant}></SearchbarView>
+        
+        {promiseNoData(promiseState) || 
+            <SearchResultView 
+                searchResults={promiseState.data} 
+                addPlant={addPlanToModel} 
+                devices={model.devices}>
+            </SearchResultView>
+        }
+    </View>
+    )
     
     
 }

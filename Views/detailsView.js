@@ -1,5 +1,5 @@
 
-import { Button, StyleSheet, Text, View, SafeAreaView, TextInput, Pressable, ScrollView, Switch } from 'react-native';
+import { Button, StyleSheet, Text, View, SafeAreaView, TextInput, Pressable, ScrollView, Switch, Platform } from 'react-native';
 
 import Slider from '@react-native-community/slider';
 
@@ -31,14 +31,9 @@ export default function DetailsView(props) {
         props.onAutowateringToggled(value);
     }
 
-    function onGoToHistory() {
-        props.navToHistory();
-    }
-
     return (
         <View style={styles.container}>
             <ScrollView style={styles.scrollView}>
-                <Button title="History" onPress={onGoToHistory}></Button>
                 <View style={styles.infoLine}>
                     <Text style={styles.infoText}>Device name: </Text>
                     <TextInput
@@ -48,24 +43,25 @@ export default function DetailsView(props) {
                         maxLength={20}
                     ></TextInput>
                 </View>
+                <View style={styles.infoLine}>
+                        <Text style={styles.infoText} >AutoWatering</Text>
+                        <Switch
+                            trackColor={{ false: '#767577', true: '#81b0ff' }}
+                            thumbColor={props.device.autoWateringState ? '#f5dd4b' : '#f4f3f4'}
+                            ios_backgroundColor="#3e3e3e"
+                            onValueChange={ontoggleSwitch}
+                            value={props.device.autoWateringState}
+                        />
+                    </View>
                 <View style={styles.infoCol}>
-                <View style={styles.line}>
-                    <Text style={styles.infoText} >AutoWatering</Text>
-                    <Switch
-                        trackColor={{ false: '#767577', true: '#81b0ff' }}
-                        thumbColor={props.device.autoWateringState ? '#f5dd4b' : '#f4f3f4'}
-                        ios_backgroundColor="#3e3e3e"
-                        onValueChange={ontoggleSwitch}
-                        value={props.device.autoWateringState}
-                    />
-                </View>
                     <View style={styles.line}>
                         <Text style={styles.infoText}>Prefered moisturelevel: </Text>
-                        <Text style={styles.valueText}>{props.device.moistureLevel}</Text>
+                        <Text style={styles.valueText}>{props.device.moistureLevel} %</Text>
                     </View>
-                    <Slider
+                    <View style={styles.sliderView}>
+                        <Slider
                         value={props.device.moistureLevel}
-                        style={{ width: '100%', alignSelf: 'flex-end', paddingVertical: 8, marginBottom: 20}}
+                        style={{ width: '100%'}}
                         step={10}
                         minimumValue={0}
                         maximumValue={100}
@@ -73,24 +69,25 @@ export default function DetailsView(props) {
                         maximumTrackTintColor="#635147"
                         onSlidingComplete={onMoistureTargetChanged}
                         thumbTintColor="#20EFF4"
-                    />
+                        />
+                    </View>
                 </View>
+
                 <View style={styles.infoLine}>
                     <Text style={styles.infoText}>Current moisture: </Text>
                     <Text style={styles.valueText}>{props.device.currentMoisture} %</Text>
                 </View>
-                
                 
                 <View style={styles.infoCol}>
                     <View style={styles.line}>
                         <Text style={styles.infoText}>Manual watering amount: </Text>
                         <Text style={styles.valueText}>{props.device.pumpTime/10} s</Text>
                     </View>
-                    
+                    <View style={styles.sliderView}>
                     <Slider
 
                             value={props.device.pumpTime}
-                            style={{ width: '100%', alignSelf: 'flex-end', paddingVertical: 8 }}
+                            style={{ width: '100%', }}
                             step={1}
                             minimumValue={0}
                             maximumValue={100}
@@ -99,6 +96,7 @@ export default function DetailsView(props) {
                             onSlidingComplete={wateringTimeChanged}
                             thumbTintColor="#20EFF4"
                         />
+                    </View>
                 </View>
 
                 <View style={styles.infoCol}>
@@ -152,6 +150,7 @@ const styles = StyleSheet.create({
 
     },
     line: {
+        flex: 0,
         flexDirection: 'row',
 
         maxWidth: 500,
@@ -173,7 +172,8 @@ const styles = StyleSheet.create({
 
         maxWidth: 500,
         width: '100%',
-        maxHeight: 50,
+        maxHeight: 56,
+        
 
         paddingHorizontal: 24,
         paddingVertical: 12,
@@ -193,15 +193,17 @@ const styles = StyleSheet.create({
 
         maxWidth: 500,
         width: '100%',
-
+        
+        
 
         paddingHorizontal: 24,
-        paddingVertical: 10,
+        paddingVertical: 8,
         marginHorizontal: 0,
         marginVertical: 10,
 
+        
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
 
         borderRadius: 20,
         backgroundColor: '#B2AC88',
@@ -225,4 +227,20 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'right',
     },
+    sliderView: {
+        flexDirection: 'row',
+
+        maxWidth: 500,
+        width: '100%',
+        
+        padding: 8,
+
+        margin: 10,
+        backgroundColor: '#a19b77',
+        borderRadius: 16,
+        
+        alignItems: 'center',
+        alignContent: 'space-between',
+        justifyContent: 'space-between',
+    }
 });

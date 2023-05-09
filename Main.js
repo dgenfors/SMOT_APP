@@ -42,16 +42,18 @@ export default function Main(props) {
   function checkForWaterAlertAtStartup() {
     if(typeof props.model.devices === "object") {
       console.log("yes")
-      const lowWaterNameArray = props.model.devices.reduce(callbackFn, [])
-      if(lowWaterNameArray.length > 0) {
-        let message = "The water levels in the reservoirs of: ";
-        message += lowWaterNameArray;
-        message += " are critically low, please refill"
-        waterAlert(message)
+      try {
+        const lowWaterNameArray = props.model.devices.reduce(callbackFn, [])
+        if(lowWaterNameArray.length > 0) {
+          let message = "The water levels in the reservoirs of: ";
+          message += lowWaterNameArray;
+          message += " are critically low, please refill"
+          waterAlert(message)
+        }
       }
-    }
-    else {
-      console.log("no")
+      catch {
+        console.warn("No device added")
+      }
     }
     //console.log(props.model.devices.reduce(callbackFn, []))
 

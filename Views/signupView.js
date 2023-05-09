@@ -30,7 +30,7 @@ function SignUpView(props) {
     return (
         <View style={styles.container}>
             <View style={styles.container2}>
-                <Text style={{fontWeight: 'bold', fontSize: 25,}}>Register!</Text>
+                <Text style={{fontFamily: 'comic-sans bold', fontSize: 25,}}>Register!</Text>
                 <SafeAreaView>
                     <TextInput
                         style={styles.input}
@@ -54,8 +54,9 @@ function SignUpView(props) {
                 <View style={{
                     paddingHorizontal: 24, 
                     flexDirection: 'row', 
-                    justifyContent: 'space-between', 
-                    alignItems: 'center', }}>
+                    justifyContent: 'flex-end', 
+                    alignItems: 'center', 
+                    alignSelf: 'center'}}>
                     <Button title='Sign Up' color='green' onPress={onSignUp}></Button>
                 </View>
             </View>
@@ -73,16 +74,20 @@ const styles = StyleSheet.create({
     container2: {
         
         flex: 0.5,
+        height: 400,
+        width: 300,
+        flexShrink: 0,
+        resizeMode: 'contain',
+
         flexDirection: 'column',
         backgroundColor: '#9ed984',
-        paddingVertical: 24,
         padding: 24,
-        borderWidth: 5,
+        borderWidth: 3,
         borderRadius: 20,
         borderColor: 'darkgreen',
 
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
     },
     input: {
         height: 40,
@@ -91,6 +96,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 5,
         padding: 10,
+        fontFamily: 'comic-sans',
     },
 });
 
