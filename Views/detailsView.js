@@ -103,6 +103,18 @@ export default function DetailsView(props) {
                     </View>
                     <Button title="Calibrate sensor" onPress={onCalibratePressed}></Button>
                 </View>
+                <View style={styles.infoCol}>
+                    <Text style={styles.infoText}>Plant common name:</Text>
+                    <Text style={styles.infoText}>{props.device.plant.common_name}</Text>
+                </View>
+                <View style={styles.infoCol}>
+                    <Text style={styles.infoText}>Recommended water frequency:</Text>
+                    <Text style={styles.infoText}>{props.device.plant.watering}</Text>
+                </View>
+                <View style={styles.infoCol}>
+                    <Text style={styles.infoText}>Recommended sunlight:</Text>
+                    <Text style={styles.infoText}>{props.device.plant.sunlight[0]}</Text>
+                </View>
             </ScrollView>
         </View>
     )
