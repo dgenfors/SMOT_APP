@@ -4,8 +4,9 @@ import {Text} from 'react-native';
 import { ModelContext } from "../ModelContext";
 import { useContext } from 'react';
 import DetailsView from '../Views/detailsView';
+import HistoryView from '../Views/historyView';
 
-export default function DetailsPage({route, navigation}) {
+export default function HistoryPage({route, navigation}) {
     const model = useContext(ModelContext);
     const {itemId} = route.params;
     const index = useRef(model.devices.findIndex(findIndexACB));
@@ -34,39 +35,24 @@ export default function DetailsPage({route, navigation}) {
         return isTakenDownACB;
     }
 
-    function changeTargetMoisture(moistureLevel) {
-        model.setMoistureLevel(moistureLevel , itemId)
+    function getData() {
+        const data = {
+            labels: ["January", "February", "March", "April", "May", "June"],
+            datasets: [
+              {
+                data: [20, 45, 28, 80, 99, 43],
+                color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
+                strokeWidth: 2 // optional
+              }
+            ],
+            legend: ["Rainy Days"] // optional
+          };
     }
 
-    function changeName(name) {
-        model.setName(name, itemId)
-    }
-
-    function changeWateringTime(time) {
-        model.setPumpTime(time , itemId)
-    }
-
-    function sendCalibration(state) {
-        model.setCalibrationState(state, itemId);
-    }
-
-    function setAutoWatering(state) {
-        model.setAutowateringState(state, itemId);
-    }
-
-    function navigateToHistory(id) {
-        navigation.navigate("History", {itemId: id});
-    }
+   
     
     return(
-        <DetailsView
-            device = {model.devices[index.current]}
-            onMoistChanged = {changeTargetMoisture}
-            navToHistory = {navigateToHistory}
-            onNameChanged = {changeName}
-            onWateringTimeChanged = {changeWateringTime}
-            onCalibrate = {sendCalibration}
-            onAutowateringToggled = {setAutoWatering}
-
-        ></DetailsView>)
+        <HistoryView
+            data = {getData}
+        ></HistoryView>)
 }

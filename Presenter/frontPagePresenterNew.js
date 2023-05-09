@@ -52,7 +52,7 @@ export default
     }
 
     function navigateToDetails(id) {
-        navigation.navigate("Details", {itemId: id});
+        navigation.navigate("More info", {itemId: id});
     }
     function navigateToSearch() {
         navigation.navigate("searchbar");

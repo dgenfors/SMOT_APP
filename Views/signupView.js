@@ -66,7 +66,7 @@ function SignUpView(props) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#9dc183',
+        backgroundColor: '#2e8f2e',
         alignItems: 'center',
         justifyContent: 'center',
     },

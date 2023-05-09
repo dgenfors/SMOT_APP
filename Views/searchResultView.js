@@ -59,7 +59,8 @@ const styles = StyleSheet.create({
     },
     name: {
       fontSize: 16,
-      fontWeight: 'bold',
+      fontFamily: 'comic-sans bold',
+
     },
     dropDown:{
       height: 50, 

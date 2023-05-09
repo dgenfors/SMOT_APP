@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
       flex: 1,
       color: '#333',
       fontSize: 16,
+      fontFamily: 'comic-sans',
     },
     button: {
       backgroundColor: '#8a9a5b',

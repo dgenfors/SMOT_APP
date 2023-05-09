@@ -3,6 +3,7 @@ import FrontPage from "./Presenter/frontPagePresenterNew";
 import LoginPage from "./Presenter/loginPagePresenter";
 import SignUpPage from "./Presenter/signupPagePresenter";
 import DetailsPage from "./Presenter/detailsPagePresenter";
+import HistoryPage from "./Presenter/historyPagePresenter";
 import searchbarPresenter from "./Presenter/searchbarPresenter";
 import * as React from 'react';
 import { StyleSheet, Text, View, Button, Alert } from 'react-native';
@@ -93,10 +94,11 @@ export default function Main(props) {
     }
   });
   const Tab = createMaterialTopTabNavigator();
-  function TabNavigator(){
+  function DetailsNavigator(param){
     return (<Tab.Navigator>
-      <Tab.Screen name="Front" component={FrontPage}/>
-      <Tab.Screen name="searchbar" component={searchbarPresenter}/>
+      <Tab.Screen name="Details" component={DetailsPage}/>
+      <Tab.Screen name="Add Plant" component={searchbarPresenter}/>
+      {/*<Tab.Screen name="History" component={}*/}
 
   </Tab.Navigator>);
   }
@@ -104,6 +106,7 @@ export default function Main(props) {
     return(<Tab.Navigator initialRouteName="Login">
       <Tab.Screen name="Login" component={LoginPage} />
       <Tab.Screen name="SignUp" component={SignUpPage} />
+      
     </Tab.Navigator>)
   }
   return (
@@ -112,8 +115,9 @@ export default function Main(props) {
         <View style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }}>
           <Stack.Navigator initialRouteName="LoginTab">
             <Stack.Screen name="LoginTab" component={LoginTab} />
-            <Stack.Screen name ="Tab" component={TabNavigator}/>
-            <Stack.Screen name ="Details" component={DetailsPage}/>
+            <Stack.Screen name ="Home" component={FrontPage}/>
+            <Stack.Screen name ="More info" component={DetailsPage}/>
+            <Stack.Screen name ="History" component={HistoryPage}/>
           </Stack.Navigator>
         </View>
       </ModelContext.Provider>

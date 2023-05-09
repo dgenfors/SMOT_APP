@@ -31,9 +31,14 @@ export default function DetailsView(props) {
         props.onAutowateringToggled(value);
     }
 
+    function onGoToHistory() {
+        props.navToHistory();
+    }
+
     return (
         <View style={styles.container}>
             <ScrollView style={styles.scrollView}>
+                <Button title="History" onPress={onGoToHistory}></Button>
                 <View style={styles.infoLine}>
                     <Text style={styles.infoText}>Device name: </Text>
                     <TextInput

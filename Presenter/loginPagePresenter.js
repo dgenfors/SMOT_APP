@@ -19,20 +19,20 @@ export default function LoginPage({ navigation }) {
     if (user) {
       model.setLoginStatus(true);
       //updateModelFromFirebase(model);
-      navigation.navigate("Tab");
+      navigation.navigate("Home");
     } else {
       model.setLoginStatus(false);
     }
   });
 
   function handleLoginButtonPress() {
-    navigation.navigate("Tab");
+    navigation.navigate("Home");
   }
 
   function signIn(email, password) {
     function successACB(userCredential) {
       updateModelFromFirebase(model);
-      navigation.navigate("Tab");
+      navigation.navigate("Home");
     }
 
     function failACB(error) {
