@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text, View, SafeAreaView, TextInput, Pressable, TouchableOpacity, Image , FlatList} from 'react-native';
+import { Button, StyleSheet, Text, View, SafeAreaView, TextInput, Pressable, TouchableOpacity, Image , FlatList, Platform} from 'react-native';
 import React, { useState } from 'react';
 import {Picker} from '@react-native-picker/picker';
 
@@ -37,7 +37,7 @@ export default function SearchResultView(props){
                   {props.devices.map(mapDevices)}
             </Picker></View>
           </View>
-        <View style={{height:400, paddingBottom:40, flexDirection: 'column',}}>
+        <View style={styles.list}>
         <FlatList
           data={props.searchResults.data}
           renderItem={renderItem}
@@ -80,6 +80,24 @@ const styles = StyleSheet.create({
       borderWidth: 1,
       borderColor: '#ccc',
       borderRadius: 5,
+    },
+    list:{
+      ...Platform.select({
+        ios:{
+          height:400
+        },
+        android:{
+          height:400, 
+        },
+        default:{
+          height:650,
+        }
+      }
+      ),
+      paddingBottom:40, 
+      flexDirection: 'column',
     }
+    
+    
     
   });
