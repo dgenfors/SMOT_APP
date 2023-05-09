@@ -38,55 +38,37 @@ function HistoryView (props) {
             />
         </View>
     );*/
-    return (<View style={styles.container}>
-        <Text>Bezier Line Chart</Text>
+    return (
+    <View style={styles.container}>
+        <Text>Moisture history</Text>
         <LineChart
-          data={{
-            labels: ["January", "February", "March", "April", "May", "June"],
-            datasets: [
-              {
-                data: [
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100
-                ]
-              }
-            ]
-          }}
+          data={props.data}
           width={Dimensions.get("window").width} // from react-native
           height={220}
           yAxisLabel="$"
           yAxisSuffix="k"
           yAxisInterval={1} // optional, defaults to 1
-          chartConfig={{
-            backgroundColor: "#000",
-            backgroundGradientFrom: "#FFF",
-            backgroundGradientTo: "#000",
-            decimalPlaces: 2, // optional, defaults to 2dp
-            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-            style: {
-              borderRadius: 16
-            },
-            propsForDots: {
-              r: "4",
-              strokeWidth: "3",
-              stroke: "#00F"
-            }
-          }}
-          bezier
-          style={{
-            margin: 8,
-            borderRadius: 10
-          }}
+          chartConfig={chartConfig}
         />
-      </View>)
+    </View>)
 }
 
-
+const chartConfig = {
+    backgroundColor: "#3AA",
+    backgroundGradientFrom: "#3CC",
+    backgroundGradientTo: "#3AAFFF",
+    decimalPlaces: 2, // optional, defaults to 2dp
+    color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+    labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+    style: {
+      borderRadius: 16
+    },
+    propsForDots: {
+      r: "4",
+      strokeWidth: "3",
+      stroke: "#029"
+    }
+  }
 
 const styles = StyleSheet.create({
     container: {
@@ -96,6 +78,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start'
     },
+    
 });
 
 

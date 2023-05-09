@@ -10,6 +10,7 @@ export default function HistoryPage({route, navigation}) {
     const model = useContext(ModelContext);
     const {itemId} = route.params;
     const index = useRef(model.devices.findIndex(findIndexACB));
+    const data = useRef(getData());
     React.useEffect(wasCreatedACB, []);
     const [device, copyDevice] = React.useState(model.devices[index.current]);
     
@@ -29,6 +30,8 @@ export default function HistoryPage({route, navigation}) {
             return test.id == itemId;
         }
 
+        const data = 
+
         function isTakenDownACB() {
             model.removeObserver(DetsObserverACB);
         }
@@ -47,12 +50,13 @@ export default function HistoryPage({route, navigation}) {
             ],
             legend: ["Rainy Days"] // optional
           };
+        return data;
     }
 
    
     
     return(
         <HistoryView
-            data = {getData}
+            data = {data}
         ></HistoryView>)
 }
