@@ -6,9 +6,10 @@ import { useContext } from 'react';
 import DetailsView from '../Views/detailsView';
 import HistoryView from '../Views/historyView';
 
-export default function HistoryPage({route, navigation}) {
+export default function HistoryPage(props) {
+    console.log("history id:"+props.userData.itemId);
     const model = useContext(ModelContext);
-    const index = useRef(route.params.itemId);
+    const index = useRef(props.userData.itemId);
     const data = useRef(getData());
     React.useEffect(wasCreatedACB, []);
     const [device, copyDevice] = React.useState(model.devices[index.current]);
@@ -29,14 +30,18 @@ export default function HistoryPage({route, navigation}) {
         }
         return isTakenDownACB;
     }
-
     function getData() {
         const labeltest = ["January", "February", "mars", "April", "May", "June"]
         const moistureData = [20, 45, 28, 80, 99, 43]
         const currentTarget = moistureData.map(justCopyTarget)
 
         function justCopyTarget(element) {
-            return model.devices[index.current].moistureLevel;
+            function findIndex(test){
+                return test.id == index.current;
+            }
+            const indx = model.devices.findIndex(findIndex);
+        
+            return model.devices[indx].moistureLevel;
         }
 
         function getMositureData() {
@@ -63,7 +68,6 @@ export default function HistoryPage({route, navigation}) {
         return data;
     }
 
-   
     
     return(
         <HistoryView

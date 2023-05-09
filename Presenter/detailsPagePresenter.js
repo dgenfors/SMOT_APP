@@ -5,9 +5,10 @@ import { ModelContext } from "../ModelContext";
 import { useContext } from 'react';
 import DetailsView from '../Views/detailsView';
 
-export default function DetailsPage({route, navigation}) {
+export default function DetailsPage(props) {
+    
     const model = useContext(ModelContext);
-    const {itemId} = route.params;
+    const itemId = props.userData.itemId;
     const index = useRef(model.devices.findIndex(findIndexACB));
     React.useEffect(wasCreatedACB, []);
     const [device, copyDevice] = React.useState(model.devices[index.current]);

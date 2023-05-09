@@ -94,12 +94,11 @@ export default function Main(props) {
     }
   });
   const Tab = createMaterialTopTabNavigator();
-  function DetailsNavigator(param){
+  function DetailsNavigator({route}){
     return (<Tab.Navigator>
-      <Tab.Screen name="Details" component={DetailsPage}/>
+      <Tab.Screen name="Details" children={() => <DetailsPage userData={route.params} />} />
       <Tab.Screen name="Add Plant" component={searchbarPresenter}/>
-      {/*<Tab.Screen name="History" component={}*/}
-
+      <Tab.Screen name ="History" children={() => <HistoryPage userData={route.params} />}/>
   </Tab.Navigator>);
   }
   function LoginTab(){
@@ -116,8 +115,7 @@ export default function Main(props) {
           <Stack.Navigator initialRouteName="LoginTab">
             <Stack.Screen name="LoginTab" component={LoginTab} />
             <Stack.Screen name ="Home" component={FrontPage}/>
-            <Stack.Screen name ="More info" component={DetailsPage}/>
-            <Stack.Screen name ="History" component={HistoryPage}/>
+            <Stack.Screen name ="More info" component={DetailsNavigator}/>
           </Stack.Navigator>
         </View>
       </ModelContext.Provider>
