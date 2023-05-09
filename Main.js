@@ -11,6 +11,7 @@ import { ModelContext } from "./ModelContext";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebaseconfig";
 import { onAuthStateChanged } from "firebase/auth";
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 import {
   setCustomView,
@@ -91,29 +92,28 @@ export default function Main(props) {
       props.model.setLoginStatus(false);
     }
   });
+  const Tab = createMaterialTopTabNavigator();
+  function TabNavigator(){
+    return (<Tab.Navigator>
+      <Tab.Screen name="Front" component={FrontPage}/>
+      <Tab.Screen name="searchbar" component={searchbarPresenter}/>
+
+  </Tab.Navigator>);
+  }
+  function LoginTab(){
+    return(<Tab.Navigator initialRouteName="Login">
+      <Tab.Screen name="Login" component={LoginPage} />
+      <Tab.Screen name="SignUp" component={SignUpPage} />
+    </Tab.Navigator>)
+  }
   return (
     <NavigationContainer>
       <ModelContext.Provider value={props.model}>
         <View style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }}>
-          <Stack.Navigator initialRouteName="Login">
-            <Stack.Screen name="Front" component={FrontPage} options={({ navigation, route }) => ({
-              headerBackVisible: false,
-              headerRight: () => (<Button onPress={() => {
-                try {
-                  signOut(auth)
-                  navigation.popToTop()
-                  console.log("signed out");
-                } catch (error) {
-                  console.log(error.message)
-                }
-              }} title="Logout" />)
-            })} />
-            <Stack.Screen name="Login" component={LoginPage} />
-            <Stack.Screen name="SignUp" component={SignUpPage} />
-            <Stack.Screen name="Details" component={DetailsPage} />
-            <Stack.Screen name="searchbar" component={searchbarPresenter}/>
-
-
+          <Stack.Navigator initialRouteName="LoginTab">
+            <Stack.Screen name="LoginTab" component={LoginTab} />
+            <Stack.Screen name ="Tab" component={TabNavigator}/>
+            <Stack.Screen name ="Details" component={DetailsPage}/>
           </Stack.Navigator>
         </View>
       </ModelContext.Provider>
