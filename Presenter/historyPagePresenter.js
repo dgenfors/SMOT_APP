@@ -7,7 +7,6 @@ import DetailsView from '../Views/detailsView';
 import HistoryView from '../Views/historyView';
 
 export default function HistoryPage(props) {
-    console.log("history id:"+props.userData.itemId);
     const model = useContext(ModelContext);
     const index = useRef(props.userData.itemId);
     const data = useRef(getData());
