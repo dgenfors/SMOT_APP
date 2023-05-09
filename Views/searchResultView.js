@@ -37,12 +37,13 @@ export default function SearchResultView(props){
                   {props.devices.map(mapDevices)}
             </Picker></View>
           </View>
-        
+        <View style={{height:400, paddingBottom:40, flexDirection: 'column',}}>
         <FlatList
           data={props.searchResults.data}
           renderItem={renderItem}
           keyExtractor={item => item.id.toString()}
         /></View>
+        </View>
       );
 }
 const styles = StyleSheet.create({
