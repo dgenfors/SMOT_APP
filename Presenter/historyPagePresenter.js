@@ -8,8 +8,7 @@ import HistoryView from '../Views/historyView';
 
 export default function HistoryPage({route, navigation}) {
     const model = useContext(ModelContext);
-    const {itemId} = route.params;
-    const index = useRef(model.devices.findIndex(findIndexACB));
+    const index = useRef(route.params.itemId);
     const data = useRef(getData());
     React.useEffect(wasCreatedACB, []);
     const [device, copyDevice] = React.useState(model.devices[index.current]);
@@ -23,14 +22,7 @@ export default function HistoryPage({route, navigation}) {
     }
 
     function wasCreatedACB() {
-        model.addObserver(DetsObserverACB);
-        index.current = model.devices.findIndex(findIndexACB);
-
-        function findIndexACB(test){
-            return test.id == itemId;
-        }
-
-        const data = 
+        model.addObserver(DetsObserverACB);     
 
         function isTakenDownACB() {
             model.removeObserver(DetsObserverACB);
@@ -39,16 +31,34 @@ export default function HistoryPage({route, navigation}) {
     }
 
     function getData() {
+        const labeltest = ["January", "February", "mars", "April", "May", "June"]
+        const moistureData = [20, 45, 28, 80, 99, 43]
+        const currentTarget = moistureData.map(justCopyTarget)
+
+        function justCopyTarget(element) {
+            return model.devices[index.current].moistureLevel;
+        }
+
+        function getMositureData() {
+            Object.values(model.devices[index.current]);
+        }
+
         const data = {
-            labels: ["January", "February", "March", "April", "May", "June"],
+            labels: labeltest,
             datasets: [
               {
-                data: [20, 45, 28, 80, 99, 43],
-                color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
-                strokeWidth: 2 // optional
+                data: moistureData,
+                color: (opacity = 1) => `rgba(0, 0, 200, ${opacity})`, // optional
+                strokeWidth: 5 // optional
+              }
+              ,
+              {
+                data: currentTarget,
+                color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`, // optional
+                strokeWidth: 5 // optional
               }
             ],
-            legend: ["Rainy Days"] // optional
+            legend: ["Moisture", "Moisture target"] // optional
           };
         return data;
     }
@@ -57,6 +67,6 @@ export default function HistoryPage({route, navigation}) {
     
     return(
         <HistoryView
-            data = {data}
+            data = {data.current}
         ></HistoryView>)
 }

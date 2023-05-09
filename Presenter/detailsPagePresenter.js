@@ -23,6 +23,7 @@ export default function DetailsPage({route, navigation}) {
     function wasCreatedACB() {
         model.addObserver(DetsObserverACB);
         index.current = model.devices.findIndex(findIndexACB);
+        console.log("my index", index.current);
 
         function findIndexACB(test){
             return test.id == itemId;
@@ -55,7 +56,7 @@ export default function DetailsPage({route, navigation}) {
     }
 
     function navigateToHistory(id) {
-        navigation.navigate("History", {itemId: id});
+        navigation.navigate("History", {itemId: index.current});
     }
     
     return(
