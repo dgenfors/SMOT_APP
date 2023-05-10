@@ -8,19 +8,15 @@ import HistoryView from '../Views/historyView';
 
 export default function HistoryPage(props) {
     const model = useContext(ModelContext);
-
-
-
     function findIndex(test){
         return test.id == props.userData.itemId;
     }
     const index = model.devices.findIndex(findIndex);
-    //const index = useRef(props.userData.itemId);
-    
-    
     React.useEffect(wasCreatedACB, []);
     const [device, copyDevice] = React.useState(model.devices[index]);
-    const data = useRef(getData());
+
+    const atTime = 15;
+    const data = useRef(getData(atTime));
     
     function DetsObserverACB() {
         copyDevice({...model.devices[index]})
@@ -38,21 +34,95 @@ export default function HistoryPage(props) {
         }
         return isTakenDownACB;
     }
-    function getData() {
-        const labeltest = ["January", "February", "Mars", "April", "May", "June"]
-        const timeStamp = device.dataTimeStamp.map(getTimeStamp)
-        const moistureData = getMositureData()
+    function getData(atTime) {
+     
+        //Load all data in useful format
+        const timeStampHour = device.dataTimeStamp.map(getTimeStampHour)
+        const moistureData = device.moistureData.map(getMositureData)
+        const timeStampMin = device.dataTimeStamp.map(getTimeStampMinute)
+        
+        
+        //Sort by specified time (param)
+        
+        const array1 = [...timeStampHour];
+        const array2 = [...moistureData];
+        //filterDataAtTime();
+        
+        
+        //Make X-axis evenly spaced by removing data from the same time (hours)
+        const labeltest = filterLabelBest(timeStampHour)
+        filterData();
+       
+        
+
+
+        //Add a target moisture line. Has to be done last to match number of data entires displayed
         const currentTarget = moistureData.map(justCopyTarget)
+
+        
 
         function justCopyTarget(element) {
             return model.devices[index].moistureLevel;
         }
 
-        function getMositureData() {
-            return device.moistureData;
+        function getMositureData(param) {
+            return param;
         }
-        function getTimeStamp(param){
-            return (new Date(param).toString());
+        function getTimeStampHour(param){
+            return new Date(param).toString().substring(16,18);
+        }function getTimeStampMinute(param){
+            return new Date(param).toString().substring(19,21);
+        }
+        function filterByTime(){
+        }
+
+        function filterLabelBest(data){
+            function arrayContains(array, element) {
+                for (let index = 0; index < array.length; index++) {
+                    if(array[index] == element)
+                        return true;
+                }
+                return false;
+            }
+
+            var result = [data[0]]
+            var helper = [data[0]]
+            for (let i = 0; i < data.length; i++) {
+                if(arrayContains(helper, data[i])) {
+                    result.push("");
+                }
+                else {
+                    helper.push(data[i]);
+                    result.push(data[i]);
+                }
+                
+            }
+            return result;
+        }
+        function filterDataAtTime() {
+            while(true){
+                function theBestIndexFinder(param){
+                    return param != atTime;
+                }
+                const dex = timeStampHour.findIndex(theBestIndexFinder)
+                if(dex >-1){
+                    timeStampHour.splice(dex,1)
+                    moistureData.splice(dex,1)
+                }else break;
+            }
+        }
+
+        function filterData() {
+            while(true){
+                function theBestIndexFinder(param){
+                    return param === "";
+                }
+                const dex = labeltest.findIndex(theBestIndexFinder)
+                if(dex >-1){
+                    moistureData.splice(dex,1)
+                    labeltest.splice(dex,1)
+                }else break;
+            }
         }
 
         const data = {
@@ -60,14 +130,14 @@ export default function HistoryPage(props) {
             datasets: [
               {
                 data: moistureData,
-                color: (opacity = 1) => `rgba(0, 0, 200, ${opacity})`, // optional
-                strokeWidth: 5 // optional
+                color: (opacity = 1) => `rgba(0, 0, 255, ${1})`, // optional
+                strokeWidth: 2 // optional
               }
               ,
               {
                 data: currentTarget,
-                color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`, // optional
-                strokeWidth: 5 // optional
+                color: (opacity = 1) => `rgba(0, 0, 0, ${1})`, // optional
+                strokeWidth: 2 // optional
               }
             ],
             legend: ["Moisture", "Moisture target"] // optional

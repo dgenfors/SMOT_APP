@@ -13,12 +13,13 @@ function HistoryView (props) {
         
         <LineChart
           data={props.data}
-          width={Dimensions.get("window").width-15} // from react-native 
+          width={350} // from react-native Dimensions.get("window").width-15
           height={220}
           yAxisSuffix="%"
-          yAxisInterval={10} // optional, defaults to 1
+          yAxisInterval={1} // optional, defaults to 1
           chartConfig={chartConfig}
           style={{borderRadius: 16}}
+          withShadow={false}
           withDots={false}
           fromZero={true}
           bezier
@@ -32,9 +33,8 @@ const chartConfig = {
     backgroundGradientFrom: "#c4d4af", //#c4d4af
     backgroundGradientTo: "#BFB",
     decimalPlaces: 2, // optional, defaults to 2dp
-    fillShadowGradientFromOpacity: 0,
-    fillShadowGradientToOpacity: 0,
-    color: (opacity = 1) => `rgba(0, 0, 255, ${opacity})`,
+    
+    color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
     labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
     style: {
       borderRadius: 16
