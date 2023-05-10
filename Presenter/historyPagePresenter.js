@@ -8,13 +8,22 @@ import HistoryView from '../Views/historyView';
 
 export default function HistoryPage(props) {
     const model = useContext(ModelContext);
-    const index = useRef(props.userData.itemId);
-    const data = useRef(getData());
+
+
+
+    function findIndex(test){
+        return test.id == props.userData.itemId;
+    }
+    const index = model.devices.findIndex(findIndex);
+    //const index = useRef(props.userData.itemId);
+    
+    
     React.useEffect(wasCreatedACB, []);
-    const [device, copyDevice] = React.useState(model.devices[index.current]);
+    const [device, copyDevice] = React.useState(model.devices[index]);
+    const data = useRef(getData());
     
     function DetsObserverACB() {
-        copyDevice({...model.devices[index.current]})
+        copyDevice({...model.devices[index]})
     }
 
     function findIndexACB(test){
@@ -30,21 +39,20 @@ export default function HistoryPage(props) {
         return isTakenDownACB;
     }
     function getData() {
-        const labeltest = ["January", "February", "mars", "April", "May", "June"]
-        const moistureData = [20, 45, 28, 80, 99, 43]
+        const labeltest = ["January", "February", "Mars", "April", "May", "June"]
+        const timeStamp = device.dataTimeStamp.map(getTimeStamp)
+        const moistureData = getMositureData()
         const currentTarget = moistureData.map(justCopyTarget)
 
         function justCopyTarget(element) {
-            function findIndex(test){
-                return test.id == index.current;
-            }
-            const indx = model.devices.findIndex(findIndex);
-        
-            return model.devices[indx].moistureLevel;
+            return model.devices[index].moistureLevel;
         }
 
         function getMositureData() {
-            Object.values(model.devices[index.current]);
+            return device.moistureData;
+        }
+        function getTimeStamp(param){
+            return (new Date(param).toString());
         }
 
         const data = {

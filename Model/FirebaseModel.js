@@ -218,6 +218,22 @@ function updateModelFromFirebase(model){
         model.setPlantInfo(firebaseData.val().plant, firebaseData.val().id); 
     }
     );
+    firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_added", 
+    function moistureHistoryFirebaseACB(firebaseData){
+        function hasSameMoistureHistory(device){
+            if(device.id === firebaseData.val().id){
+                const lengthOfData = Object.keys(firebaseData.val().moistureHistory)
+                if(device.moistureHistory.length == lengthOfData)
+                 return 1;
+                }
+        }
+        if(!model.devices){
+            return;
+        }
+        if(model.devices.filter(hasSameMoistureHistory).length == 1)return;
+        model.setHistoryData(firebaseData.val().moistureHistory, firebaseData.val().id); 
+    }
+    );
 }
 
 export {updateFirebaseFromModel, updateModelFromFirebase ,firebaseModelPromise};

@@ -206,5 +206,24 @@ class Model
         this.notifyObservers({setPlant: plantData, deviceID: id, test:this.devices[index]})
 
     }
+    setHistoryData(historyData, id){
+        const moisteData = [];
+        const timeStamp = [];
+        if(historyData === undefined)return;
+        function findIndex(test){
+            return test.id == id;
+        }
+        const index = this.devices.findIndex(findIndex);
+        function mapData(param){
+            if(param[1].moisture === undefined  || param[1].timeStamp === undefined)return;
+            moisteData.push(param[1].moisture)
+            timeStamp.push(param[1].timeStamp)   
+        }
+        Object.entries(historyData).map(mapData)
+        this.devices[index].moistureData = moisteData
+        this.devices[index].dataTimeStamp = timeStamp
+        this.notifyObservers({HistoryData: historyData, deviceID: id, test:this.devices[index]})
+
+    }
 }
 export default Model;
