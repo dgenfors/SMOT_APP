@@ -23,9 +23,9 @@ import {
 } from 'react-native-global-props';
 
 const customTextProps = {
-  style:{
-    
-    fontFamily: 'comic-sans', 
+  style: {
+
+    fontFamily: 'comic-sans',
   }
 };
 
@@ -34,17 +34,17 @@ setCustomText(customTextProps);
 export default function Main(props) {
   const Stack = props.stack;
 
-  
+
 
 
   React.useEffect(checkForWaterAlertAtStartup, []);
 
   function checkForWaterAlertAtStartup() {
-    if(typeof props.model.devices === "object") {
+    if (typeof props.model.devices === "object") {
       console.log("yes")
       try {
         const lowWaterNameArray = props.model.devices.reduce(callbackFn, [])
-        if(lowWaterNameArray.length > 0) {
+        if (lowWaterNameArray.length > 0) {
           let message = "The water levels in the reservoirs of: ";
           message += lowWaterNameArray;
           message += " are critically low, please refill"
@@ -96,18 +96,18 @@ export default function Main(props) {
     }
   });
   const Tab = createMaterialTopTabNavigator();
-  function DetailsNavigator({route}){
+  function DetailsNavigator({ route }) {
     return (<Tab.Navigator>
       <Tab.Screen name="Details" children={() => <DetailsPage userData={route.params} />} />
-      <Tab.Screen name="Add Plant" component={searchbarPresenter}/>
-      <Tab.Screen name ="History" children={() => <HistoryPage userData={route.params} />}/>
-  </Tab.Navigator>);
+      <Tab.Screen name="Add Plant" component={searchbarPresenter} />
+      <Tab.Screen name="History" children={() => <HistoryPage userData={route.params} />} />
+    </Tab.Navigator>);
   }
-  function LoginTab(){
-    return(<Tab.Navigator initialRouteName="Login">
+  function LoginTab() {
+    return (<Tab.Navigator initialRouteName="Login">
       <Tab.Screen name="Login" component={LoginPage} />
       <Tab.Screen name="SignUp" component={SignUpPage} />
-      
+
     </Tab.Navigator>)
   }
   return (
@@ -116,8 +116,38 @@ export default function Main(props) {
         <View style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }}>
           <Stack.Navigator initialRouteName="LoginTab">
             <Stack.Screen name="LoginTab" component={LoginTab} />
-            <Stack.Screen name ="Home" component={FrontPage}/>
-            <Stack.Screen name ="More info" component={DetailsNavigator}/>
+            <Stack.Screen name="Home" component={FrontPage}
+
+              options={({ navigation, route }) => ({
+                headerBackVisible: false,
+                headerRight: () => (<Button onPress={() => {
+                  try {
+                    signOut(auth)
+                    navigation.popToTop()
+                    console.log("signed out");
+                  } catch (error) {
+                    console.log(error.message)
+                  }
+                }} title="Logout" />)
+              })}
+            />
+            <Stack.Screen name="More info" component={DetailsNavigator} 
+            
+            options={({ navigation, route }) => ({
+              headerBackVisible: false,
+              headerRight: () => (<Button onPress={() => {
+                try {
+                  signOut(auth)
+                  navigation.popToTop()
+                  console.log("signed out");
+                } catch (error) {
+                  console.log(error.message)
+                }
+              }} title="Logout" />)
+            })}
+            
+            
+            />
           </Stack.Navigator>
         </View>
       </ModelContext.Provider>
