@@ -61,9 +61,13 @@ function FrontpageView(props) {
                         textAlign: 'center',
                         fontFamily: 'comic-sans bold', }}>
             {item.name}</Text>
+            <Text style={{
+                        fontSize: 16,
+                        textAlign: 'center',
+                        fontFamily: 'comic-sans bold', }}>
+            {item.label}</Text>
                     <Text >Moisture: {item.currentMoisture}</Text>
                     <Text >Waterlevel: {item.waterLevel}</Text>
-                    <Text >PumpState: {item.pumpState}</Text>
                 </View>
                 {!test? (<Pressable onPress={onWaterButtonPressed} style={{borderRadius: 20, borderColor: 'blue', borderWidth: 3, padding: 4, margin: 4}}>
                     <Image source={watercanImage} style={{width: 64, height: 42, tintColor: 'blue'}}/>

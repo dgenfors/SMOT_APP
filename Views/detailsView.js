@@ -15,6 +15,13 @@ export default function DetailsView(props) {
             props.onNameChanged("Unnamed");
     }
 
+    function LabelChanged(event) {
+        if (event.nativeEvent.text != "")
+            props.onLabelChanged(event.nativeEvent.text);
+        else
+            props.onLabelChanged("Unnamed");
+    }
+
     function wateringTimeChanged(value) {
         props.onWateringTimeChanged(value);
     }
@@ -41,6 +48,15 @@ export default function DetailsView(props) {
                         onSubmitEditing={nameChanged}
                         placeholder={props.device.name}
                         maxLength={20}
+                    ></TextInput>
+                </View>
+                <View style={styles.infoLine}>
+                    <Text style={styles.infoText}>Label: </Text>
+                    <TextInput
+                        style={styles.input}
+                        onSubmitEditing={LabelChanged}
+                        placeholder={props.device.label}
+                        maxLength={50}
                     ></TextInput>
                 </View>
                 <View style={styles.infoLine}>

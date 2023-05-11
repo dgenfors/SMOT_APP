@@ -44,6 +44,10 @@ export default function DetailsPage(props) {
         model.setName(name, itemId)
     }
 
+    function changeLabel(label) {
+        model.setLabel(label, itemId)
+    }
+
     function changeWateringTime(time) {
         model.setPumpTime(time , itemId)
     }
@@ -66,6 +70,7 @@ export default function DetailsPage(props) {
             onMoistChanged = {changeTargetMoisture}
             navToHistory = {navigateToHistory}
             onNameChanged = {changeName}
+            onLabelChanged = {changeLabel}
             onWateringTimeChanged = {changeWateringTime}
             onCalibrate = {sendCalibration}
             onAutowateringToggled = {setAutoWatering}

@@ -54,7 +54,9 @@ function updateFirebaseFromModel(model){
         if(payload.setPlant){
             firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
         }
-        
+        if(payload.labelChanged){
+            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
+        }
     }
     model.addObserver(firebaseObserverACB);
     return;
@@ -76,6 +78,22 @@ function updateModelFromFirebase(model){
         }
         if(model.devices.filter(hasSameName).length == 1)return;
         model.setName(firebaseData.val().name, firebaseData.val().id); 
+    }
+    );
+
+    firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_changed", 
+    function labelFirebaseACB(firebaseData){
+        function hasSameLabel(device){
+            if(device.id === firebaseData.val().id){
+                if(device.label == firebaseData.val().label)
+                 return 1;
+                }
+        }
+        if(!model.devices){
+            return;
+        }
+        if(model.devices.filter(hasSameLabel).length == 1)return;
+        model.setLabel(firebaseData.val().label, firebaseData.val().id); 
     }
     );
 

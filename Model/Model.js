@@ -54,6 +54,22 @@ class Model
         this.devices[index].name = name;
         this.notifyObservers({nameChanged: name, deviceID: id, test: this.devices[index]});
     }
+    
+    setLabel(label, id){
+        if(label === undefined){
+            console.error("undefined data");
+        }
+        function findIndex(test){
+            return test.id == id;
+        }
+
+        const index = this.devices.findIndex(findIndex);
+        if(label === this.devices[index].label){
+            return;
+        }
+        this.devices[index].label = label;
+        this.notifyObservers({labelChanged: label, deviceID: id, test: this.devices[index]});
+    }
 
     setMoistureLevel(moistureLevel , id){
         if(moistureLevel === undefined){
