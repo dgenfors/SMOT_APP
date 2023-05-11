@@ -53,10 +53,9 @@ export default function DetailsView(props) {
                 <View style={styles.infoLine}>
                     <Text style={styles.infoText}>Label: </Text>
                     <TextInput
-                        style={styles.input}
                         onSubmitEditing={LabelChanged}
                         placeholder={props.device.label}
-                        maxLength={50}
+                        maxLength={20}
                     ></TextInput>
                 </View>
                 <View style={styles.infoLine}>
