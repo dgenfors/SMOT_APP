@@ -48,20 +48,38 @@ export default function HistoryPage(props) {
         const timeStampHour = device.dataTimeStamp.map(getTimeStampHour)
         var moistureData = device.moistureData.map(getMositureData)
         var currentTimeList = []
-        if(atTime == "Last hour"){
-            paramTime = new Date(currentTime.getTime() - (1000*60*60));
+        var labeltest;
+
+        function setTimeValues(paramTime){
             const firstIndex = timeStampHour.findIndex(element => element <= currentTime && element >= paramTime)
             const lastIndex = timeStampHour.findLastIndex(element => element <= currentTime && element >= paramTime)
             currentTimeList = timeStampHour.filter(element => element <= currentTime && element >= paramTime)
             moistureData = moistureData.slice(firstIndex,lastIndex)
+        }
+        if(atTime == "Last hour"){
+            paramTime = new Date(currentTime.getTime() - (1000*60*60));
+            /*const firstIndex = timeStampHour.findIndex(element => element <= currentTime && element >= paramTime)
+            const lastIndex = timeStampHour.findLastIndex(element => element <= currentTime && element >= paramTime)
+            currentTimeList = timeStampHour.filter(element => element <= currentTime && element >= paramTime)
+            moistureData = moistureData.slice(firstIndex,lastIndex)*/
+            setTimeValues(paramTime)
+            labeltest = currentTimeList.map(element => element.toString().substring(16,21))
         }else if(atTime == "Last 24 hours"){
            paramTime = new Date(currentTime.getTime() - (1000*60*60*24))
+           /*const firstIndex = timeStampHour.findIndex(element => element <= currentTime && element >= paramTime)
+            const lastIndex = timeStampHour.findLastIndex(element => element <= currentTime && element >= paramTime)
+            currentTimeList = timeStampHour.filter(element => element <= currentTime && element >= paramTime)
+            moistureData = moistureData.slice(firstIndex,lastIndex)*/
+            setTimeValues(paramTime)
+           labeltest = currentTimeList.map(element => element.toString().substring(16,18))
         }else if(atTime == "Last week"){
-            paramTime = new Date(currentTime.getTime() - (1000*60*60));
-            const firstIndex = timeStampHour.findIndex(element => element <= new Date() && element >= new Date(currentTime.getTime() - (1000*60*60*336)))
-            const lastIndex = timeStampHour.findLastIndex(element => element <= new Date() && element >= new Date(currentTime.getTime() - (1000*60*60*336)))
-            currentTimeList = timeStampHour.filter(element => element <= new Date() && element >= new Date(currentTime.getTime() - (1000*60*60*336)))
-            moistureData = moistureData.slice(firstIndex,lastIndex)
+            paramTime = new Date(currentTime.getTime() - (1000*60*60*336));
+            /*const firstIndex = timeStampHour.findIndex(element => element <= new Date() && element >= paramTime)
+            const lastIndex = timeStampHour.findLastIndex(element => element <= new Date() && element >= paramTime)
+            currentTimeList = timeStampHour.filter(element => element <= new Date() && element >= paramTime)
+            moistureData = moistureData.slice(firstIndex,lastIndex)*/
+            setTimeValues(paramTime)
+            labeltest = currentTimeList.map(element => element.toString().substring(4,10))
         }
         
         
@@ -71,11 +89,10 @@ export default function HistoryPage(props) {
         //Make X-axis evenly spaced by removing data from the same time (hours)
         /*var labeltest =[];
         if(atTime == "Last hour")labeltest = [paramTime.toString().substring(16,21),currentTime.toString().substring(16,21)]*/
-        const labeltest = currentTimeList.map(element => element.toString().substring(16,21))//filterLabelBest(sliced)
+        //filterLabelBest(sliced)
         //filterData();
 
         console.log(moistureData,labeltest)
-       debugger
         
 
 
