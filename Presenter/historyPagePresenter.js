@@ -13,10 +13,11 @@ export default function HistoryPage(props) {
     }
     const index = model.devices.findIndex(findIndex);
     React.useEffect(wasCreatedACB, []);
+    const now = new Date();
     const [device, copyDevice] = React.useState(model.devices[index]);
-
-    const atTime = 15;
-    const data = useRef(getData(atTime));
+    const [selectedTime, setSelectedTime] = React.useState("Last hour")
+    const [data, setData ] = React.useState(getData("Last hour"))
+    //const data = useRef(getData(selectedTime));
     
     function DetsObserverACB() {
         copyDevice({...model.devices[index]})
@@ -34,25 +35,47 @@ export default function HistoryPage(props) {
         }
         return isTakenDownACB;
     }
+
+    function setTime(param){
+        setSelectedTime(param)
+        setData(getData(param))
+        
+    }
     function getData(atTime) {
-     
+        const currentTime = new Date();
+        var paramTime = null;
         //Load all data in useful format
         const timeStampHour = device.dataTimeStamp.map(getTimeStampHour)
-        const moistureData = device.moistureData.map(getMositureData)
-        const timeStampMin = device.dataTimeStamp.map(getTimeStampMinute)
+        var moistureData = device.moistureData.map(getMositureData)
+        var currentTimeList = []
+        if(atTime == "Last hour"){
+            paramTime = new Date(currentTime.getTime() - (1000*60*60));
+            const firstIndex = timeStampHour.findIndex(element => element <= currentTime && element >= paramTime)
+            const lastIndex = timeStampHour.findLastIndex(element => element <= currentTime && element >= paramTime)
+            currentTimeList = timeStampHour.filter(element => element <= currentTime && element >= paramTime)
+            moistureData = moistureData.slice(firstIndex,lastIndex)
+        }else if(atTime == "Last 24 hours"){
+           paramTime = new Date(currentTime.getTime() - (1000*60*60*24))
+        }else if(atTime == "Last week"){
+            paramTime = new Date(currentTime.getTime() - (1000*60*60));
+            const firstIndex = timeStampHour.findIndex(element => element <= new Date() && element >= new Date(currentTime.getTime() - (1000*60*60*336)))
+            const lastIndex = timeStampHour.findLastIndex(element => element <= new Date() && element >= new Date(currentTime.getTime() - (1000*60*60*336)))
+            currentTimeList = timeStampHour.filter(element => element <= new Date() && element >= new Date(currentTime.getTime() - (1000*60*60*336)))
+            moistureData = moistureData.slice(firstIndex,lastIndex)
+        }
         
         
-        //Sort by specified time (param)
-        
-        const array1 = [...timeStampHour];
-        const array2 = [...moistureData];
-        //filterDataAtTime();
+       
         
         
         //Make X-axis evenly spaced by removing data from the same time (hours)
-        const labeltest = filterLabelBest(timeStampHour)
-        filterData();
-       
+        /*var labeltest =[];
+        if(atTime == "Last hour")labeltest = [paramTime.toString().substring(16,21),currentTime.toString().substring(16,21)]*/
+        const labeltest = currentTimeList.map(element => element.toString().substring(16,21))//filterLabelBest(sliced)
+        //filterData();
+
+        console.log(moistureData,labeltest)
+       debugger
         
 
 
@@ -69,13 +92,11 @@ export default function HistoryPage(props) {
             return param;
         }
         function getTimeStampHour(param){
-            return new Date(param).toString().substring(16,18);
-        }function getTimeStampMinute(param){
+            return new Date(param)
+        }
+        function getTimeStampMinute(param){
             return new Date(param).toString().substring(19,21);
         }
-        function filterByTime(){
-        }
-
         function filterLabelBest(data){
             function arrayContains(array, element) {
                 for (let index = 0; index < array.length; index++) {
@@ -98,18 +119,6 @@ export default function HistoryPage(props) {
                 
             }
             return result;
-        }
-        function filterDataAtTime() {
-            while(true){
-                function theBestIndexFinder(param){
-                    return param != atTime;
-                }
-                const dex = timeStampHour.findIndex(theBestIndexFinder)
-                if(dex >-1){
-                    timeStampHour.splice(dex,1)
-                    moistureData.splice(dex,1)
-                }else break;
-            }
         }
 
         function filterData() {
@@ -148,6 +157,7 @@ export default function HistoryPage(props) {
     
     return(
         <HistoryView
-            data = {data.current}
+            data = {data}
+            setTime = {setTime}
         ></HistoryView>)
 }
