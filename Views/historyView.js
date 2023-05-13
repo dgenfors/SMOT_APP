@@ -35,14 +35,15 @@ function HistoryView (props) {
     <View style={styles.container}>
         <Text style={{fontFamily: 'comic-sans bold', fontSize: 30, margin: 12}}>Moisture history</Text>
         <Text>Here you can view the moisture history of your plant</Text>
+        <View style={styles.borders}>
         <Picker
                   selectedValue={selectedValue}
                   style={styles.dropDown}
                   onValueChange={selectedValueACB}>
-                  <Picker.Item label="Last hour" value="Last hour" />
+                  <Picker.Item label="Last hour" value="Last hour"/>
                   <Picker.Item label="Last 24 hours" value="Last 24 hours" />
                   <Picker.Item label="Last week" value="Last week" />
-            </Picker>
+            </Picker></View>
         <View style={styles.chartContainer}>
         
         <LineChart
@@ -91,7 +92,13 @@ const styles = StyleSheet.create({
         flex: 1,
         maxWidth: Platform.OS === 'android' ? '100%' : '60%',
         marginVertical: 20,
-    }
+    },
+    borders:{
+        borderWidth: 10,
+        borderColor: '#2e8f2e',
+        borderRadius: 20,
+        backgroundColor: "red",
+      },
     
 });
 
