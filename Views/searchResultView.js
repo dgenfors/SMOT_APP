@@ -1,9 +1,11 @@
-import { Button, StyleSheet, Text, View, SafeAreaView, TextInput, Pressable, TouchableOpacity, Image , FlatList, Platform} from 'react-native';
+import { Button, StyleSheet, Text, View, SafeAreaView, TextInput, Pressable, TouchableOpacity, Image , FlatList, Platform, Modal} from 'react-native';
 import React, { useState } from 'react';
 import {Picker} from '@react-native-picker/picker';
 
 export default function SearchResultView(props){
   const [selectedValue, setSelectedValue] = useState("1");
+  const [modalVisible, setModalVisible] = useState(false);
+  const [dataItem, setDataItem] = useState();
 
   function mapDevices(device){
     return <Picker.Item label={"Device name:"+device.name+", DeviceID:"+device.id} value={device.id} key={device.id}/>
@@ -14,15 +16,33 @@ export default function SearchResultView(props){
 
     function renderItem(data){
       function navToPlantDetails(){
-        props.addPlant(data.item, selectedValue);
+        props.addPlant(dataItem, selectedValue);
+        setModalVisible(false)
       }
       
       
        return( <View style={styles.container}>
-        <Pressable onPress={navToPlantDetails}>
+        <Pressable onPress={() => {setDataItem(data.item); setModalVisible(true); }}>
         <Image source={{ uri: data.item.default_image.original_url }} style={styles.image} />
         <Text style={styles.name}>{data.item.common_name}</Text>
+        <Modal
+            visible={modalVisible}
+            transparent={true}
+          >
+            <View style={styles.modalContainer}>
+              <View style={styles.modalContent}>
+                {!dataItem ? <Text>Add plant to device?</Text> : <Text>{"Do you want to add plant:"+dataItem.common_name+"?"}</Text>}
+                <View style={styles.modalButtons}>
+                <Button title="No" onPress={() => setModalVisible(false)} />
+                </View>
+                <View style={styles.modalButtons}>
+                <Button title="Yes" onPress={navToPlantDetails} />
+                </View>
+              </View>
+            </View>
+          </Modal>
         </Pressable>
+        
     </View>
          );
     }
@@ -99,6 +119,25 @@ const styles = StyleSheet.create({
       ),
       paddingBottom:40, 
       flexDirection: 'column',
+    },
+    modalContainer: {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: [{ translateX: -50 }, { translateY: -20}],
+      backgroundColor: 'white',
+      borderRadius: 10,
+      padding: 20,
+      opacity: 0.9,
+      zIndex: 10,
+    },
+    modalContent: {
+      backgroundColor: 'white',
+      padding: 20,
+      borderRadius: 10,
+    },
+    modalButtons:{
+      padding: 20,
     }
     
     
