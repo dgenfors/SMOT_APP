@@ -150,7 +150,6 @@ export default function HistoryPage(props) {
                 }else break;
             }
         }
-        debugger
         const data = {
             labels: labeltest,
             datasets: [
