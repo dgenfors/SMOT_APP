@@ -54,7 +54,7 @@ export default function HistoryPage(props) {
             const firstIndex = timeStampHour.findIndex(element => element <= currentTime && element >= paramTime)
             const lastIndex = timeStampHour.findLastIndex(element => element <= currentTime && element >= paramTime)
             currentTimeList = timeStampHour.filter(element => element <= currentTime && element >= paramTime)
-            moistureData = moistureData.slice(firstIndex,lastIndex)
+            moistureData = moistureData.slice(firstIndex,(lastIndex+1))
         }
         if(atTime == "Last hour"){
             paramTime = new Date(currentTime.getTime() - (1000*60*60));
