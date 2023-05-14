@@ -19,7 +19,7 @@ export default function HistoryPage(props) {
     const [data, setData ] = React.useState(getData("Last hour"))
     //const data = useRef(getData(selectedTime));
     
-    function DetsObserverACB() {
+    function HistObserverACB() {
         copyDevice({...model.devices[index]})
     }
 
@@ -28,10 +28,10 @@ export default function HistoryPage(props) {
     }
 
     function wasCreatedACB() {
-        model.addObserver(DetsObserverACB);     
+        model.addObserver(HistObserverACB);     
 
         function isTakenDownACB() {
-            model.removeObserver(DetsObserverACB);
+            model.removeObserver(HistObserverACB);
         }
         return isTakenDownACB;
     }
@@ -92,7 +92,7 @@ export default function HistoryPage(props) {
         //filterLabelBest(sliced)
         //filterData();
 
-        console.log(moistureData,labeltest)
+        console.log("historyPresenter",moistureData,labeltest)
         
 
 

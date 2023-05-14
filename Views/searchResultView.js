@@ -121,15 +121,14 @@ const styles = StyleSheet.create({
       flexDirection: 'column',
     },
     modalContainer: {
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: [{ translateX: -50 }, { translateY: -20}],
+      top: "50%",
+      //transform: [{ translateX: -50 }, { translateY: -20}],
       backgroundColor: 'white',
       borderRadius: 10,
       padding: 20,
       opacity: 0.9,
       zIndex: 10,
+      flexDirection: 'column',
     },
     modalContent: {
       backgroundColor: 'white',
