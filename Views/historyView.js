@@ -51,9 +51,9 @@ function HistoryView (props) {
           width={350} // from react-native Dimensions.get("window").width-15
           height={220}
           yAxisSuffix="%"
-          yAxisInterval={1} // optional, defaults to 1
+          yAxisInterval={100} // optional, defaults to 1
           chartConfig={chartConfig}
-          style={{borderRadius: 16}}
+          style={{borderRadius: 16, }}
           withShadow={false}
           withDots={false}
           fromZero={true}
@@ -68,16 +68,16 @@ const chartConfig = {
     backgroundColor: "#F00",
     backgroundGradientFrom: "#c4d4af", //#c4d4af
     backgroundGradientTo: "#BFB",
-    decimalPlaces: 2, // optional, defaults to 2dp
-    
-    color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-    labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+    decimalPlaces: 1, // optional, defaults to 2dp
     style: {
-      borderRadius: 16
+        padding:20,
     },
     propsForDots: {
         r: "3",
-      },
+    },
+    
+    color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+    labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`, 
   }
 
 const styles = StyleSheet.create({
@@ -94,10 +94,16 @@ const styles = StyleSheet.create({
         marginVertical: 20,
     },
     borders:{
-        borderWidth: 10,
+        borderWidth: 20,
         borderColor: '#2e8f2e',
-        borderRadius: 20,
-        backgroundColor: "red",
+        borderRadius: 10, 
+        backgroundColor: '#B2AC88',
+
+      },
+      dropDown:{
+        height: 50, 
+        width: 250,
+        backgroundColor: "transparent",
       },
     
 });

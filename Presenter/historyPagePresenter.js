@@ -150,20 +150,20 @@ export default function HistoryPage(props) {
                 }else break;
             }
         }
-
+        debugger
         const data = {
             labels: labeltest,
             datasets: [
               {
                 data: moistureData,
                 color: (opacity = 1) => `rgba(0, 0, 255, ${1})`, // optional
-                strokeWidth: 2 // optional
+                strokeWidth: 3// optional
               }
               ,
               {
                 data: currentTarget,
-                color: (opacity = 1) => `rgba(0, 0, 0, ${1})`, // optional
-                strokeWidth: 2 // optional
+                color: (opacity = 1) => `rgba(0, 150, 0, ${1})`, // optional
+                strokeWidth: 3 // optional
               }
             ],
             legend: ["Moisture", "Moisture target"] // optional
