@@ -13,19 +13,27 @@ export default function SearchResultView(props){
   function selectedValueACB(itemValue, index){
     setSelectedValue(itemValue)
   }
+  function navToPlantDetails(){
+    props.addPlant(dataItem, selectedValue);
+    setModalVisible(false)
+  }
 
     function renderItem(data){
-      function navToPlantDetails(){
-        props.addPlant(dataItem, selectedValue);
-        setModalVisible(false)
-      }
+      
       
       
        return( <View style={styles.container}>
         <Pressable onPress={() => {setDataItem(data.item); setModalVisible(true); }}>
         <Image source={{ uri: data.item.default_image.original_url }} style={styles.image} />
         <Text style={styles.name}>{data.item.common_name}</Text>
-        <Modal
+        </Pressable>
+        
+    </View>
+         );
+    }
+    return(
+        <View>
+           <Modal
             visible={modalVisible}
             transparent={true}
           >
@@ -41,13 +49,6 @@ export default function SearchResultView(props){
               </View>
             </View>
           </Modal>
-        </Pressable>
-        
-    </View>
-         );
-    }
-    return(
-        <View>
           <View style={styles.test}>
             <Text>Select a device,then press a Plant to pair them</Text>
             <View style={styles.borders}><Picker
