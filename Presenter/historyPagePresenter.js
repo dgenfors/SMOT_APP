@@ -72,6 +72,8 @@ export default function HistoryPage(props) {
             moistureData = moistureData.slice(firstIndex,lastIndex)*/
             setTimeValues(paramTime)
            labeltest = currentTimeList.map(element => element.toString().substring(16,18))
+           labeltest = filterLabelBest(labeltest)
+           filterData()
         }else if(atTime == "Last week"){
             paramTime = new Date(currentTime.getTime() - (1000*60*60*336));
             /*const firstIndex = timeStampHour.findIndex(element => element <= new Date() && element >= paramTime)
@@ -80,6 +82,9 @@ export default function HistoryPage(props) {
             moistureData = moistureData.slice(firstIndex,lastIndex)*/
             setTimeValues(paramTime)
             labeltest = currentTimeList.map(element => element.toString().substring(4,10))
+            labeltest = filterLabelBest(labeltest)
+            filterData()
+           
         }
         
         

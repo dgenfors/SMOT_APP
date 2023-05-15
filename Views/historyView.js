@@ -58,7 +58,7 @@ function HistoryView (props) {
           withDots={false}
           fromZero={true}
           bezier
-          hidePointsAtIndex={removeLabels()}
+          //hidePointsAtIndex={removeLabels()}
         />
         </View>
     </View>)
