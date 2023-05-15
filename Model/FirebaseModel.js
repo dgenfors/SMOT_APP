@@ -23,39 +23,36 @@ function updateFirebaseFromModel(model){
             return
         }
         if(payload.nameChanged){
-            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
+            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/name").set(payload.nameChanged);
         }
         if(payload.setMoistureLevel){
-            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
+            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/moistureLevel").set(payload.setMoistureLevel);
         }
         if(payload.setWaterLevel){
-            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
+            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/waterLevel").set(payload.setWaterLevel);
         }
         if(payload.setCurrentMoisture){
             
-            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
+            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/currentMoisture").set(payload.setCurrentMoisture);
         }
         if(payload.setPump ===false || payload.setPump){
-            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
+            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/pump").set(payload.setPump);
         }
         if(payload.setPumpTime){
-            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
+            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/pumpTime").set(payload.setPumpTime);
         }
         if(payload.setPumpState){
-            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
-        }
-        if(payload.setCalibrationState){
-            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
+            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/pumpState").set(payload.setPumpState);
         }
         if(payload.setAutowateringState){
             console.log(payload)
-            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
+            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/autoWateringState").set(payload.setAutowateringState);
         }
         if(payload.setPlant){
-            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
+            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/plant").set(payload.setPlant);
         }
         if(payload.labelChanged){
-            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/").set(payload.test);
+            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/label").set(payload.labelChanged);
         }
     }
     model.addObserver(firebaseObserverACB);
@@ -190,21 +187,6 @@ function updateModelFromFirebase(model){
     }
     );
 
-    firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_changed", 
-    function calibrationFirebaseACB(firebaseData){
-        function hasSameCalibration(device){
-            if(device.id === firebaseData.val().id){
-                if(device.calibration == firebaseData.val().calibration)
-                 return 1;
-                }
-        }
-        if(!model.devices){
-            return;
-        }
-        if(model.devices.filter(hasSameCalibration).length == 1)return;
-        model.setCalibrationState(firebaseData.val().calibration, firebaseData.val().id); 
-    }
-    );
 
     firebase.database().ref(auth.currentUser.uid+"/devices/").on("child_changed", 
     function AutoWateringFirebaseACB(firebaseData){
