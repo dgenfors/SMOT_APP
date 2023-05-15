@@ -53,9 +53,10 @@ export default function DetailsView(props) {
                 <View style={styles.infoLine}>
                     <Text style={styles.infoText}>Label: </Text>
                     <TextInput
+                        style={styles.input}
                         onSubmitEditing={LabelChanged}
                         placeholder={props.device.label}
-                        maxLength={20}
+                        maxLength={30}
                     ></TextInput>
                 </View>
                 <View style={styles.infoLine}>
@@ -117,9 +118,8 @@ export default function DetailsView(props) {
                 <View style={styles.infoCol}>
                     <View style={styles.line}>
                         <Text style={styles.infoText}>Waterlevel: </Text>
-                        <Text style={styles.valueText}>{props.device.waterLevel}</Text>
+                        <Text style={styles.valueText}>{props.device.waterLevel} cm</Text>
                     </View>
-                    <Button title="Calibrate sensor" onPress={onCalibratePressed}></Button>
                 </View>
                 {!props.device.plant ? (<View style={styles.infoLine}><Text>Add a plant to your device to get more information!</Text></View>):null}
                 {props.device.plant ? (<View style={styles.infoCol}>
