@@ -236,9 +236,10 @@ const styles = StyleSheet.create({
         textAlign: 'right',
     },
     input: {
+        adjustsFontSizeToFit: true,
         width: 'auto',
-        fontFamily: 'comic-sans bold',
-        maxWidth: 200,
+        maxWidth: 180,
+        fontFamily: 'arial',
         fontSize: 20,
         textAlign: 'right',
     },

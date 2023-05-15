@@ -102,7 +102,8 @@ const styles = StyleSheet.create({
     },
     borders:{
       borderWidth: 1,
-      borderColor: '#2e8f2e',
+      borderColor: '#c4d4af',
+      backgroundColor: '#c4d4af',
       borderRadius: 5,
     },
     list:{
