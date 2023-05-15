@@ -236,10 +236,9 @@ const styles = StyleSheet.create({
         textAlign: 'right',
     },
     input: {
-        adjustsFontSizeToFit: true,
         width: 'auto',
         maxWidth: 180,
-        fontFamily: 'arial',
+        fontFamily: 'normal',
         fontSize: 20,
         textAlign: 'right',
     },
