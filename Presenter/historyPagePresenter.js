@@ -84,7 +84,16 @@ export default function HistoryPage(props) {
             labeltest = currentTimeList.map(element => element.toString().substring(4,10))
             labeltest = filterLabelBest(labeltest)
             filterData()
-           
+        }else if(atTime =="Demo"){
+            paramTime = new Date(currentTime.getTime() - (1000*60*60*91));
+            const demoTime = new Date(currentTime.getTime() -(1000*60*60*70) )
+            const firstIndex = timeStampHour.findIndex(element => element <= demoTime && element >= paramTime)
+            const lastIndex = timeStampHour.findLastIndex(element => element <= demoTime && element >= paramTime)
+            currentTimeList = timeStampHour.filter(element => element <= demoTime && element >= paramTime)
+            moistureData = moistureData.slice(firstIndex,(lastIndex+1))
+            labeltest = currentTimeList.map(element => element.toString().substring(16,18))
+            labeltest = filterLabelBest(labeltest)
+            filterData()
         }
         
         
