@@ -98,9 +98,9 @@ export default function Main(props) {
   const Tab = createMaterialTopTabNavigator();
   function DetailsNavigator({ route }) {
     return (<Tab.Navigator>
-      <Tab.Screen name="Details" children={() => <DetailsPage userData={route.params} />} />
-      <Tab.Screen name="Add Plant" component={searchbarPresenter} />
-      <Tab.Screen name="History" children={() => <HistoryPage userData={route.params} />} />
+      <Tab.Screen name="Details" options={{ unmountOnBlur: true  }} children={() => <DetailsPage userData={route.params}  />} />
+      <Tab.Screen name="Add Plant" component={searchbarPresenter} options={{ unmountOnBlur: true }}/>
+      <Tab.Screen name="History" options={{ unmountOnBlur: true }} children={() => <HistoryPage userData={route.params} />} />
     </Tab.Navigator>);
   }
   function LoginTab() {
