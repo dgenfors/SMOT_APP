@@ -77,7 +77,7 @@ function FrontpageView(props) {
                         }}>
                             {item.label}</Text>
                         <Text >Moisture: {item.currentMoisture} %</Text>
-                        <Text >Waterlevel: {item.waterLevel} cm</Text>
+                        <Text >Waterlevel: {item.waterLevel} %</Text>
                         {item.autoWateringState ? (<Text style={{ color: 'blue', fontFamily: 'comic-sans bold' }}>Auto: ON </Text>) : (<Text style={{ color: 'red', fontFamily: 'comic-sans bold' }}>Auto: OFF </Text>)}
                     </View>
                     {item.autoWateringState ? 

@@ -118,7 +118,7 @@ export default function DetailsView(props) {
                 <View style={styles.infoCol}>
                     <View style={styles.line}>
                         <Text style={styles.infoText}>Waterlevel: </Text>
-                        <Text style={styles.valueText}>{props.device.waterLevel} cm</Text>
+                        <Text style={styles.valueText}>{props.device.waterLevel} %</Text>
                     </View>
                 </View>
                 {!props.device.plant ? (<View style={styles.infoLine}><Text>Add a plant to your device to get more information!</Text></View>):null}
