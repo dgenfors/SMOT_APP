@@ -81,7 +81,7 @@ function FrontpageView(props) {
                         {item.autoWateringState ? (<Text style={{ color: 'blue' }}>Auto: ON </Text>) : (<Text style={{ color: 'red' }}>Auto: OFF </Text>)}
                     </View>
                     {item.autoWateringState ? 
-                    (<Pressable onPress={onWaterButtonPressed} disabled = "true" style={{ borderRadius: 20, borderColor: 'grey', borderWidth: 3, padding: 4, margin: 4 }}>
+                    (<Pressable onPress={onWaterButtonPressed} disabled = {true} style={{ borderRadius: 20, borderColor: 'grey', borderWidth: 3, padding: 4, margin: 4 }}>
                     <Image source={watercanImage}
                         style={{ width: 64, height: 42, tintColor: 'grey' }} />
                 </Pressable>)
