@@ -44,9 +44,8 @@ function updateFirebaseFromModel(model){
         if(payload.setPumpState){
             firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/pumpState").set(payload.setPumpState);
         }
-        if(payload.setAutowateringState){
-            console.log(payload)
-            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/autoWateringState").set(payload.setAutowateringState);
+        if("setAutowateringState" in payload){
+            firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/autoWateringState").set(payload.actualState);
         }
         if(payload.setPlant){
             firebase.database().ref(auth.currentUser.uid+"/devices/"+"device"+payload.deviceID+"/plant").set(payload.setPlant);
