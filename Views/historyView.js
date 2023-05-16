@@ -30,6 +30,10 @@ function HistoryView (props) {
         
         return list
     }
+    function shouldHidePoints(){
+        if(selectedValue == "Last hour")return true
+        else return false
+    }
 
     return (
     <View style={styles.container}>
@@ -59,7 +63,7 @@ function HistoryView (props) {
           withDots={false}
           fromZero={true}
           bezier
-          //hidePointsAtIndex={removeLabels()}
+          hidePointsAtIndex={shouldHidePoints() ? removeLabels() : []}
         />
         </View>
     </View>)
