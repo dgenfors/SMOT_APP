@@ -47,7 +47,7 @@ function HistoryView (props) {
                   <Picker.Item label="Last hour" value="Last hour"/>
                   <Picker.Item label="Last 24 hours" value="Last 24 hours" />
                   <Picker.Item label="Last week" value="Last week" />
-                  <Picker.Item label="Demo" value="Demo" />
+                  <Picker.Item label="Test period 11-12 may" value="Test period 11-12 may" />
             </Picker></View>
         <View style={styles.chartContainer}>
         

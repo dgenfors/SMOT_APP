@@ -84,7 +84,7 @@ export default function HistoryPage(props) {
             labeltest = currentTimeList.map(element => element.toString().substring(4,10))
             labeltest = filterLabelBest(labeltest)
             filterData()
-        }else if(atTime =="Demo"){
+        }else if(atTime =="Test period 11-12 may"){
             paramTime = new Date(currentTime.getTime() - (1000*60*60*111));
             const demoTime = new Date(currentTime.getTime() -(1000*60*60*90) )
             const firstIndex = timeStampHour.findIndex(element => element <= demoTime && element >= paramTime)
